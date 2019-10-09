@@ -21,7 +21,6 @@ y = np.array([-1.000, -0.151, 0.894, 0.986, 0.895, 0.500, -0.306])
 xnew = np.linspace(-1, 1, 1000)
 
 # Let's first draw the points
-plt.figure(dpi=100)
 plt.plot(x, y, 'bo', label='Experiment Data')
 
 # Compute Interpolating Polynomial with Lagrange method

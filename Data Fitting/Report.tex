@@ -5,6 +5,8 @@
 \usepackage{titlesec}
 \usepackage{graphicx}
 
+\newcommand{\code}{\texttt}
+
 % Specify images directory
 \graphicspath{ {./report-images/} }
 
@@ -46,7 +48,7 @@
 \end{titlepage}
 
 \section{Introduction}\label{sec:intro}
-An imaginary chemistry experiment produces the following data:
+An imaginary chemistry experiment produces the following data set:
 
   \begin{table}[!ht]
     \large        %% not "\fontsize{12}{12}\selectfont"
@@ -59,7 +61,7 @@ An imaginary chemistry experiment produces the following data:
     \end{tabular}
   \end{table}
 
-The goal of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed. In the following sections I am going to describe the tools used to compute and plot the interpolating polynomial and the natural cubic spine, and draw conclusions based on the plot.
+The goal of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed. In the following sections I am going to describe the computation process and list the tools I used. I will then plot the interpolating polynomial and the natural cubic spine, and draw conclusions based on the plot.
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
@@ -67,17 +69,23 @@ The following programming language and libraries have been used in this exercise
   \item Python 3.7
   \item SciPy
 \end{itemize}
+The SciPy \code{interpolate} sub-package was used to compute the interpolating polynomial and the natural cubic spline:
+\begin{itemize}
+  \item \code{scipy.interpolate.lagrange(x, y)}
+  \item \code{scipy.interpolate.CubicSpline(x, y, type)}
+\end{itemize}
+
 The following NumPy methods of the SciPy environment have been used in this exercise:
 \begin{itemize}
-  \item numpy.array
-  \item numpy.linspace
-  \item numpy.polynomial.polynomial
+  \item \code{numpy.array(object)}
+  \item \code{numpy.linspace(start, stop, num)}
+  \item \code{numpy.polynomial.polynomial}
   \end{itemize}
 The following Matplotlib methods of the SciPy environment have been used in this exercise:
  \begin{itemize}
-  \item matplotlib.pyplot.plot
-  \item matplotlib.pyplot.legend
-  \item matplotlib.pyplot.show
+  \item \code{matplotlib.pyplot.plot(x, y, formatting, label)}
+  \item \code{matplotlib.pyplot.legend()}
+  \item \code{matplotlib.pyplot.show()}
   \end{itemize}
 This report was written in \LaTeX. The results produced by the SciPy library were checked using Maple.
   
@@ -97,8 +105,14 @@ The coefficients are:
   \item -0.006446071786954468800
   \end{itemize}
 
+The polynomial in the power form is: XXX
+
 Here's a graph showing the 6th degree interpolating polynomial:
 
 \includegraphics{intpoly}
+
+In order to compute this interpolating polynomial in Python, I used the \code{lagrange} method ... [EXPLAIN]
+
+\section{Natural Cubic Spline}
 
 \end{document}
