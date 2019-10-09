@@ -24,27 +24,84 @@
 %
 
 \begin{document}
-\begin{titlepage}
-	\begin{center}
-	\line(1,0){300}\\
-	[0.25in]
-	\huge{\bfseries Data Fitting Report}  \\
-	\line(1,0){200} \\
-	[1.5cm]
-	\Large{Exercise 3} \\
-	[0.25cm]
-	\Large{Comparison between interpolating polynomial and natural cubic spline} \\
-	[12cm]
-	\end{center}
-	\begin{flushright}
-	\large{Cesare De Cal \\
-	[0.25cm]
-	Professor: Annie Cuyt \\
-	[0.25cm]
-	Assistant Professor: Ferre Knaepkens \\
-	}
-	\end{flushright}
+
+%----------------------------------------------------------------------------------------
+%	TITLE PAGE
+%----------------------------------------------------------------------------------------
+
+\begin{titlepage} % Suppresses displaying the page number on the title page and the subsequent page counts as page 1
+	\newcommand{\HRule}{\rule{\linewidth}{0.5mm}}% Defines a new command for horizontal lines, change thickness here
+	
+	\center % Centre everything on the page
+	
+	%------------------------------------------------
+	%	Headings
+	%------------------------------------------------
+	
+	\textsc{\Large Data Fitting}\\[0.5cm] % Major heading such as course name
+	
+	\textsc{\large Exercise 3}\\[0.5cm] % Minor heading such as course title
+	
+	%------------------------------------------------
+	%	Title
+	%------------------------------------------------
+	
+	\HRule\\[0.6cm]
+	
+	{\huge\bfseries Comparison between Interpolating Polynomial and Natural Cubic Spline}\\[0.25cm] % Title of your document
+	
+	\HRule\\[1.5cm]
+	
+	%------------------------------------------------
+	%	Author(s)
+	%------------------------------------------------
+	
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushleft}
+			\large
+			\textit{Author}\\
+			\textsc{Cesare De Cal} % Your name
+		\end{flushleft}
+	\end{minipage}
+	~
+	\begin{minipage}{0.4\textwidth}
+		\begin{flushright}
+			\large
+			\textit{Professor}\\
+			\textsc{Annie Cuyt}\\ % Supervisor's name
+			[0.25cm]
+			\textit{Assistant Professor}\\
+			\textsc{Ferre Knaepkens} % Supervisor's name
+
+		\end{flushright}
+	\end{minipage}
+	
+	% If you don't want a supervisor, uncomment the two lines below and comment the code above
+	%{\large\textit{Author}}\\
+	%John \textsc{Smith} % Your name
+	
+	%------------------------------------------------
+	%	Date
+	%------------------------------------------------
+	
+	\vfill\vfill\vfill % Position the date 3/4 down the remaining page
+	
+	{\large\today} % Date, change the \today to a set date if you want to be precise
+	
+	%------------------------------------------------
+	%	Logo
+	%------------------------------------------------
+	
+	%\vfill\vfill
+	%\includegraphics[width=0.2\textwidth]{placeholder.jpg}\\[1cm] % Include a department/university logo - this will require the graphicx package
+	 
+	%----------------------------------------------------------------------------------------
+	
+	\vfill % Push the date up 1/4 of the remaining page
+	
 \end{titlepage}
+
+%----------------------------------------------------------------------------------------
 
 \section{Introduction}\label{sec:intro}
 An imaginary chemistry experiment produces the following data set:
@@ -60,7 +117,7 @@ An imaginary chemistry experiment produces the following data set:
     \end{tabular}
   \end{table}
 
-The goal of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed. In the following sections I am going to describe the computation process and list the tools I used. I will then plot the interpolating polynomial and the natural cubic spine, and draw conclusions based on the plot.
+The purpose of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed. In the following sections I am going to describe the computation process and list the tools I used. I will then plot the data points, the interpolating polynomial and the natural cubic spine, and draw conclusions based on the plot.
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
@@ -105,14 +162,12 @@ The following are coefficients the interpolating polynomial:
   \item -0.006446071786954468800
   \end{itemize}
 
-Here's a graph showing the 6th degree interpolating polynomial:
-
-\includegraphics{intpoly}
-
 I then proceeded to calculate the relative and absolute errors.
 
 \section{Natural Cubic Spline}
 In order to calculate the natural cubic spline...
+
+\section{Figures and Graphs}
 
 \section{Observations}
 The natural cubic spline is a much more accurate representation than the Lagrange function which appears inconsistent.  
