@@ -2,6 +2,11 @@
 
 \usepackage{lipsum}
 \usepackage[margin=1.20in,, includefoot]{geometry}
+\usepackage{titlesec}
+\usepackage{graphicx}
+
+% Specify images directory
+\graphicspath{ {./report-images/} }
 
 % Header and Footer stuff
 \usepackage{fancyhdr}
@@ -11,6 +16,8 @@
 \fancyfoot[R]{ \thepage\ }
 \renewcommand{\headrulewidth}{0pt}
 \renewcommand{\footrulewidth}{0pt}
+\newcommand{\sectionbreak}{\clearpage}
+\setlength{\parindent}{0pt}
 
 %
 
@@ -23,12 +30,11 @@
 	[2mm]
 	\line(1,0){200} \\
 	[1.5cm]
-	\LARGE{Exercise 3} \\
+	\Large{Exercise 3} \\
 	[0.25cm]
 	\Large{Comparison between interpolating polynomial and natural cubic spline} \\
 	[12cm]
 	\end{center}
-	
 	\begin{flushright}
 	\large{Cesare De Cal \\
 	[0.25cm]
@@ -40,7 +46,7 @@
 \end{titlepage}
 
 \section{Introduction}\label{sec:intro}
-The goal of this exercise is to compute and plot the interpolating polynomial and the natural cubic spline of a set of data points provided by an imaginary chemistry experiment, and to draw conclusion on it. Here are the data points:
+An imaginary chemistry experiment produces the following data:
 
   \begin{table}[!ht]
     \large        %% not "\fontsize{12}{12}\selectfont"
@@ -52,10 +58,9 @@ The goal of this exercise is to compute and plot the interpolating polynomial an
     \hline        %% extra \hline at bottom of table
     \end{tabular}
   \end{table}
-To compute the interpolating polynomial, I am going to use the Lagrange method saw in class.
 
+The goal of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed. In the following sections I am going to describe the tools used to compute and plot the interpolating polynomial and the natural cubic spine, and draw conclusions based on the plot.
 
-  
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
 \begin{itemize}
@@ -74,4 +79,26 @@ The following Matplotlib methods of the SciPy environment have been used in this
   \item matplotlib.pyplot.legend
   \item matplotlib.pyplot.show
   \end{itemize}
+This report was written in \LaTeX. The results produced by the SciPy library were checked using Maple.
+  
+\section{Computing the interpolating polynomial}
+To compute the interpolating polynomial, I use the Lagrange method which is one of the methods saw in class. I'll also calculate the roundoff errors and the errors on the coefficients. \\
+The polynomial found is: \\
+[0.25cm]
+
+The coefficients are: 
+ \begin{itemize}
+  \item 0.04365005085
+  \item 16.0766955610565
+  \item -0.048402197837630
+  \item -20.10047681678335740
+  \item 0.0168806991536721320
+  \item 5.029463735952404423200
+  \item -0.006446071786954468800
+  \end{itemize}
+
+Here's a graph showing the 6th degree interpolating polynomial:
+
+\includegraphics{intpoly}
+
 \end{document}
