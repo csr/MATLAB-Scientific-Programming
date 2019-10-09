@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage{lipsum}
-\usepackage[margin=1.20in,, includefoot]{geometry}
+\usepackage[margin=1.20in, includefoot]{geometry}
 \usepackage{titlesec}
 \usepackage{graphicx}
 
@@ -29,7 +29,6 @@
 	\line(1,0){300}\\
 	[0.25in]
 	\huge{\bfseries Data Fitting Report}  \\
-	[2mm]
 	\line(1,0){200} \\
 	[1.5cm]
 	\Large{Exercise 3} \\
@@ -89,9 +88,13 @@ The following Matplotlib methods of the SciPy environment have been used in this
   \end{itemize}
   
 \section{Computing the interpolating polynomial}
-The exercise asks to compute the interpolating polynomial of the given data set. To do so, I first create two arrays in Python containing the data points using \code{np.array} and a linear space from -1 to 1 containing 1000 points. These values are finally passed to the \code{lagrange} method. \\
+The exercise asks to compute the interpolating polynomial of the given data set. To do so, I first create two arrays in Python containing the data points using \code{np.array} and a linear space from -1 to 1 containing 1000 points. These values are finally passed to the \code{lagrange} method which returns the {\it Lagrange} interpolating polynomial. \\
 
-The coefficients are: 
+The polynomial in the {\it power} form is: \\
+
+$0.04365005085x^6 + 16.0766955610565x^5 - 0.048402197837630x^4 - 20.10047681678335740x^3\\ + 0.0168806991536721320x^2 + 5.029463735952404423200x - 0.006446071786954468800$ \\
+
+The following are coefficients the interpolating polynomial:
  \begin{itemize}
   \item 0.04365005085
   \item 16.0766955610565
@@ -102,14 +105,16 @@ The coefficients are:
   \item -0.006446071786954468800
   \end{itemize}
 
-The polynomial in the power form is: XXX
-
 Here's a graph showing the 6th degree interpolating polynomial:
 
 \includegraphics{intpoly}
 
-In order to compute this interpolating polynomial in Python, I used the \code{lagrange} method ... [EXPLAIN]
+I then proceeded to calculate the relative and absolute errors.
 
 \section{Natural Cubic Spline}
+In order to calculate the natural cubic spline...
+
+\section{Observations}
+The natural cubic spline is a much more accurate representation than the Lagrange function which appears inconsistent.  
 
 \end{document}
