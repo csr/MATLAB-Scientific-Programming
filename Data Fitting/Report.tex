@@ -79,20 +79,17 @@ The following NumPy methods of the SciPy environment have been used in this exer
 \begin{itemize}
   \item \code{numpy.array(object)}
   \item \code{numpy.linspace(start, stop, num)}
-  \item \code{numpy.polynomial.polynomial}
+  \item \code{numpy.polynomial.polynomial.Polynomial(poly)}
   \end{itemize}
-The following Matplotlib methods of the SciPy environment have been used in this exercise:
+The following Matplotlib methods of the SciPy environment have been used in this exercise to plot:
  \begin{itemize}
   \item \code{matplotlib.pyplot.plot(x, y, formatting, label)}
   \item \code{matplotlib.pyplot.legend()}
   \item \code{matplotlib.pyplot.show()}
   \end{itemize}
-This report was written in \LaTeX. The results produced by the SciPy library were checked using Maple.
   
 \section{Computing the interpolating polynomial}
-To compute the interpolating polynomial, I use the Lagrange method which is one of the methods saw in class. I'll also calculate the roundoff errors and the errors on the coefficients. \\
-The polynomial found is: \\
-[0.25cm]
+The exercise asks to compute the interpolating polynomial of the given data set. To do so, I first create two arrays in Python containing the data points using \code{np.array} and a linear space from -1 to 1 containing 1000 points. These values are finally passed to the \code{lagrange} method. \\
 
 The coefficients are: 
  \begin{itemize}

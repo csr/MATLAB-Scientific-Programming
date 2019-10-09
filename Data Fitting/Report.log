@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 OCT 2019 19:50
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  9 OCT 2019 19:58
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -400,51 +400,43 @@ File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
 (Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 69.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <7> on input line 90.
-LaTeX Font Info:    External font `cmex10' loaded for size
-(Font)              <5> on input line 90.
  [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 93--96
+Underfull \hbox (badness 10000) in paragraph at lines 92--93
 
  []
 
-<./report-images/intpoly.png, id=20, 388.0899pt x 249.3315pt>
+<./report-images/intpoly.png, id=19, 388.0899pt x 249.3315pt>
 File: ./report-images/intpoly.png Graphic file (type png)
 <use ./report-images/intpoly.png>
-Package pdftex.def Info: ./report-images/intpoly.png  used on input line 112.
+Package pdftex.def Info: ./report-images/intpoly.png  used on input line 109.
 (pdftex.def)             Requested size: 388.08894pt x 249.33087pt.
 [3
 
  <./report-images/intpoly.png>] [4
 
-] (./Report.aux)
-
-LaTeX Warning: Label(s) may have changed. Rerun to get cross-references right.
-
- ) 
+] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 12047 strings out of 492616
- 226721 string characters out of 6129482
+ 12045 strings out of 492616
+ 226693 string characters out of 6129482
  396774 words of memory out of 5000000
- 15924 multiletter control sequences out of 15000+600000
+ 15922 multiletter control sequences out of 15000+600000
  537152 words of font info for 40 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,11n,63p,405b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmbx12.pfb
-></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr10.pfb><
-/usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr12.pfb></u
-sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr7.pfb></usr/
-local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy10.pfb></usr/l
-ocal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></usr/lo
-cal/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.pfb></usr/loca
-l/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Report.pdf (5 pages, 118299 bytes).
+</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
+ts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
+s/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/
+cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm
+/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
+cmti12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/c
+mti8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmt
+t10.pfb>
+Output written on Report.pdf (5 pages, 111243 bytes).
 PDF statistics:
- 55 PDF objects out of 1000 (max. 8388607)
- 37 compressed objects within 1 object stream
+ 51 PDF objects out of 1000 (max. 8388607)
+ 34 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 
