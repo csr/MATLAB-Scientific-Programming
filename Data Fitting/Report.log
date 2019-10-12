@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  12 OCT 2019 20:37
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  12 OCT 2019 21:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -396,56 +396,109 @@ LaTeX Font Info:    External font `cmex10' loaded for size
 LaTeX Font Info:    External font `cmex10' loaded for size
 (Font)              <6> on input line 112.
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--121
-
- []
-
 [1
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 127.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 125.
 
  (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 127.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 125.
  [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 150--151
+Underfull \hbox (badness 10000) in paragraph at lines 153--154
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 152--153
+Underfull \hbox (badness 10000) in paragraph at lines 166--167
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 168--169
 
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 170--171
+
+ []
+
+
+Overfull \hbox (11.11226pt too wide) in paragraph at lines 172--180
+[]$\OT1/cmr/m/n/10 [[\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 8\OML/cmm/m/it/10 :\OT
+1/cmr/m/n/10 0654538905002710\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + 021\OML/cmm/m
+/it/10 :\OT1/cmr/m/n/10 4844899135604635\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + 02
+2\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 5130673577722442\OML/cmm/m/it/10 e \OT1/cmr/
+m/n/10 + 02 \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 7\OML/cmm/m/it/10 :\OT1/cmr/m/
+n/10 2398801257531864\OML/cmm/m/it/10 e \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (21.11229pt too wide) in paragraph at lines 172--180
+\OT1/cmr/m/n/10 011\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2138819568393451\OML/cmm/m
+/it/10 e \OT1/cmr/m/n/10 + 005\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 041531785508534
+0\OML/cmm/m/it/10 e \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 01][\OMS/cmsy/m/n/10 ^
+^@\OT1/cmr/m/n/10 8\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 5265128291212022\OML/cmm/m
+/it/10 e \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 14 \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/
+m/n/10 9\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 6785446686003496\OML/cmm/m/it/10 e \O
+T1/cmr/m/n/10 +
+ []
+
+
+Overfull \hbox (23.33452pt too wide) in paragraph at lines 172--180
+\OT1/cmr/m/n/10 01 \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 5\OML/cmm/m/it/10 :\OT1
+/cmr/m/n/10 2250749279189527\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + 015\OML/cmm/m/
+it/10 :\OT1/cmr/m/n/10 2366523402757015\OML/cmm/m/it/10 e \OMS/cmsy/m/n/10 ^^@ 
+\OT1/cmr/m/n/10 01 \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1
+/cmr/m/n/10 6700184440756460\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + 00 \OMS/cmsy/m
+/n/10 ^^@ \OT1/cmr/m/n/10 6\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 5035760033060053\O
+ML/cmm/m/it/10 e \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (5.55669pt too wide) in paragraph at lines 172--180
+\OT1/cmr/m/n/10 01][2\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 2515472622480029\OML/cmm
+/m/it/10 e \OT1/cmr/m/n/10 + 011\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 8644054755039
+885\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + 013\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 74
+04351585205808\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + 001\OML/cmm/m/it/10 :\OT1/cm
+r/m/n/10 1953927535924665\OML/cmm/m/it/10 e \OMS/cmsy/m/n/10 ^^@
+ []
+
+
+Overfull \hbox (36.6679pt too wide) in paragraph at lines 172--180
+\OT1/cmr/m/n/10 01 \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1
+/cmr/m/n/10 0382774667893093\OML/cmm/m/it/10 e \OT1/cmr/m/n/10 + 00 \OMS/cmsy/m
+/n/10 ^^@ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 6879827592230572\O
+ML/cmm/m/it/10 e \OT1/cmr/m/n/10 + 00][\OMS/cmsy/m/n/10 ^^@\OT1/cmr/m/n/10 1\OM
+L/cmm/m/it/10 :\OT1/cmr/m/n/10 0000000000000000\OML/cmm/m/it/10 e \OT1/cmr/m/n/
+10 + 00 \OMS/cmsy/m/n/10 ^^@ \OT1/cmr/m/n/10 1\OML/cmm/m/it/10 :\OT1/cmr/m/n/10
+ 5100000000000000\OML/cmm/m/it/10 e \OMS/cmsy/m/n/10 ^^@
  []
 
 <lagrange.png, id=20, 395.81723pt x 278.51746pt>
 File: lagrange.png Graphic file (type png)
 <use lagrange.png>
-Package pdftex.def Info: lagrange.png  used on input line 174.
+Package pdftex.def Info: lagrange.png  used on input line 181.
 (pdftex.def)             Requested size: 440.84807pt x 310.20349pt.
 <nspline.png, id=22, 395.81723pt x 278.51746pt>
 File: nspline.png Graphic file (type png)
 <use nspline.png>
-Package pdftex.def Info: nspline.png  used on input line 175.
+Package pdftex.def Info: nspline.png  used on input line 182.
 (pdftex.def)             Requested size: 440.84807pt x 310.20349pt.
 <together.png, id=23, 395.81723pt x 267.399pt>
 File: together.png Graphic file (type png)
 <use together.png>
-Package pdftex.def Info: together.png  used on input line 176.
+Package pdftex.def Info: together.png  used on input line 183.
 (pdftex.def)             Requested size: 440.84807pt x 297.82013pt.
 [3
 
 ] [4 <./lagrange.png> <./nspline.png>] [5 <./together.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 180--181
+Underfull \hbox (badness 10000) in paragraph at lines 187--188
 
  []
 
@@ -453,13 +506,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 180--181
 
 ] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 12063 strings out of 492616
- 226879 string characters out of 6129482
- 396774 words of memory out of 5000000
- 15937 multiletter control sequences out of 15000+600000
+ 12064 strings out of 492616
+ 226897 string characters out of 6129482
+ 398774 words of memory out of 5000000
+ 15938 multiletter control sequences out of 15000+600000
  538401 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,11n,63p,428b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,63p,430b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
@@ -472,7 +525,7 @@ y10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 2.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.
 pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
 fb>
-Output written on Report.pdf (7 pages, 217220 bytes).
+Output written on Report.pdf (7 pages, 219235 bytes).
 PDF statistics:
  79 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
