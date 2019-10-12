@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage{lipsum}
-\usepackage[margin=1.20in, includefoot]{geometry}
+\usepackage[margin=1.2in]{geometry}
 \usepackage{titlesec}
 \usepackage{graphicx}
 
@@ -117,7 +117,9 @@ An imaginary chemistry experiment produces the following data set:
     \end{tabular}
   \end{table}
 
-The purpose of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed. In the following sections I am going to describe the computation process and list the tools I used. I will then plot the data points, the interpolating polynomial and the natural cubic spine, and draw conclusions based on the plot.
+The purpose of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed. In the following sections I am going to describe the computation process and list the tools I used. I will then plot the data points, the interpolating polynomial and the natural cubic spine, and draw conclusions based on the plot. \\
+
+My hypothesis is that there may be an unsatisfactory oscillating behavior in the polynomial interpolant, whereas the natural cubic spline will follow a more accurate trajectory between the data points. 
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
@@ -128,7 +130,7 @@ The following programming language and libraries have been used in this exercise
 The SciPy \code{interpolate} sub-package was used to compute the interpolating polynomial and the natural cubic spline:
 \begin{itemize}
   \item \code{scipy.interpolate.lagrange(x, y)}
-  \item \code{scipy.interpolate.CubicSpline(x, y, type)}
+  \item \code{scipy.interpolate}
 \end{itemize}
 
 The following NumPy methods of the SciPy environment have been used in this exercise:
@@ -144,7 +146,7 @@ The following Matplotlib methods of the SciPy environment have been used in this
   \item \code{matplotlib.pyplot.show()}
   \end{itemize}
   
-\section{Computing the interpolating polynomial}
+\section{Computation and plotting}
 The exercise asks to compute the interpolating polynomial of the given data set. To do so, I first create two arrays in Python containing the data points using \code{np.array} and a linear space from -1 to 1 containing 1000 points. These values are finally passed to the \code{lagrange} method which returns the {\it Lagrange} interpolating polynomial. \\
 
 The polynomial of the 6th degree in the {\it power} form is: \\
@@ -153,21 +155,30 @@ $0.04365005085x^6 + 16.0766955610565x^5 - 0.048402197837630x^4 - 20.100476816783
 
 The following are coefficients the interpolating polynomial:
  \begin{itemize}
-  \item 0.04365005085
-  \item 16.0766955610565
-  \item -0.048402197837630
-  \item -20.10047681678335740
-  \item 0.0168806991536721320
-  \item 5.029463735952404423200
-  \item -0.006446071786954468800
+  \item 4.3649939020826437e-02
+  \item 1.6076695441034385e+01
+  \item -4.8402059220598259e-02
+  \item -2.0100476671430044e+01
+  \item 1.6880653327119008e-02
+  \item 5.0294636999940936e+00
+  \item -6.4460635283115466e-03
   \end{itemize}
 
-I then proceeded to calculate the relative and absolute errors.
-
-\section{Natural Cubic Spline}
 In order to calculate the natural cubic spline...
 
+The following are the coefficients of the cubic spline: ?
+ \begin{itemize}
+  \item 4.3649939020826437e-02
+  \end{itemize}
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{lagrange.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{nspline.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{together.png}
+
+
 \section{Observations}
-The natural cubic spline is a much more accurate representation than the Lagrange function which appears inconsistent with several {\it ups and downs}.  
+The natural cubic spline is a much more accurate representation than the {\it Lagrange} function which appears inconsistent with several {\it ups and downs}.\\
+
+Since the natural cubic spline is a type of piece-wise interpolation, the graph passes through the experiment data points with low-degree polynomials. Since we only use low-degree polynomials, we eliminate the excessive oscillations that are present in the interpolating polynomial.
 
 \end{document}

@@ -20,12 +20,21 @@ y = np.array([-1.000, -0.151, 0.894, 0.986, 0.895, 0.500, -0.306])
 
 xnew = np.linspace(-1, 1, 1000)
 
+plt.figure(dpi=130)
+
+#plt.title('Interpolating Polynomial')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.legend(loc='best')
+plt.ylim(-1.3, 1.5)
+
 # Let's first plot the points
 plt.plot(x, y, 'bo', label='Experiment Data')
 
 # Compute Interpolating Polynomial with Lagrange method
 poly = lagrange(x, y)
-plt.plot(xnew, poly(xnew), 'r', label='Interpolating Polynomial')
+plt.plot(xnew, poly(xnew), '-', label='Interpolating Polynomial')
+np.set_printoptions(precision=100)
 print('Coefficients of interpolating polynomial:', Polynomial(poly).coef)
 
 # Calculate absolute and relative error
@@ -34,9 +43,20 @@ print('Coefficients of interpolating polynomial:', Polynomial(poly).coef)
 ncspline = CubicSpline(x, y, bc_type='natural')
 print('Coefficients of cubic spline:', ncspline.c)
 
-plt.plot(xnew, ncspline(xnew), 'k-', label='Natural Cubic Spline', lw=1) # what's lw=1?
+#y_a_e = ncspline(xnew) - y1 #Absolute error
+#y_r_e = ( ncspline(xnew) - y1 ) / y1  #Relative error
+#plt.plot(xnew, ncspline(xnew), 'b', label='Natural cubic spline')   # Natural Cubic Spline
+#plt.plot(xnew, y_a_e, 'm', label='Absolute error')
+#plt.plot(xnew, y_r_e, 'm', label='Relative error')
+
+#plt.title('Natural Cubic Spline')
+plt.xlabel('x')
+plt.ylabel('f(x)')
+plt.legend(loc='best')
+plt.ylim(-1.3, 1.5)
+plt.plot(xnew, ncspline(xnew), 'r', label='Natural Cubic Spline', lw=1) # what's lw=1?
 
 # Final tweaks to plot
-plt.legend()
+plt.legend(loc=1, prop={'size': 8})
 plt.show()
 
