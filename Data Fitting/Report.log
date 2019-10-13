@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  13 OCT 2019 17:06
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  13 OCT 2019 17:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -506,6 +506,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 188--189
 
  []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 190--191
+
+ []
+
 [6
 
 ] (./Report.aux) ) 
@@ -529,7 +534,7 @@ y10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 2.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.
 pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
 fb>
-Output written on Report.pdf (7 pages, 220047 bytes).
+Output written on Report.pdf (7 pages, 221527 bytes).
 PDF statistics:
  79 PDF objects out of 1000 (max. 8388607)
  52 compressed objects within 1 object stream
