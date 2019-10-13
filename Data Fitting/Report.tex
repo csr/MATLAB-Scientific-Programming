@@ -117,7 +117,9 @@ An imaginary chemistry experiment produces the following data set:
     \end{tabular}
   \end{table}
 
-The purpose of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed. My hypothesis is that there may be an unsatisfactory oscillating behavior in the polynomial interpolant, whereas the natural cubic spline will be stiffer with less tendency to oscillate because it is a piece-wise type of interpolation. 
+The purpose of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed.\\
+
+As we've seen in class with the Runge's phenomenon, there may be an unsatisfactory oscillating behavior in high-degree polynomial interpolants (especially on equidistant grids). The natural cubic spline, however, which falls under piece-wise interpolation, will be stiffer, have less tendency to oscillate, and will give a better insight to the chemistry experiment data. 
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
@@ -150,7 +152,7 @@ The following Matplotlib methods of the SciPy environment have been used in this
   \end{itemize}
   
 \section{Computation and plotting}
-The exercise asks to compute the interpolating polynomial of the given data set. To do so, I first create two arrays in Python containing the data points using \code{np.array} and a linear space from -1 to 1 containing 1000 points. These values are finally passed to the \code{lagrange} method which returns the {\it Lagrange} interpolating polynomial (\code{poly = lagrange(x, y)}). \\
+The exercise asks to compute the interpolating polynomial of the given data set. To do so, I first create two arrays in Python containing the data points using \code{np.array} and a linear space from -1 to 1 containing 1000 equidistantly-spaced points. These values are finally passed to the \code{lagrange} method which returns the {\it Lagrange} interpolating polynomial (\code{poly = lagrange(x, y)}). \\
 
 The following are coefficients the interpolating polynomial retrieved with \code{Polynomial(poly).coef}:
  \begin{itemize}
@@ -183,8 +185,8 @@ $[[-8.0654538905002710e+02  1.4844899135604635e+02  2.5130673577722442e+02
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{together.png}
 
 \section{Observations}
-The natural cubic spline is a much more accurate representation than the {\it Lagrange} function which appears inconsistent with several {\it ups and downs}.\\
+The natural cubic spline is a much more accurate representation than the {\it Lagrange} function which appears inconsistent with several {\it ups and downs} and doesn't provide any insights to the experiment data.\\
 
-Since the natural cubic spline is a type of piece-wise interpolation, the graph passes through the experiment data points with low-degree polynomials. Since we only use low-degree polynomials, we eliminate the excessive oscillations that are present in the interpolating polynomial.
+Since the natural cubic spline is a type of piece-wise interpolation, the graph passes through the experiment data points with low-degree polynomials. This way, we only use low-degree polynomials and therefore eliminate the excessive oscillations that are present in the interpolating polynomial.
 
 \end{document}
