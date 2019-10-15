@@ -43,12 +43,6 @@ print('Coefficients of interpolating polynomial:', Polynomial(poly).coef)
 ncspline = CubicSpline(x, y, bc_type='natural')
 print('Coefficients of cubic spline:', ncspline.c)
 
-#y_a_e = ncspline(xnew) - y1 #Absolute error
-#y_r_e = ( ncspline(xnew) - y1 ) / y1  #Relative error
-#plt.plot(xnew, ncspline(xnew), 'b', label='Natural cubic spline')   # Natural Cubic Spline
-#plt.plot(xnew, y_a_e, 'm', label='Absolute error')
-#plt.plot(xnew, y_r_e, 'm', label='Relative error')
-
 #plt.title('Natural Cubic Spline')
 plt.xlabel('x')
 plt.ylabel('f(x)')

@@ -119,7 +119,7 @@ An imaginary chemistry experiment produces the following data set:
 
 The purpose of this exercise is to use these data points to compute and plot the interpolating polynomial together with the natural cubic spline, and to report what it is observed.\\
 
-As we've seen in class with the Runge's phenomenon, there may be an unsatisfactory oscillating behavior in high-degree polynomial interpolants (especially on equidistant grids). The natural cubic spline, however, which falls under piece-wise interpolation, will be stiffer, have less tendency to oscillate, and will give a better insight to the chemistry experiment data. 
+As we've seen in class with the Runge's phenomenon, there may be an unsatisfactory oscillating behavior in high-degree polynomial interpolants (especially on equidistant grids). The natural cubic spline, however, which falls under piece-wise interpolation, will be stiffer, have less tendency to oscillate, and give a better insight to the chemistry experiment data. 
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
@@ -154,7 +154,7 @@ The following Matplotlib methods of the SciPy environment have been used in this
 \section{Computation and plotting}
 The exercise asks to compute the interpolating polynomial of the given data set. To do so, I first create two arrays in Python containing the data points using \code{np.array} and a linear space from -1 to 1 containing 1000 equidistantly-spaced points. These values are finally passed to the \code{lagrange} method which returns the {\it Lagrange} interpolating polynomial (\code{poly = lagrange(x, y)}). \\
 
-The following are coefficients the interpolating polynomial retrieved with \code{Polynomial(poly).coef}:
+The following are coefficients the interpolating polynomial retrieved with \code{Polynomial(poly).coef} in the Lagrange basis:
  \begin{itemize}
   \item 4.3649939020826437e-02
   \item 1.6076695441034385e+01
@@ -169,32 +169,22 @@ The polynomial of the 6th degree in the {\it power} form is: \\
 
 $0.04365005085x^6 + 16.0766955610565x^5 - 0.048402197837630x^4 - 20.10047681678335740x^3\\ + 0.0168806991536721320x^2 + 5.029463735952404423200x - 0.006446071786954468800$ \\
 
-In order to calculate the natural cubic spline I use the built-in SciPy method \code{CubicSpline(x, y, bc\_type)} and use "Natural" for the \code{bc\_type}. The coefficients are the following:\\
-
-$[[-8.0654538905002710e+02  1.4844899135604635e+02  2.5130673577722442e+02
-  -7.2398801257531864e-01  1.2138819568393451e+00  5.0415317855085340e-01]
- [-8.5265128291212022e-14 -9.6785446686003496e+01 -5.2250749279189527e+01
-   5.2366523402757015e-01 -1.6700184440756460e+00 -6.5035760033060053e-01]
- [ 2.2515472622480029e+01  1.8644054755039885e+01  3.7404351585205808e+00
-   1.1953927535924665e-01 -1.0382774667893093e+00 -1.6879827592230572e+00]
- [-1.0000000000000000e+00 -1.5100000000000000e-01  8.9400000000000002e-01
-   9.8599999999999999e-01  8.9500000000000002e-01  5.0000000000000000e-01]]$
-
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{lagrange.png}
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{nspline.png}
+In order to calculate the natural cubic spline I use the built-in SciPy method \code{CubicSpline(x, y, bc\_type)} and use "Natural" for the \code{bc\_type}. There are 6 coefficients for each cubic and 4 equations:
+ \begin{itemize}
+  \item $[-8.0654538905002710e+02  1.4844899135604635e+02  2.5130673577722442e+02
+  -7.2398801257531864e-01  1.2138819568393451e+00  5.0415317855085340e-01]$
+  \item $[-8.5265128291212022e-14 -9.6785446686003496e+01 -5.2250749279189527e+01
+   5.2366523402757015e-01 -1.6700184440756460e+00 -6.5035760033060053e-01]$
+  \item $[ 2.2515472622480029e+01  1.8644054755039885e+01  3.7404351585205808e+00
+   1.1953927535924665e-01 -1.0382774667893093e+00 -1.6879827592230572e+00]$
+   \item $ [-1.0000000000000000e+00 -1.5100000000000000e-01  8.9400000000000002e-01
+   9.8599999999999999e-01  8.9500000000000002e-01  5.0000000000000000e-01]$
+  \end{itemize}
+   
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{together.png}
 
 \section{Observations}
 The natural cubic spline is a much more accurate representation than the {\it Lagrange} function which appears inconsistent with several {\it ups and downs} and doesn't provide any insights to the experiment data.\\
 
-Since the natural cubic spline is a type of piece-wise interpolation, the graph passes through the experiment data points with low-degree polynomials. This way, we only use low-degree polynomials and therefore eliminate the excessive oscillations that are present in the interpolating polynomial.\\
-
-Questions for professor [remember to delete before final submit]:
- \begin{itemize}
-  \item How's the report overall? What can I do better?
-  \item Should I talk about relative/absolute errors?
-  \item How do I export high-quality graphs?
-  \item Should I provide the coefficients for the natural cubic spline? How do I best "represent" them?
-  \end{itemize}
-
+Since the natural cubic spline is a type of piece-wise interpolation, the graph passes through the experiment data points with low-degree polynomials. This way, we only use low-degree polynomials and therefore eliminate the excessive oscillations that are present in the interpolating polynomial.
 \end{document}
