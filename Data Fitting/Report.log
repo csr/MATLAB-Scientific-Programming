@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  15 OCT 2019 10:49
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  16 OCT 2019 09:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -468,45 +468,50 @@ n/10 019\OML/cmm/m/it/10 :\OT1/cmr/m/n/10 8599999999999999\OML/cmm/m/it/10 e \O
 MS/cmsy/m/n/10 ^^@
  []
 
-<together.png, id=20, 395.81723pt x 267.399pt>
-File: together.png Graphic file (type png)
-<use together.png>
-Package pdftex.def Info: together.png  used on input line 184.
-(pdftex.def)             Requested size: 440.84807pt x 297.82013pt.
 [3
 
-] [4 <./together.png>]
+]
+Underfull \hbox (badness 10000) in paragraph at lines 185--186
+
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 187--188
 
  []
 
-[5
+<together.png, id=26, 395.81723pt x 267.399pt>
+File: together.png Graphic file (type png)
+<use together.png>
+Package pdftex.def Info: together.png  used on input line 189.
+(pdftex.def)             Requested size: 440.84807pt x 297.82013pt.
+[4
 
-] (./Report.aux) ) 
+ <./together.png>] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
  12054 strings out of 492616
  226744 string characters out of 6129482
- 398774 words of memory out of 5000000
+ 397774 words of memory out of 5000000
  15930 multiletter control sequences out of 15000+600000
  538401 words of font info for 44 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
  41i,11n,63p,436b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
-</usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
-ts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
-s/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts
-/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/c
-m/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/
-cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cms
-y10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
-10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti1
-2.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti8.
-pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.p
-fb>
-Output written on Report.pdf (6 pages, 162584 bytes).
+</usr/local/texlive/2019/texmf-dist/fonts/ty
+pe1/public/amsfonts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/typ
+e1/public/amsfonts/cm/cmmi10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type
+1/public/amsfonts/cm/cmr10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/
+public/amsfonts/cm/cmr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/pu
+blic/amsfonts/cm/cmr7.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/publi
+c/amsfonts/cm/cmsy10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public
+/amsfonts/cm/cmti10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/
+amsfonts/cm/cmti12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/a
+msfonts/cm/cmti8.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/ams
+fonts/cm/cmtt10.pfb>
+Output written on Report.pdf (5 pages, 162403 bytes).
 PDF statistics:
- 70 PDF objects out of 1000 (max. 8388607)
- 48 compressed objects within 1 object stream
+ 67 PDF objects out of 1000 (max. 8388607)
+ 46 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  6 words of extra memory for PDF output out of 10000 (max. 10000000)
 

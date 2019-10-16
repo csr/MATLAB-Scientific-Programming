@@ -181,10 +181,11 @@ In order to calculate the natural cubic spline I use the built-in SciPy method \
    9.8599999999999999e-01  8.9500000000000002e-01  5.0000000000000000e-01]$
   \end{itemize}
    
-\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{together.png}
-
 \section{Observations}
 The natural cubic spline is a much more accurate representation than the {\it Lagrange} function which appears inconsistent with several {\it ups and downs} and doesn't provide any insights to the experiment data.\\
 
-Since the natural cubic spline is a type of piece-wise interpolation, the graph passes through the experiment data points with low-degree polynomials. This way, we only use low-degree polynomials and therefore eliminate the excessive oscillations that are present in the interpolating polynomial.
+Since the natural cubic spline is a type of piece-wise interpolation, the graph passes through the experiment data points with low-degree polynomials. This way, we only use low-degree polynomials and therefore eliminate the excessive oscillations that are present in the interpolating polynomial.\\
+
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{together.png}
+
 \end{document}
