@@ -18,39 +18,39 @@ from numpy.polynomial.polynomial import Polynomial
 x = np.array([-1, -0.96, -0.86, -0.79, 0.22, 0.50, 0.93])
 y = np.array([-1.000, -0.151, 0.894, 0.986, 0.895, 0.500, -0.306])
 
-xnew = np.linspace(-1, 1, 1000)
+# Create array of 1000 equi-distant points
+xnew = np.linspace(min(x), max(x), 1000)
 
+# Increase plot size
 plt.figure(dpi=130)
 
-#plt.title('Interpolating Polynomial')
+# Set axis labels
 plt.xlabel('x')
 plt.ylabel('f(x)')
-plt.legend(loc='best')
-plt.ylim(-1.3, 1.5)
 
 # Let's first plot the points
-plt.plot(x, y, 'bo', label='Experiment Data')
+plt.plot(x, y, 'bo', label='Data')
 
 # Compute Interpolating Polynomial with Lagrange method
 poly = lagrange(x, y)
-plt.plot(xnew, poly(xnew), '-', label='Interpolating Polynomial')
-np.set_printoptions(precision=100)
-print('Coefficients of interpolating polynomial:', Polynomial(poly).coef)
+print('Lagrange Polynomial:\n', poly)
 
-# Calculate absolute and relative error
+plt.plot(xnew, poly(xnew), '-', label='Interpolating Polynomial')
+
+# Get max precision possibile
+np.set_printoptions(precision=100)
+
+# Print coefficients
+print('Coefficients of interpolating polynomial:', Polynomial(poly).coef)
 
 # Compute Natural Cubic Spline
 ncspline = CubicSpline(x, y, bc_type='natural')
 print('Coefficients of cubic spline:', ncspline.c)
 
-#plt.title('Natural Cubic Spline')
-plt.xlabel('x')
-plt.ylabel('f(x)')
-plt.legend(loc='best')
-plt.ylim(-1.3, 1.5)
-plt.plot(xnew, ncspline(xnew), 'r', label='Natural Cubic Spline', lw=1) # what's lw=1?
+# Make y axis a  little taller to show legend
+plt.ylim(-1.3, 1.7)
+plt.plot(xnew, ncspline(xnew), 'r', label='Natural Cubic Spline')
 
 # Final tweaks to plot
 plt.legend(loc=1, prop={'size': 8})
 plt.show()
-
