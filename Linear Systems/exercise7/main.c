@@ -78,22 +78,35 @@ void printMatrixContents(gsl_matrix *matrix) {
 }
 
 int main() {
-  int n = 10;
+  int size = 10;
 
   printf("Creating matrix A:\n");
-  gsl_matrix *matrix = createMatrix(n);
+  gsl_matrix *matrix = createMatrix(size);
   printMatrixContents(matrix);
 
-  printf("Creating vector y:\n");
-  gsl_vector *vector = yVector(n);
-  printVectorContents(vector);
+  printf("Creating vector y (b):\n");
+  gsl_vector *bVector = yVector(matrix->size2);
+  printVectorContents(bVector);
 
   // Solve system using LU decomposition
-  int signum;
-  gsl_permutation *permutation = gsl_permutation_alloc(n);
+  gsl_matrix *luMatrix = gsl_matrix_alloc(matrix->size1, matrix->size2);
+  gsl_permutation *permutation = gsl_permutation_alloc(matrix->size1);
+  int signum; // Sign of the permutation
+  // Copy A over newly created matrix
+  gsl_matrix_memcpy(luMatrix, matrix);
+  // Compute LU decomposition
+  gsl_linalg_LU_decomp(luMatrix, permutation, &signum);
   printf("LU decomposition of A:\n");
-  gsl_linalg_LU_decomp(matrix, permutation, &signum);
-  printMatrixContents(matrix);
+  printMatrixContents(luMatrix);
+
+  // Result vector v
+  gsl_vector *xVector = gsl_vector_alloc(matrix->size2);
+  gsl_vector_set_zero(xVector);
+
+  gsl_linalg_LU_solve(luMatrix, permutation, bVector, xVector);
+
+  printf("Solutions x vector:\n");
+  printVectorContents(xVector);
 
   return 0;
 }
