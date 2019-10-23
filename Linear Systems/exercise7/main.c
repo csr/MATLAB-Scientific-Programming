@@ -23,15 +23,15 @@ void test() {
 gsl_matrix *createMatrix(int size) {
   gsl_matrix *matrix = gsl_matrix_alloc(size, size);
 
-  for (int i = 0; i < size; i++) {
-    for (int j = 0; j < size; j++) {
+  for (int i = 1; i <= size; i++) {
+    for (int j = 1; j <= size; j++) {
       // Fill diagonal
       if (i == j) {
-        if (i % 2 != 0) {
-          double value = (2.0*i)/3;
-          gsl_matrix_set(matrix, i, j, value);
+        if (i % 2 == 0) {
+          double value = (2.0*(i+1))/3;
+          gsl_matrix_set(matrix, i-1, j-1, value);
         } else {
-          gsl_matrix_set(matrix, i, j, 1);
+          gsl_matrix_set(matrix, i-1, j-1, 1);
         }
       }
     }
