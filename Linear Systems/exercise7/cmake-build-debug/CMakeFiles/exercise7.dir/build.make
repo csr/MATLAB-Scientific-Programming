@@ -79,6 +79,8 @@ exercise7_EXTERNAL_OBJECTS =
 
 exercise7: CMakeFiles/exercise7.dir/main.c.o
 exercise7: CMakeFiles/exercise7.dir/build.make
+exercise7: /usr/local/lib/libgsl.dylib
+exercise7: /usr/local/lib/libgslcblas.dylib
 exercise7: CMakeFiles/exercise7.dir/link.txt
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/cesaredecal/workspace/Scientific-Programming/Linear Systems/exercise7/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Linking C executable exercise7"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/exercise7.dir/link.txt --verbose=$(VERBOSE)

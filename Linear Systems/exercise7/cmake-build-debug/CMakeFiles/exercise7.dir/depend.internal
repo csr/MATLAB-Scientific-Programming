@@ -3,3 +3,9 @@
 
 CMakeFiles/exercise7.dir/main.c.o
  /Users/cesaredecal/workspace/Scientific-Programming/Linear Systems/exercise7/main.c
+ /usr/local/include/gsl/gsl_inline.h
+ /usr/local/include/gsl/gsl_mode.h
+ /usr/local/include/gsl/gsl_precision.h
+ /usr/local/include/gsl/gsl_sf_bessel.h
+ /usr/local/include/gsl/gsl_sf_result.h
+ /usr/local/include/gsl/gsl_types.h
