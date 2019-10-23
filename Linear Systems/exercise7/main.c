@@ -33,6 +33,12 @@ gsl_matrix *createMatrix(int size) {
         } else {
           gsl_matrix_set(matrix, i-1, j-1, 1);
         }
+        // Adjacent lower diagonal
+      } else if (i == j+1) {
+        gsl_matrix_set(matrix, i-1, j-1, 1);
+        // Adjacent upper diagonal
+      } else if (i+1 == j) {
+        gsl_matrix_set(matrix, i-1, j-1, -1);
       }
     }
   }
