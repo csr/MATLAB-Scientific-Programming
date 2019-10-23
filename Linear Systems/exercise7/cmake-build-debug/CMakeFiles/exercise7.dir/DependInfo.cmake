@@ -4,12 +4,13 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_C
-  "/Users/cesaredecal/CLionProjects/exercise7/main.c" "/Users/cesaredecal/CLionProjects/exercise7/cmake-build-debug/CMakeFiles/exercise7.dir/main.c.o"
+  "/Users/cesaredecal/workspace/Scientific-Programming/Linear Systems/exercise7/main.c" "/Users/cesaredecal/workspace/Scientific-Programming/Linear Systems/exercise7/cmake-build-debug/CMakeFiles/exercise7.dir/main.c.o"
   )
 set(CMAKE_C_COMPILER_ID "AppleClang")
 
 # The include file search paths:
 set(CMAKE_C_TARGET_INCLUDE_PATH
+  "/usr/local/include"
   )
 
 # Targets to which this target links.
