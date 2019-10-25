@@ -22,7 +22,7 @@ gsl_matrix *createMatrix(int size) {
     for (int j = 1; j <= size; j++) {
       // Fill diagonal
       if (i == j) {
-        if (i % 2 == 0) {
+        if ((i+1) % 3 == 0) {
           double value = (2.0*(i+1))/3;
           gsl_matrix_set(matrix, i-1, j-1, value);
         } else {
@@ -62,7 +62,7 @@ void printVectorContents(gsl_vector *vector) {
 void printMatrixContents(gsl_matrix *matrix) {
   for (int i = 0; i < matrix->size1; ++i) {
     for (int j = 0; j < matrix->size2; ++j) {
-      printf("%.10f ", gsl_matrix_get(matrix, i, j));
+      printf("%.4f ", gsl_matrix_get(matrix, i, j));
     }
     printf("\n");
   }
@@ -70,7 +70,7 @@ void printMatrixContents(gsl_matrix *matrix) {
 }
 
 int main() {
-  int size = 5;
+  int size = 10;
 
   printf("Creating matrix A:\n");
   gsl_matrix *matrix = createMatrix(size);
