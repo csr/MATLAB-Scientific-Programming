@@ -47,8 +47,6 @@ CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_nan.h
 CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_permutation.h
 CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_pow_int.h
 CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_precision.h
-CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_sf_bessel.h
-CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_sf_result.h
 CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_sys.h
 CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_types.h
 CMakeFiles/exercise7.dir/main.c.o: /usr/local/include/gsl/gsl_vector.h
