@@ -100,6 +100,14 @@ int main() {
   printf("Solutions x vector:\n");
   printVectorContents(xVector);
 
+  // Calculate condition number
+  // There is no function in GSL to directly compute this number
+  // the condition number is given by taking the absolute value of the ratio of the largest singular value and the smallest singular value
+  // cond(A) = abs( largest_sing_val / smallest_sing_val )
+  // ...
+  // compute condition number
+  // ...
+
   return 0;
 }
 

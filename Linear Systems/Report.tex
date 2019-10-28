@@ -88,7 +88,7 @@
 %----------------------------------------------------------------------------------------
 
 \section{Introduction}\label{sec:intro}
-The purpose of this exercise is to use solve a linear system using LU decomposition.\\
+In this exercise I am going to use solve a linear system $Ax=y$ using LU decomposition. The first element of the unknowns vector x will contain an approximation of e - 2.\\
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
@@ -114,14 +114,14 @@ The following GSL methods have been used in the exercise:
   \item \code{gsl\_vector\_get(vector, index)}
   \item \code{gsl\_permutation\_alloc(size)}
 \end{itemize}
-In order to factorize a matrix into the LU decomposition, and then solve the square system $Ax=b$ using the decomposition of A, I've used the following methods:
+In order to factorize a matrix into the LU decomposition, and then solve the square system $Ax=y$ using the decomposition of A, I've used the following methods:
 \begin{itemize}
   \item \code{gsl\_linalg\_LU\_decomp(A, permutation, signum)}
   \item \code{gsl\_linalg\_LU\_solve(LU, permutation, b, x)}
 \end{itemize}
   
 \section{Solving the system}
-In order to solve the system, I first need to build the matrix A by understanding how it's build. The requirements are to build a tridiagonal matrix with the values $-1$ on the adjacent upper diagonal, the entries $+1$ on the adjacent lower diagonal, and on the main diagonal the values $b\_i$, with $i = 1, \ldots, n$ given by
+In order to solve the system $Ax=y$, I first need to build the matrix A by understanding how it's build. The requirements are to build a tridiagonal matrix with the values $-1$ on the adjacent upper diagonal, the entries $+1$ on the adjacent lower diagonal, and on the main diagonal the values $b_{i}$, with $i = 1, \ldots, n$ given by
 
 $$b_i =\frac{2(i+1)}{3},\quad i + 1= 3, 6, 9,\ldots$$
 $$b_i =1,\quad i + 1 = 2, 4, 5, 7, 8, \ldots$$
@@ -143,6 +143,12 @@ $$
 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 1.0000 & 1.0000
 \end{bmatrix}
 $$
+
+The coefficients matrix A is first allocated by using the \code{gsl\_matrix\_alloc} method, then I set all the elements to zero with \code{gsl\_matrix\_set\_zero} and finally nested \code{for} loops fill the diagonal values. The coefficients reported above on the diagonal have 5 significant digits for improve the readability of this report.\\
+
+I used the \code{gsl\_vector\_alloc} method to create an instance of the vector. All of its elements were set to zero by using
+
+I then found the LU decomposition matrix:
 
 \section{Observations}
 
