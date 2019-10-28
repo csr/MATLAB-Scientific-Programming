@@ -110,9 +110,10 @@ The following GSL methods have been used in the exercise:
   \item \code{gsl\_matrix\_get(matrix, row, column)}
   \item \code{gsl\_vector\_alloc(size)}
   \item \code{gsl\_vector\_set\_zero(vector)}
-  \item \code{gsl\_vector\_set(size)}
+  \item \code{gsl\_vector\_set(vector, index, value)}
   \item \code{gsl\_vector\_get(vector, index)}
   \item \code{gsl\_permutation\_alloc(size)}
+  \item \code{gsl\_matrix\_memcpy(matrixToCopyFrom, matrix)}
 \end{itemize}
 In order to factorize a matrix into the LU decomposition, and then solve the square system $Ax=y$ using the decomposition of A, I've used the following methods:
 \begin{itemize}
@@ -126,29 +127,54 @@ In order to solve the system $Ax=y$, I first need to build the matrix A by under
 $$b_i =\frac{2(i+1)}{3},\quad i + 1= 3, 6, 9,\ldots$$
 $$b_i =1,\quad i + 1 = 2, 4, 5, 7, 8, \ldots$$
 
-By looking closely at the first rule, we see that the $i+1$ are all multiples of 3 ($i+1 = 3*k$, for some $k$). Hence the $i$ are of the form $i = 3*k-1$, for some $k$. For $n = 10$, for example, this is what the matrix approximately looks like:
-
+By looking closely at the first rule, we see that the $i+1$ are all multiples of 3 ($i+1 = 3*k$, for some $k$). Hence the $i$ are of the form $i = 3*k-1$, for some $k$. For $n = 5$, for example, this is what the matrix looks like:
 $$
-\quad
 \begin{bmatrix}
-1.0000 & -1.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
-1.0000 & 2.0000 & -1.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
-0.0000 & 1.0000 & 1.0000 & -1.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
-0.0000 & 0.0000 & 1.0000 & 1.0000 & -1.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
-0.0000 & 0.0000 & 0.0000 & 1.0000 & 4.0000 & -1.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 \\
-0.0000 & 0.0000 & 0.0000 & 0.0000 & 1.0000 & 1.0000 & -1.0000 & 0.0000 & 0.0000 & 0.0000 \\
-0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 1.0000 & 1.0000 & -1.0000 & 0.0000 & 0.0000 \\
-0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 1.0000 & 6.0000 & -1.0000 & 0.0000 \\
-0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 1.0000 & 1.0000 & -1.0000 \\
-0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 0.0000 & 1.0000 & 1.0000
+1.0000000000 & -1.0000000000 & 0.0000000000 & 0.0000000000 & 0.0000000000 \\
+1.0000000000 & 2.0000000000 & -1.0000000000 & 0.0000000000 & 0.0000000000 \\
+0.0000000000 & 1.0000000000 & 1.0000000000 & -1.0000000000 & 0.0000000000 \\ 
+0.0000000000 & 0.0000000000 & 1.0000000000 & 1.0000000000 & -1.0000000000 \\ 
+0.0000000000 & 0.0000000000 & 0.0000000000 & 1.0000000000 & 4.0000000000 \\\end{bmatrix}
+$$
+
+The coefficients matrix A is first allocated by using the \code{gsl\_matrix\_alloc} method, then I set all the elements to zero with \code{gsl\_matrix\_set\_zero} and finally nested \code{for} loops fill the diagonal values by checking the indexes. The coefficients reported above on the diagonal have 5 significant digits for improve the readability of this report.\\
+
+I used the \code{gsl\_vector\_alloc} method to create an instance of the vector. All of its elements were set to zero by using \code{gsl\_vector\_set\_zero(vector)}. The exercise asks us to set the first element of the $y$ vector to one, so I used \code{gsl\_vector\_set(vector, 0, 1)} to assign the value 1 to index 0. For $n=5$, we have:
+$$
+y=
+\begin{bmatrix}
+1.0000000000 \\
+0.0000000000 \\
+0.0000000000 \\
+0.0000000000 \\
+0.0000000000 \\
 \end{bmatrix}
 $$
 
-The coefficients matrix A is first allocated by using the \code{gsl\_matrix\_alloc} method, then I set all the elements to zero with \code{gsl\_matrix\_set\_zero} and finally nested \code{for} loops fill the diagonal values. The coefficients reported above on the diagonal have 5 significant digits for improve the readability of this report.\\
+Given the $Ax=y$ system, my goal is now to find the vector of the unknowns $x$. To do so, I first factorize $A$ into its LU decomposition by allocating a new matrix (so that the matrix which represents $A$ doesn't get overridden) using \code{gsl\_matrix\_memcpy} and then by calling \code{gsl\_linalg\_LU\_decomp}. This method utilizes Gaussian Elimination with partial pivoting to compute the decomposition. The following is the $LU$ matrix for $n=5$:
+$$
+LU=
+\begin{bmatrix} 
+1.0000000000 & -1.0000000000 & 0.0000000000 & 0.0000000000 & 0.0000000000\\ 
+1.0000000000 & 3.0000000000 & -1.0000000000 & 0.0000000000 & 0.0000000000\\ 
+0.0000000000 & 0.3333333333 & 1.3333333333 & -1.0000000000 & 0.0000000000\\ 
+0.0000000000 & 0.0000000000 & 0.7500000000 & 1.7500000000 & -1.0000000000\\ 
+0.0000000000 & 0.0000000000 & 0.0000000000 & 0.5714285714 & 4.5714285714\\
+\end{bmatrix}
+$$
 
-I used the \code{gsl\_vector\_alloc} method to create an instance of the vector. All of its elements were set to zero by using
+I can now use the $LU$ matrix to solve the system by passing $LU$, $x$, a permutation structure \code{gsl\_permutation} and $y$ to \code{gsl\_linalg\_LU\_solve}. This method modifies the contents of the $x$ vector given in input, which now looks like this (for $n=5$):
 
-I then found the LU decomposition matrix:
+$$
+y=
+\begin{bmatrix}
+0.7187500000\\
+-0.2812500000\\
+0.1562500000\\
+-0.1250000000\\
+0.0312500000\\
+\end{bmatrix}
+$$
 
 \section{Observations}
 

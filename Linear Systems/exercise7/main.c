@@ -54,7 +54,7 @@ gsl_vector *yVector(int size) {
 
 void printVectorContents(gsl_vector *vector) {
   for (int i = 0; i < vector->size; i++) {
-    printf("v_%d = %.15g\n", i, gsl_vector_get(vector, i));
+    printf("v_%d = %.10f\n", i, gsl_vector_get(vector, i));
   }
   printf("\n");
 }
@@ -62,7 +62,7 @@ void printVectorContents(gsl_vector *vector) {
 void printMatrixContents(gsl_matrix *matrix) {
   for (int i = 0; i < matrix->size1; ++i) {
     for (int j = 0; j < matrix->size2; ++j) {
-      printf("%.4f ", gsl_matrix_get(matrix, i, j));
+      printf("%.10f ", gsl_matrix_get(matrix, i, j));
     }
     printf("\n");
   }
@@ -70,7 +70,7 @@ void printMatrixContents(gsl_matrix *matrix) {
 }
 
 int main() {
-  int size = 10;
+  int size = 5;
 
   printf("Creating matrix A:\n");
   gsl_matrix *matrix = createMatrix(size);

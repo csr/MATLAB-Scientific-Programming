@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  28 OCT 2019 14:24
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  28 OCT 2019 15:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -458,28 +458,23 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
  [2
 
 ]
-Overfull \hbox (20.26477pt too wide) detected at line 145
- []
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 147--148
+Underfull \hbox (badness 10000) in paragraph at lines 140--141
 
  []
 
 [3
 
-] [4
+] [4] [5
 
 ] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
  12633 strings out of 492616
  233389 string characters out of 6129482
- 401774 words of memory out of 5000000
+ 402774 words of memory out of 5000000
  16503 multiletter control sequences out of 15000+600000
  535719 words of font info for 36 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,10n,63p,374b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,63p,484b,317s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
@@ -491,10 +486,10 @@ mr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cms
 y10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti
 12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt1
 0.pfb>
-Output written on Report.pdf (5 pages, 114746 bytes).
+Output written on Report.pdf (6 pages, 117942 bytes).
 PDF statistics:
- 60 PDF objects out of 1000 (max. 8388607)
- 42 compressed objects within 1 object stream
+ 63 PDF objects out of 1000 (max. 8388607)
+ 44 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
  1 words of extra memory for PDF output out of 10000 (max. 10000000)
 
