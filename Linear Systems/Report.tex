@@ -88,12 +88,14 @@
 %----------------------------------------------------------------------------------------
 
 \section{Introduction}\label{sec:intro}
-In this exercise I am going to use solve a linear system $Ax=y$ using LU decomposition. The first element of the unknowns vector x will contain an approximation of $e - 2$.\\
+In this exercise I am going to use solve a linear system $A\vec{x}=\vec{y}$ using LU decomposition. The goal is to verify that first element of the unknowns vector, $x_{1}$, will contain an approximation of $e - 2$.\\
 
-As we've seen in class, there are multiple ways of solving a linear system $Ax=y$. Assume $A$ is a square matrix of order $n$, $y$ is a column vector with $n$ components, and $x$ is the vector of the unknowns. Calculating the inverse $A^{-1}$ to solve the system requires more computations than necessary, and returns a less accurate result. On the other hand, Gaussian Elimination is an algorithm that can be used to represent the coefficients matrix A in terms of simpler matrices:
-$$LU=PA$$
+As we've seen in class, there are multiple ways of solving a linear system $AX=B$. Assume $A$ is a $n\times n$ square matrix, $B$ is a "constant" term matrix $n\times h$, and $X$ is a $n\times h$ unknown matrix. To solve for $X$, we could compute the inverse of $A$ and find $x=A^{-1}y$. We've seen that this approach, however, requires more computations than necessary and returns a less accurate result.\\
 
-I'll be solving the system by using the latter mentioned algorithm, and then provide observations.
+On the other hand, the LU decomposition technique is a way to represent the matrix A in the form of simpler matrices, $L$ and $U$ (lower triangular and upper triangular matrices, respectively):
+$$PA=LU$$
+
+This method uses forward substitution (solving for $Y$ from $LY=B$) and backward substitution (solving for $X$ from $UX = Y$). I'll be specifically be solving the system by using Gaussian Elimination {\it with partial pivoting}, which reduces round-offs errors compared to its naive implementation, and then provide observations on the accuracy of the results obtained.
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
@@ -168,7 +170,7 @@ LU=
 \end{bmatrix}
 $$
 
-I can now use the $LU$ matrix to solve the system by passing $LU$, $x$, a permutation structure \code{gsl\_permutation} and $y$ to \code{gsl\_linalg\_LU\_solve}. This method modifies the contents of the $x$ vector given in input, which now looks like this (for $n=5$):
+I can now use the $LU$ matrix to solve the system by passing $LU$, $x$, a permutation structure \code{gsl\_permutation} and $y$ to \code{gsl\_linalg\_LU\_solve}. This method uses forward and back-substitution to modify the contents of the $x$ vector given in input, which now looks like this (for $n=5$):
 
 $$
 \vec{x}=
@@ -226,6 +228,8 @@ $$
 -0.0000000066\\
 \end{bmatrix}
 $$
+
+Iterative refinement, a technique used to improve the approximate solution $\vec{x}$ of our system, could be helpful to improve these results. GSL
 
 \section{Observations}
 
