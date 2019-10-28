@@ -88,7 +88,12 @@
 %----------------------------------------------------------------------------------------
 
 \section{Introduction}\label{sec:intro}
-In this exercise I am going to use solve a linear system $Ax=y$ using LU decomposition. The first element of the unknowns vector x will contain an approximation of e - 2.\\
+In this exercise I am going to use solve a linear system $Ax=y$ using LU decomposition. The first element of the unknowns vector x will contain an approximation of $e - 2$.\\
+
+As we've seen in class, there are multiple ways of solving a linear system $Ax=y$. Assume $A$ is a square matrix of order $n$, $y$ is a column vector with $n$ components, and $x$ is the vector of the unknowns. Calculating the inverse $A^{-1}$ to solve the system requires more computations than necessary, and returns a less accurate result. On the other hand, Gaussian Elimination is an algorithm that can be used to represent the coefficients matrix A in terms of simpler matrices:
+$$LU=PA$$
+
+I'll be solving the system by using the latter mentioned algorithm, and then provide observations.
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:

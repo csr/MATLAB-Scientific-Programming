@@ -70,7 +70,7 @@ void printMatrixContents(gsl_matrix *matrix) {
 }
 
 int main() {
-  int size = 20;
+  int size = 5;
 
   printf("Creating matrix A:\n");
   gsl_matrix *matrix = createMatrix(size);
