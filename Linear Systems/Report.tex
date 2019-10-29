@@ -7,6 +7,7 @@
 \usepackage{amsmath}
 
 \newcommand{\code}{\texttt}
+\newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
 % Specify images directory
 \graphicspath{ {./report-images/} }
@@ -103,7 +104,7 @@ The following programming language and libraries have been used in this exercise
   \item C
   \item GSL (GNU Scientific Library)
 \end{itemize}
-The following GSL data types have been used in the exercise:
+The following double-precision GSL data types have been used in the exercise:
 \begin{itemize}
   \item \code{gsl\_vector}
   \item \code{gsl\_matrix}
@@ -119,13 +120,14 @@ The following GSL methods have been used in the exercise:
   \item \code{gsl\_vector\_set\_zero(vector)}
   \item \code{gsl\_vector\_set(vector, index, value)}
   \item \code{gsl\_vector\_get(vector, index)}
-  \item \code{gsl\_permutation\_alloc(size)}
   \item \code{gsl\_matrix\_memcpy(matrixToCopyFrom, matrix)}
+  \item \code{gsl\_linalg\_SV\_decomp(A, V, S, workspaceVector)}
 \end{itemize}
 In order to factorize a matrix into the LU decomposition, and then solve the square system $Ax=y$ using the decomposition of A, I've used the following methods:
 \begin{itemize}
   \item \code{gsl\_linalg\_LU\_decomp(A, permutation, signum)}
   \item \code{gsl\_linalg\_LU\_solve(LU, permutation, b, x)}
+  \item \code{gsl\_permutation\_alloc(size)}
 \end{itemize}
   
 \section{Solving the linear system}
@@ -229,7 +231,15 @@ $$
 \end{bmatrix}
 $$
 
-Iterative refinement, a technique used to improve the approximate solution $\vec{x}$ of our system, could be helpful to improve these results. GSL
+Then, I calculate the condition number to say if this is a well-conditioned or an ill-conditioned linear system. In GSL there is no direct function that calculates the condition number, but it's possible to use the ratio of the largest singular value of matrix A, $\sigma_n (A)$, to the smallest $\sigma_1 (A)$:
+
+$$\kappa(A) := \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{\norm{A}}{\norm{A^{-1}}^{-1}}$$
+
+I proceed to factorize $A$ into its singular value decomposition $SVD$ using the \code{gsl\_linalg\_SV\_decomp} method. For $n=5$, the condition number is
+
+
+
+NOT SURE. Iterative refinement, a technique used to improve the approximate solution $\vec{x}$ of our system, could be helpful to improve these results. GSL
 
 \section{Observations}
 

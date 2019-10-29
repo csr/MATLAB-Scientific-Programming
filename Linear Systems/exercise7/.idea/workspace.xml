@@ -14,7 +14,6 @@
     <list default="true" id="26d97cfa-6506-4473-8b88-d30f35b96f16" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/../Report.log" beforeDir="false" afterPath="$PROJECT_DIR$/../Report.log" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../Report.pdf" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/../Report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../Report.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../Report.tex" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
     </list>
@@ -72,7 +71,7 @@
       <workItem from="1571821294722" duration="8244000" />
       <workItem from="1571854746521" duration="755000" />
       <workItem from="1571988422378" duration="3509000" />
-      <workItem from="1572268139564" duration="5796000" />
+      <workItem from="1572268139564" duration="6162000" />
     </task>
     <servers />
   </component>
