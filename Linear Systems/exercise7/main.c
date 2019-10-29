@@ -7,6 +7,7 @@
 //============================================================================
 
 #include <stdio.h>
+#include <stdlib.h>
 #include <gsl/gsl_vector.h>
 #include <gsl/gsl_matrix.h>
 #include <gsl/gsl_linalg.h>
@@ -40,16 +41,6 @@ gsl_matrix *createMatrix(int size) {
   return matrix;
 }
 
-// Allocate right-hand side vector y
-gsl_vector *yVector(int size) {
-  gsl_vector *vector = gsl_vector_alloc(size);
-  gsl_vector_set_zero(vector);
-
-  // Fill element at index 0 with 1
-  gsl_vector_set(vector, 0, 1);
-  return vector;
-}
-
 // Helper methods
 
 void printVectorContents(gsl_vector *vector) {
@@ -69,46 +60,79 @@ void printMatrixContents(gsl_matrix *matrix) {
   printf("\n");
 }
 
-int main() {
-  int size = 5;
+void computeForOrder(int size) {
+  //printf("Creating matrixA A:\n");
+  gsl_matrix *matrixA = createMatrix(size);
+  //printMatrixContents(matrixA);
 
-  printf("Creating matrix A:\n");
-  gsl_matrix *matrix = createMatrix(size);
-  printMatrixContents(matrix);
-
-  printf("Creating vector y (b):\n");
-  gsl_vector *bVector = yVector(matrix->size2);
-  printVectorContents(bVector);
+  //printf("Creating vector y (b):\n");
+  // Right-hand side vector y
+  gsl_vector *bVector = gsl_vector_alloc(matrixA->size2);
+  gsl_vector_set_zero(bVector);
+  // Fill element at index 0 with 1
+  gsl_vector_set(bVector, 0, 1);
+  //printVectorContents(bVector);
 
   // Solve system using LU decomposition
-  gsl_matrix *luMatrix = gsl_matrix_alloc(matrix->size1, matrix->size2);
-  gsl_permutation *permutation = gsl_permutation_alloc(matrix->size1);
+  gsl_matrix *luMatrix = gsl_matrix_alloc(matrixA->size1, matrixA->size2);
+  gsl_permutation *permutation = gsl_permutation_alloc(matrixA->size1);
   int signum; // Sign of the permutation
-  // Copy A over newly created matrix
-  gsl_matrix_memcpy(luMatrix, matrix);
+  // Copy A over newly created matrixA
+  gsl_matrix_memcpy(luMatrix, matrixA);
   // Compute LU decomposition
   gsl_linalg_LU_decomp(luMatrix, permutation, &signum);
-  printf("LU decomposition of A:\n");
-  printMatrixContents(luMatrix);
+  //printf("LU decomposition of A:\n");
+  //printMatrixContents(luMatrix);
 
   // Result vector v
-  gsl_vector *xVector = gsl_vector_alloc(matrix->size2);
+  gsl_vector *xVector = gsl_vector_alloc(matrixA->size2);
   gsl_vector_set_zero(xVector);
 
   gsl_linalg_LU_solve(luMatrix, permutation, bVector, xVector);
 
-  printf("Solutions x vector:\n");
-  printVectorContents(xVector);
+  //printf("Solutions x vector:\n");
+  //printVectorContents(xVector);
 
   // Calculate condition number
   // There is no function in GSL to directly compute this number
   // the condition number is given by taking the absolute value of the ratio of the largest singular value and the smallest singular value
   // cond(A) = abs( largest_sing_val / smallest_sing_val )
-  // ...
-  // compute condition number
-  // ...
+  gsl_matrix *matrixV = gsl_matrix_alloc(matrixA->size1, matrixA->size2);
+  gsl_vector *vectorS = gsl_vector_alloc(matrixA->size1);
+  gsl_vector *vectorWorkspace = gsl_vector_alloc(matrixA->size1);
+  gsl_linalg_SV_decomp(matrixA, matrixV, vectorS, vectorWorkspace);
 
+  //printf("Singular diagonal vector:\n");
+  //printVectorContents(vectorS);
+  double minSingularValue, maxSingularValue;
+  gsl_vector_minmax(vectorS, &minSingularValue, &maxSingularValue);
 
+  //printf("Min: %.10lf, max: %.10lf\n", minSingularValue, maxSingularValue);
+
+  double conditionNumber = fabs(maxSingularValue/minSingularValue);
+  double x1 = gsl_vector_get(xVector, 0);
+  double error = (M_E - 2) - x1;
+
+  printf("%d & %.16lf & %.16f & %.16lf \\\\", size, x1, error, conditionNumber);
+
+  // Free memory space
+  gsl_matrix_free(matrixA);
+  gsl_vector_free(bVector);
+  gsl_matrix_free(luMatrix);
+  gsl_permutation_free(permutation);
+  //gsl_vector_free(bVector);
+  gsl_vector_free(xVector);
+  gsl_matrix_free(matrixV);
+  gsl_vector_free(vectorS);
+  gsl_vector_free(vectorWorkspace);
+}
+
+int main() {
+  printf("This program is going to generate a LaTeX friendly output to be used in the report table.\n");
+  for (int n = 1; n <= 20; n++) {
+    computeForOrder(n);
+    printf("\n");
+  }
   return 0;
 }
 

@@ -9,6 +9,13 @@
 \newcommand{\code}{\texttt}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
 
+\usepackage{siunitx} % Required for alignment
+
+\sisetup{
+  round-mode          = places, % Rounds numbers
+  round-precision     = 2, % to 2 places
+}
+
 % Specify images directory
 \graphicspath{ {./report-images/} }
 
@@ -96,7 +103,7 @@ As we've seen in class, there are multiple ways of solving a linear system $AX=B
 On the other hand, the LU decomposition technique is a way to represent the matrix A in the form of simpler matrices, $L$ and $U$ (lower triangular and upper triangular matrices, respectively):
 $$PA=LU$$
 
-This method uses forward substitution (solving for $Y$ from $LY=B$) and backward substitution (solving for $X$ from $UX = Y$). I'll be specifically be solving the system by using Gaussian Elimination {\it with partial pivoting}, which reduces round-offs errors compared to its naive implementation, and then provide observations on the accuracy of the results obtained.
+This method uses forward substitution (solving for $Y$ from $LY=B$) and backward substitution (solving for $X$ from $UX = Y$). I'll be specifically solving the system by using Gaussian Elimination with partial pivoting, which reduces round-offs errors compared to its naive implementation. I'll also be calculating the error and the condition number as the variable $n$ increases, and plot the results.
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
@@ -122,6 +129,7 @@ The following GSL methods have been used in the exercise:
   \item \code{gsl\_vector\_get(vector, index)}
   \item \code{gsl\_matrix\_memcpy(matrixToCopyFrom, matrix)}
   \item \code{gsl\_linalg\_SV\_decomp(A, V, S, workspaceVector)}
+  \item \code{gsl\_vector\_minmax(vector, minInVector, maxInVector)}
 \end{itemize}
 In order to factorize a matrix into the LU decomposition, and then solve the square system $Ax=y$ using the decomposition of A, I've used the following methods:
 \begin{itemize}
@@ -203,44 +211,55 @@ $$
 \end{bmatrix}
 $$
 
-For $n=20$:
-
-$$
-\vec{y}=
-\begin{bmatrix}
-0.7182818285\\
--0.2817181715\\
-0.1548454854\\
--0.1268726862\\
-0.0279727992\\
--0.0149814893\\
-0.0129913099\\
--0.0019901794\\
-0.0010502335\\
--0.0009399460\\
-0.0001102875\\
--0.0000576459\\
-0.0000526416\\
--0.0000050043\\
-0.0000025983\\
--0.0000024061\\
-0.0000001922\\
--0.0000000994\\
-0.0000000928\\
--0.0000000066\\
-\end{bmatrix}
-$$
-
-Then, I calculate the condition number to say if this is a well-conditioned or an ill-conditioned linear system. In GSL there is no direct function that calculates the condition number, but it's possible to use the ratio of the largest singular value of matrix A, $\sigma_n (A)$, to the smallest $\sigma_1 (A)$:
+Then, I calculate the condition number of the matrix $A$ of order $n$ which will give me a better idea if this is a well-conditioned or an ill-conditioned linear system. In GSL there is no direct function that calculates the condition number, but it's possible to use the ratio of the largest singular value of matrix A, $\sigma_n (A)$, to the smallest $\sigma_1 (A)$:
 
 $$\kappa(A) := \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{\norm{A}}{\norm{A^{-1}}^{-1}}$$
 
-I proceed to factorize $A$ into its singular value decomposition $SVD$ using the \code{gsl\_linalg\_SV\_decomp} method. For $n=5$, the condition number is
+I proceed to factorize $A$ into its singular value decomposition $SVD$ using the \code{gsl\_linalg\_SV\_decomp} method, and then use $\code{gsl\_vector\_minmax}$ to extract the minimum and maximum singular values out of the vector $S$ that contains the diagonal elements of the singular value matrix. \\
 
+For $n=5$, the condition number is
 
+$$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{4.2051006107}{1.1426432872}=3.6801516779$$
 
-NOT SURE. Iterative refinement, a technique used to improve the approximate solution $\vec{x}$ of our system, could be helpful to improve these results. GSL
+For $n=10$, the condition number is
+
+$$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{6.2820508697}{1.1424251953}=5.4988728328$$
+
+I calculate the error by subtracting the computed solution $x_{1}^{\ast}$ from the exact mathematical solution $\widetilde{x}$ (which can be obtained by using the $\code{M\_E}$ GSL constant minus 2).\\
+
+Finally, I am now going to insert the $x_1$ component, the error, and the condition number for $n$ from 1 to 20 in the next page.
+\begin{table*}[htb]
+\centering % used for centering table
+\begin{tabular}{c c c c} % centered columns (4 columns)
+\hline %inserts double horizontal lines
+n & $x_{1}$ & Error & $\kappa(A_n)$ \\ [0.5ex] % inserts table
+%heading
+\hline % inserts single horizontal line
+1 & 1.0000000000000000 & -0.2817181715409549 & 1.0000000000000000 \\
+2 & 0.6666666666666667 & 0.0516151617923784 & 1.7675918792439982 \\
+3 & 0.7500000000000000 & -0.0317181715409549 & 2.5615528128088298 \\
+4 & 0.7142857142857142 & 0.0039961141733309 & 2.2586960380558874 \\
+5 & 0.7187500000000000 & -0.0004681715409549 & 3.6801516778795333 \\
+6 & 0.7179487179487180 & 0.0003331105103271 & 3.9538640020225495 \\
+7 & 0.7183098591549295 & -0.0000280306958844 & 3.8476746091189153 \\
+8 & 0.7182795698924731 & 0.0000022585665720 & 5.3770375880477213 \\
+9 & 0.7182835820895522 & -0.0000017536305071 & 5.7275818392893347 \\
+10 & 0.7182817182817183 & 0.0000001101773268 & 5.4988728328025962 \\
+11 & 0.7182818352059925 & -0.0000000067469474 & 7.1003357703679963 \\
+12 & 0.7182818229439497 & 0.0000000055150954 & 7.5821646375997114 \\
+13 & 0.7182818287356958 & -0.0000000002766507 & 7.1955317021216594 \\
+14 & 0.7182818284454013 & 0.0000000000136438 & 8.8331498923754399 \\
+15 & 0.7182818284705836 & -0.0000000000115385 & 9.4880747300490409 \\
+16 & 0.7182818284585635 & 0.0000000000004816 & 8.9115586964085285 \\
+17 & 0.7182818284590651 & -0.0000000000000200 & 10.5715228483523767 \\
+18 & 0.7182818284590280 & 0.0000000000000171 & 11.4201824603811897 \\
+19 & 0.7182818284590458 & -0.0000000000000007 & 10.6381340746273825 \\
+20 & 0.7182818284590452 & -0.0000000000000001 & 12.3131996586543000 \\
+\hline %inserts single line
+\end{tabular}
+\end{table*}
 
 \section{Observations}
+It can be observed that as $n$ increases, the $x_i$ component gets incrementally closer to the actual $e-2$ value. The condition number also gets incrementally bigger. It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error.
 
 \end{document}
