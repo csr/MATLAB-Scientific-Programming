@@ -45,7 +45,7 @@ gsl_matrix *createMatrix(int size) {
 
 void printVectorContents(gsl_vector *vector) {
   for (int i = 0; i < vector->size; i++) {
-    printf("%.10f\n", gsl_vector_get(vector, i));
+    printf("%.9e\\\\\n", gsl_vector_get(vector, i));
   }
   printf("\n");
 }
@@ -53,17 +53,19 @@ void printVectorContents(gsl_vector *vector) {
 void printMatrixContents(gsl_matrix *matrix) {
   for (int i = 0; i < matrix->size1; ++i) {
     for (int j = 0; j < matrix->size2; ++j) {
-      printf("%.10f ", gsl_matrix_get(matrix, i, j));
+      printf("%.9e & ", gsl_matrix_get(matrix, i, j));
     }
     printf("\n");
   }
   printf("\n");
 }
 
-void computeForOrder(int size) {
-  //printf("Creating matrixA A:\n");
+void computeForOrder(int size, int shouldPrintVerboseOutput) {
   gsl_matrix *matrixA = createMatrix(size);
-  //printMatrixContents(matrixA);
+  if (shouldPrintVerboseOutput) {
+    printf("Creating matrixA A:\n");
+    printMatrixContents(matrixA);
+  }
 
   //printf("Creating vector y (b):\n");
   // Right-hand side vector y
@@ -71,7 +73,7 @@ void computeForOrder(int size) {
   gsl_vector_set_zero(bVector);
   // Fill element at index 0 with 1
   gsl_vector_set(bVector, 0, 1);
-  //printVectorContents(bVector);
+  printVectorContents(bVector);
 
   // Solve system using LU decomposition
   gsl_matrix *luMatrix = gsl_matrix_alloc(matrixA->size1, matrixA->size2);
@@ -81,8 +83,11 @@ void computeForOrder(int size) {
   gsl_matrix_memcpy(luMatrix, matrixA);
   // Compute LU decomposition
   gsl_linalg_LU_decomp(luMatrix, permutation, &signum);
-  //printf("LU decomposition of A:\n");
-  //printMatrixContents(luMatrix);
+
+  if (shouldPrintVerboseOutput) {
+    printf("LU decomposition of A:\n");
+    printMatrixContents(luMatrix);
+  }
 
   // Result vector v
   gsl_vector *xVector = gsl_vector_alloc(matrixA->size2);
@@ -90,8 +95,10 @@ void computeForOrder(int size) {
 
   gsl_linalg_LU_solve(luMatrix, permutation, bVector, xVector);
 
-  //printf("Solutions x vector:\n");
-  //printVectorContents(xVector);
+  if (shouldPrintVerboseOutput) {
+    printf("Solutions x vector:\n");
+    printVectorContents(xVector);
+  }
 
   // Calculate condition number
   // There is no function in GSL to directly compute this number
@@ -106,24 +113,21 @@ void computeForOrder(int size) {
   //printVectorContents(vectorS);
   double minSingularValue, maxSingularValue;
   gsl_vector_minmax(vectorS, &minSingularValue, &maxSingularValue);
-
-  //printf("Min: %.10lf, max: %.10lf\n", minSingularValue, maxSingularValue);
+  if (shouldPrintVerboseOutput) {
+    printf("Max: %.9e, min: %.9e\n", maxSingularValue, minSingularValue);
+  }
 
   double conditionNumber = fabs(maxSingularValue/minSingularValue);
   double x1 = gsl_vector_get(xVector, 0);
   double error = (M_E - 2) - x1;
 
-  //printf("%d & %.15lf & %.15f & %.15lf \\\\", size, x1, error, conditionNumber);
-
-  printf("%.15lf, ", conditionNumber);
-
-
+  printf("%d & %.9e & %.9e & %.9e \\\\", size, x1, error, conditionNumber);
+  
   // Free memory space
   gsl_matrix_free(matrixA);
   gsl_vector_free(bVector);
   gsl_matrix_free(luMatrix);
   gsl_permutation_free(permutation);
-  //gsl_vector_free(bVector);
   gsl_vector_free(xVector);
   gsl_matrix_free(matrixV);
   gsl_vector_free(vectorS);
@@ -132,10 +136,13 @@ void computeForOrder(int size) {
 
 int main() {
   printf("This program is going to generate a LaTeX friendly output to be used in the report table.\n");
-  for (int n = 1; n <= 50; n++) {
-    computeForOrder(n);
-    //printf("\n");
-  }
+//  for (int n = 1; n <= 50; n++) {
+//    computeForOrder(n, 0);
+//    printf("\n");
+//  }
+
+  computeForOrder(5, 1);
+
   return 0;
 }
 

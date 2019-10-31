@@ -138,20 +138,21 @@ In order to factorize a matrix into the LU decomposition, and then solve the squ
   \item \code{gsl\_permutation\_alloc(size)}
 \end{itemize}
   
-\section{Solving the linear system}
+\section{Solving the Linear System}
 In order to solve the system $Ax=y$, I first need to build the matrix A by understanding how it's build. The requirements are to build a tridiagonal matrix with the values $-1$ on the adjacent upper diagonal, the entries $+1$ on the adjacent lower diagonal, and on the main diagonal the values $b_{i}$, with $i = 1, \ldots, n$ given by
 
 $$b_i =\frac{2(i+1)}{3},\quad i + 1= 3, 6, 9,\ldots$$
 $$b_i =1,\quad i + 1 = 2, 4, 5, 7, 8, \ldots$$
 
-By looking closely at the first rule, we see that the $i+1$ are all multiples of 3 ($i+1 = 3*k$, for some $k$). Hence the $i$ are of the form $i = 3*k-1$, for some $k$. For $n = 5$, for example, this is what the matrix looks like:
+By looking closely at the first rule, we see that the $i+1$ are all multiples of 3 ($i+1 = 3*k$, for some $k$). Hence the $i$ are of the form $i = 3*k-1$, for some $k$. For $n = 5$, for example, this is what the coefficient matrix looks like:
 $$
 \begin{bmatrix}
-1.0000000000 & -1.0000000000 & 0.0000000000 & 0.0000000000 & 0.0000000000 \\
-1.0000000000 & 2.0000000000 & -1.0000000000 & 0.0000000000 & 0.0000000000 \\
-0.0000000000 & 1.0000000000 & 1.0000000000 & -1.0000000000 & 0.0000000000 \\ 
-0.0000000000 & 0.0000000000 & 1.0000000000 & 1.0000000000 & -1.0000000000 \\ 
-0.0000000000 & 0.0000000000 & 0.0000000000 & 1.0000000000 & 4.0000000000 \\\end{bmatrix}
+1.000000000e+00 & -1.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 \\ 
+1.000000000e+00 & 2.000000000e+00 & -1.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 \\ 
+0.000000000e+00 & 1.000000000e+00 & 1.000000000e+00 & -1.000000000e+00 & 0.000000000e+00 \\ 
+0.000000000e+00 & 0.000000000e+00 & 1.000000000e+00 & 1.000000000e+00 & -1.000000000e+00 \\ 
+0.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 & 1.000000000e+00 & 4.000000000e+00 \\
+\end{bmatrix}
 $$
 
 The coefficients matrix A is first allocated by using the \code{gsl\_matrix\_alloc} method, then I set all the elements to zero with \code{gsl\_matrix\_set\_zero} and finally nested \code{for} loops fill the diagonal values by checking the indexes. The coefficients reported above on the diagonal have 5 significant digits for improve the readability of this report.\\
@@ -160,23 +161,22 @@ I used the \code{gsl\_vector\_alloc} method to create an instance of the vector.
 $$
 \vec{y}=
 \begin{bmatrix}
-1.0000000000 \\
-0.0000000000 \\
-0.0000000000 \\
-0.0000000000 \\
-0.0000000000 \\
+1.000000000e+00 \\
+0.000000000e+00 \\
+0.000000000e+00 \\
+0.000000000e+00 \\
+0.000000000e+00 \\
 \end{bmatrix}
 $$
 
 Given the $Ax=y$ system, my goal is now to find the vector of the unknowns $x$. To do so, I first factorize $A$ into its LU decomposition by allocating a new matrix (so that the matrix which represents $A$ doesn't get overridden) using \code{gsl\_matrix\_memcpy} and then by calling \code{gsl\_linalg\_LU\_decomp}. This method utilizes Gaussian Elimination with partial pivoting to compute the decomposition. The following is the $LU$ matrix for $n=5$:
 $$
-LU=
 \begin{bmatrix} 
-1.0000000000 & -1.0000000000 & 0.0000000000 & 0.0000000000 & 0.0000000000\\ 
-1.0000000000 & 3.0000000000 & -1.0000000000 & 0.0000000000 & 0.0000000000\\ 
-0.0000000000 & 0.3333333333 & 1.3333333333 & -1.0000000000 & 0.0000000000\\ 
-0.0000000000 & 0.0000000000 & 0.7500000000 & 1.7500000000 & -1.0000000000\\ 
-0.0000000000 & 0.0000000000 & 0.0000000000 & 0.5714285714 & 4.5714285714\\
+1.000000000e+00 & -1.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 \\ 
+1.000000000e+00 & 3.000000000e+00 & -1.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 \\ 
+0.000000000e+00 & 3.333333333e-01 & 1.333333333e+00 & -1.000000000e+00 & 0.000000000e+00 \\
+0.000000000e+00 & 0.000000000e+00 & 7.500000000e-01 & 1.750000000e+00 & -1.000000000e+00 \\ 
+0.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 & 5.714285714e-01 & 4.571428571e+00 \\
 \end{bmatrix}
 $$
 
@@ -185,29 +185,11 @@ I can now use the $LU$ matrix to solve the system by passing $LU$, $x$, a permut
 $$
 \vec{x}=
 \begin{bmatrix}
-0.7187500000\\
--0.2812500000\\
-0.1562500000\\
--0.1250000000\\
-0.0312500000\\
-\end{bmatrix}
-$$
-
-The first element looks contains an approximation of $e-2$. By increasing the size of the matrix $n$, $x_i$ becomes increasingly more precise. For $n=10$, for example:
-
-$$
-\vec{x}=
-\begin{bmatrix}
-0.7182817183\\
--0.2817182817\\
-0.1548451548\\
--0.1268731269\\
-0.0279720280\\
--0.0149850150\\
-0.0129870130\\
--0.0019980020\\
-0.0009990010\\
--0.0009990010\\
+7.187500000e-01\\
+-2.812500000e-01\\
+1.562500000e-01\\
+-1.250000000e-01\\
+3.125000000e-02\\
 \end{bmatrix}
 $$
 
@@ -219,11 +201,7 @@ I proceed to factorize $A$ into its singular value decomposition $SVD$ using the
 
 For $n=5$, the condition number is
 
-$$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{4.2051006107}{1.1426432872}=3.6801516779$$
-
-For $n=10$, the condition number is
-
-$$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{6.2820508697}{1.1424251953}=5.4988728328$$
+$$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{4.205100611e+00}{1.142643287e+00}=3.680151678e+00$$
 
 I calculate the error by subtracting the computed solution $x_{1}^{\ast}$ from the exact mathematical solution $\widetilde{x}$ (which can be obtained by using the $\code{M\_E}$ GSL constant minus 2).\\
 
@@ -234,56 +212,56 @@ Finally, I am now going to insert the $x_1$ component, the error, and the condit
 $n$ & $\widetilde{x}_1$ & $x_1^{\ast}- \widetilde{x}_1$ & $\kappa(A_n)$ \\ [0.65ex] % inserts table
 %heading
 \hline % inserts single horizontal line
-01 & 1.000000000000000 & -0.281718171540955 & 1.000000000000000 \\
-02 & 0.666666666666667 & 0.051615161792378 & 1.767591879243998 \\
-03 & 0.750000000000000 & -0.031718171540955 & 2.561552812808830 \\
-04 & 0.714285714285714 & 0.003996114173331 & 2.258696038055887 \\
-05 & 0.718750000000000 & -0.000468171540955 & 3.680151677879533 \\
-06 & 0.717948717948718 & 0.000333110510327 & 3.953864002022550 \\
-07 & 0.718309859154930 & -0.000028030695884 & 3.847674609118915 \\
-08 & 0.718279569892473 & 0.000002258566572 & 5.377037588047721 \\
-09 & 0.718283582089552 & -0.000001753630507 & 5.727581839289335 \\
-10 & 0.718281718281718 & 0.000000110177327 & 5.498872832802596 \\
-11 & 0.718281835205993 & -0.000000006746947 & 7.100335770367996 \\
-12 & 0.718281822943950 & 0.000000005515095 & 7.582164637599711 \\
-13 & 0.718281828735696 & -0.000000000276651 & 7.195531702121659 \\
-14 & 0.718281828445401 & 0.000000000013644 & 8.833149892375440 \\
-15 & 0.718281828470584 & -0.000000000011539 & 9.488074730049041 \\
-16 & 0.718281828458563 & 0.000000000000482 & 8.911558696408528 \\
-17 & 0.718281828459065 & -0.000000000000020 & 10.571522848352377 \\
-18 & 0.718281828459028 & 0.000000000000017 & 11.420182460381190 \\
-19 & 0.718281828459046 & -0.000000000000001 & 10.638134074627382 \\
-20 & 0.718281828459045 & -0.000000000000000 & 12.313199658654300 \\
-21 & 0.718281828459045 & -0.000000000000000 & 13.368831043170752 \\
-22 & 0.718281828459045 & -0.000000000000000 & 12.371078212614004 \\
-23 & 0.718281828459045 & -0.000000000000000 & 14.057004794016557 \\
-24 & 0.718281828459045 & -0.000000000000000 & 15.328629826257806 \\
-25 & 0.718281828459045 & -0.000000000000000 & 14.108163769731830 \\
-26 & 0.718281828459045 & -0.000000000000000 & 15.802262487437682 \\
-27 & 0.718281828459045 & -0.000000000000000 & 17.296307059194255 \\
-28 & 0.718281828459045 & -0.000000000000000 & 15.848093475192302 \\
-29 & 0.718281828459045 & -0.000000000000000 & 17.548556166163607 \\
-30 & 0.718281828459045 & -0.000000000000000 & 19.269757243499750 \\
-31 & 0.718281828459045 & -0.000000000000000 & 17.590060434351265 \\
-32 & 0.718281828459045 & -0.000000000000000 & 19.295614845413013 \\
-33 & 0.718281828459045 & -0.000000000000000 & 21.247563252611098 \\
-34 & 0.718281828459045 & -0.000000000000000 & 19.333536447042945 \\
-35 & 0.718281828459045 & -0.000000000000000 & 21.043254557744980 \\
-36 & 0.718281828459045 & -0.000000000000000 & 23.228736221077760 \\
-37 & 0.718281828459045 & -0.000000000000000 & 21.078161279333553 \\
-38 & 0.718281828459045 & -0.000000000000000 & 22.791345987426897 \\
-39 & 0.718281828459045 & -0.000000000000000 & 25.212565199999691 \\
-40 & 0.718281828459045 & -0.000000000000000 & 22.823680837817037 \\
-41 & 0.718281828459045 & -0.000000000000000 & 24.539795564146115 \\
-42 & 0.718281828459045 & -0.000000000000000 & 27.198526001362339 \\
-43 & 0.718281828459045 & -0.000000000000000 & 24.569910774893234 \\
-44 & 0.718281828459045 & -0.000000000000000 & 26.288533903235187 \\
-45 & 0.718281828459045 & -0.000000000000000 & 29.186223702087091 \\
-46 & 0.718281828459045 & -0.000000000000000 & 26.316714104617667 \\
-47 & 0.718281828459045 & -0.000000000000000 & 28.037508462052152 \\
-48 & 0.718281828459045 & -0.000000000000000 & 31.175355146341044 \\
-49 & 0.718281828459045 & -0.000000000000000 & 28.063986916895736 \\
-50 & 0.718281828459045 & -0.000000000000000 & 29.786678720210102 \\\hline %inserts single line
+1 & 1.000000000e+00 & -2.817181715e-01 & 1.000000000e+00 \\
+2 & 6.666666667e-01 & 5.161516179e-02 & 1.767591879e+00 \\
+3 & 7.500000000e-01 & -3.171817154e-02 & 2.561552813e+00 \\
+4 & 7.142857143e-01 & 3.996114173e-03 & 2.258696038e+00 \\
+5 & 7.187500000e-01 & -4.681715410e-04 & 3.680151678e+00 \\
+6 & 7.179487179e-01 & 3.331105103e-04 & 3.953864002e+00 \\
+7 & 7.183098592e-01 & -2.803069588e-05 & 3.847674609e+00 \\
+8 & 7.182795699e-01 & 2.258566572e-06 & 5.377037588e+00 \\
+9 & 7.182835821e-01 & -1.753630507e-06 & 5.727581839e+00 \\
+10 & 7.182817183e-01 & 1.101773268e-07 & 5.498872833e+00 \\
+11 & 7.182818352e-01 & -6.746947445e-09 & 7.100335770e+00 \\
+12 & 7.182818229e-01 & 5.515095380e-09 & 7.582164638e+00 \\
+13 & 7.182818287e-01 & -2.766507023e-10 & 7.195531702e+00 \\
+14 & 7.182818284e-01 & 1.364375279e-11 & 8.833149892e+00 \\
+15 & 7.182818285e-01 & -1.153854789e-11 & 9.488074730e+00 \\
+16 & 7.182818285e-01 & 4.816147481e-13 & 8.911558696e+00 \\
+17 & 7.182818285e-01 & -1.998401444e-14 & 1.057152285e+01 \\
+18 & 7.182818285e-01 & 1.709743458e-14 & 1.142018246e+01 \\
+19 & 7.182818285e-01 & -6.661338148e-16 & 1.063813407e+01 \\
+20 & 7.182818285e-01 & -1.110223025e-16 & 1.231319966e+01 \\
+21 & 7.182818285e-01 & -2.220446049e-16 & 1.336883104e+01 \\
+22 & 7.182818285e-01 & -2.220446049e-16 & 1.237107821e+01 \\
+23 & 7.182818285e-01 & -2.220446049e-16 & 1.405700479e+01 \\
+24 & 7.182818285e-01 & -2.220446049e-16 & 1.532862983e+01 \\
+25 & 7.182818285e-01 & -2.220446049e-16 & 1.410816377e+01 \\
+26 & 7.182818285e-01 & -2.220446049e-16 & 1.580226249e+01 \\
+27 & 7.182818285e-01 & -2.220446049e-16 & 1.729630706e+01 \\
+28 & 7.182818285e-01 & -2.220446049e-16 & 1.584809348e+01 \\
+29 & 7.182818285e-01 & -2.220446049e-16 & 1.754855617e+01 \\
+30 & 7.182818285e-01 & -2.220446049e-16 & 1.926975724e+01 \\
+31 & 7.182818285e-01 & -2.220446049e-16 & 1.759006043e+01 \\
+32 & 7.182818285e-01 & -2.220446049e-16 & 1.929561485e+01 \\
+33 & 7.182818285e-01 & -2.220446049e-16 & 2.124756325e+01 \\
+34 & 7.182818285e-01 & -2.220446049e-16 & 1.933353645e+01 \\
+35 & 7.182818285e-01 & -2.220446049e-16 & 2.104325456e+01 \\
+36 & 7.182818285e-01 & -2.220446049e-16 & 2.322873622e+01 \\
+37 & 7.182818285e-01 & -2.220446049e-16 & 2.107816128e+01 \\
+38 & 7.182818285e-01 & -2.220446049e-16 & 2.279134599e+01 \\
+39 & 7.182818285e-01 & -2.220446049e-16 & 2.521256520e+01 \\
+40 & 7.182818285e-01 & -2.220446049e-16 & 2.282368084e+01 \\
+41 & 7.182818285e-01 & -2.220446049e-16 & 2.453979556e+01 \\
+42 & 7.182818285e-01 & -2.220446049e-16 & 2.719852600e+01 \\
+43 & 7.182818285e-01 & -2.220446049e-16 & 2.456991077e+01 \\
+44 & 7.182818285e-01 & -2.220446049e-16 & 2.628853390e+01 \\
+45 & 7.182818285e-01 & -2.220446049e-16 & 2.918622370e+01 \\
+46 & 7.182818285e-01 & -2.220446049e-16 & 2.631671410e+01 \\
+47 & 7.182818285e-01 & -2.220446049e-16 & 2.803750846e+01 \\
+48 & 7.182818285e-01 & -2.220446049e-16 & 3.117535515e+01 \\
+49 & 7.182818285e-01 & -2.220446049e-16 & 2.806398692e+01 \\
+50 & 7.182818285e-01 & -2.220446049e-16 & 2.978667872e+01 \\\hline %inserts single line
 \end{tabular}
 \end{table*}
 
@@ -291,8 +269,8 @@ $n$ & $\widetilde{x}_1$ & $x_1^{\ast}- \widetilde{x}_1$ & $\kappa(A_n)$ \\ [0.65
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cond_number.png}
 
 \section{Observations}
-The linear system presented in this exercise gets increasingly ill-conditioned as $n$ grows (as $\kappa(A_n)\geq$ for most $n$). From the plot, it can be observed that the condition number grows in a linear fashion. It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error. The linear system appears to be ill-conditioned for most $n$ as the condition number gets increasingly bigger = than $1$. However, it can be observed that as $n$ increases, the $\widetilde{x}_1$ component gets incrementally closer to the actual $e-2$ value.\\
+The linear system presented in this exercise gets increasingly ill-conditioned as $n$ grows (since $\kappa(A_n)> 1$ for most $n$). From the plot, it can be observed that the condition number grows linearly. It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error. However, it can be observed that as $n$ increases, the error gets incrementally smaller.\\
 
-This error I have calculated represents how well the computed solution $\widetilde{x}_1$ approximates the true solution $x_1^{\ast}$, even though I operated in double-precision and there have been truncation errors when calculating $e-2$ and $\widetilde{x}_1$. It can be noted that the Gaussian elimination with partial pivoting doesn't introduce any additional truncation errors and therefore it is numerically stable.
+The error that I have calculated represents how well the computed solution $\widetilde{x}_1$ approximates the true solution $x_1^{\ast}$. It can be noted that the Gaussian elimination with partial pivoting doesn't introduce any additional truncation errors and therefore it is numerically stable.
 
 \end{document}

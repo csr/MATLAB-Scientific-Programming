@@ -13,4 +13,4 @@ plt.xlabel('n')
 plt.ylabel('Condition Number')
 
 # Let's first plot the points
-plt.plot(x, condNumber, 'bo', label='Data')
+plt.plot(x, condNumber, 'o', label='Data')

@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  31 OCT 2019 15:32
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  31 OCT 2019 16:44
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -605,19 +605,29 @@ LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
  [2
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 157--158
+Overfull \hbox (41.87906pt too wide) detected at line 156
+[]
+ []
 
+
+Underfull \hbox (badness 10000) in paragraph at lines 158--159
+
+ []
+
+
+Overfull \hbox (41.87906pt too wide) detected at line 181
+[]
  []
 
 [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 218--219
+Underfull \hbox (badness 10000) in paragraph at lines 200--201
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 228--229
+Underfull \hbox (badness 10000) in paragraph at lines 206--207
 
  []
 
@@ -625,12 +635,12 @@ Underfull \hbox (badness 10000) in paragraph at lines 228--229
 <cond_number.png, id=33, 384.14285pt x 263.50754pt>
 File: cond_number.png Graphic file (type png)
 <use cond_number.png>
-Package pdftex.def Info: cond_number.png  used on input line 291.
+Package pdftex.def Info: cond_number.png  used on input line 269.
 (pdftex.def)             Requested size: 440.86404pt x 302.41612pt.
  [6
 
  <./cond_number.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 294--295
+Underfull \hbox (badness 10000) in paragraph at lines 272--273
 
  []
 
@@ -640,11 +650,11 @@ Underfull \hbox (badness 10000) in paragraph at lines 294--295
 Here is how much of TeX's memory you used:
  15081 strings out of 492616
  299995 string characters out of 6129482
- 424398 words of memory out of 5000000
+ 423398 words of memory out of 5000000
  18921 multiletter control sequences out of 15000+600000
  536960 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,11n,63p,671b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,63p,493b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
@@ -658,7 +668,7 @@ mr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 fb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 >
-Output written on Report.pdf (8 pages, 157511 bytes).
+Output written on Report.pdf (8 pages, 156755 bytes).
 PDF statistics:
  82 PDF objects out of 1000 (max. 8388607)
  57 compressed objects within 1 object stream
