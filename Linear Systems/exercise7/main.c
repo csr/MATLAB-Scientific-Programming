@@ -113,7 +113,10 @@ void computeForOrder(int size) {
   double x1 = gsl_vector_get(xVector, 0);
   double error = (M_E - 2) - x1;
 
-  printf("%d & %.15lf & %.15f & %.15lf \\\\", size, x1, error, conditionNumber);
+  //printf("%d & %.15lf & %.15f & %.15lf \\\\", size, x1, error, conditionNumber);
+
+  printf("%.15lf, ", conditionNumber);
+
 
   // Free memory space
   gsl_matrix_free(matrixA);
@@ -131,7 +134,7 @@ int main() {
   printf("This program is going to generate a LaTeX friendly output to be used in the report table.\n");
   for (int n = 1; n <= 50; n++) {
     computeForOrder(n);
-    printf("\n");
+    //printf("\n");
   }
   return 0;
 }

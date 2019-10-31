@@ -227,7 +227,7 @@ $$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{6.2820508697}{1.142425195
 
 I calculate the error by subtracting the computed solution $x_{1}^{\ast}$ from the exact mathematical solution $\widetilde{x}$ (which can be obtained by using the $\code{M\_E}$ GSL constant minus 2).\\
 
-Finally, I am now going to insert the $x_1$ component, the error, and the condition number for $n$ from 1 to 50 in the next page. I chose $n = 50$ as the upper limit because it looks like the error doesn't improve after a certain threshold ($n=20$).
+Finally, I am now going to insert the $x_1$ component, the error, and the condition number for $n$ from 1 to 50 in the next page.
 \begin{table*}[htb]
 \centering % used for centering table
 \begin{tabular}{c c c c} % centered columns (4 columns)
@@ -287,7 +287,12 @@ $n$ & $\widetilde{x}_1$ & $x_1^{\ast}- \widetilde{x}_1$ & $\kappa(A_n)$ \\ [0.65
 \end{tabular}
 \end{table*}
 
+\section{Plot}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cond_number.png}
+
 \section{Observations}
-The linear system presented in this exercise gets increasingly ill-conditioned as $n$ grows (as $\kappa(A_n)\geq$ for most $n$). It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error. The linear system appears to be ill-conditioned for most $n$ as the condition number gets increasingly bigger = than $1$. However, it can be observed that as $n$ increases, the $\widetilde{x}_1$ component gets incrementally closer to the actual $e-2$ value. This error I have calculated represents how well the computed solution $\widetilde{x}_1$ approximates the true solution $x_1^{\ast}$, even though I operated in double-precision and there have been truncation errors when calculating $e-2$ and $\widetilde{x}_1$. It can be noted that the Gaussian elimination with partial pivoting doesn't introduce any additional truncation errors.
+The linear system presented in this exercise gets increasingly ill-conditioned as $n$ grows (as $\kappa(A_n)\geq$ for most $n$). From the plot, it can be observed that the condition number grows in a linear fashion. It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error. The linear system appears to be ill-conditioned for most $n$ as the condition number gets increasingly bigger = than $1$. However, it can be observed that as $n$ increases, the $\widetilde{x}_1$ component gets incrementally closer to the actual $e-2$ value.\\
+
+This error I have calculated represents how well the computed solution $\widetilde{x}_1$ approximates the true solution $x_1^{\ast}$, even though I operated in double-precision and there have been truncation errors when calculating $e-2$ and $\widetilde{x}_1$. It can be noted that the Gaussian elimination with partial pivoting doesn't introduce any additional truncation errors and therefore it is numerically stable.
 
 \end{document}
