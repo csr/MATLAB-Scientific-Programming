@@ -129,7 +129,7 @@ void computeForOrder(int size) {
 
 int main() {
   printf("This program is going to generate a LaTeX friendly output to be used in the report table.\n");
-  for (int n = 1; n <= 20; n++) {
+  for (int n = 1; n <= 50; n++) {
     computeForOrder(n);
     printf("\n");
   }

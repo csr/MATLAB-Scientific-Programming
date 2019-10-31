@@ -57,7 +57,7 @@
 	
 	\HRule\\[0.6cm]
 	
-	{\huge\bfseries Systems of Linear Equations Report}\\[0.25cm] % Title of your document
+	{\huge\bfseries Solving a Linear System with LU Decomposition}\\[0.25cm] % Title of your document
 	
 	\HRule\\[1.5cm]
 	
@@ -227,12 +227,11 @@ $$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{6.2820508697}{1.142425195
 
 I calculate the error by subtracting the computed solution $x_{1}^{\ast}$ from the exact mathematical solution $\widetilde{x}$ (which can be obtained by using the $\code{M\_E}$ GSL constant minus 2).\\
 
-Finally, I am now going to insert the $x_1$ component, the error, and the condition number for $n$ from 1 to 20 in the next page.
+Finally, I am now going to insert the $x_1$ component, the error, and the condition number for $n$ from 1 to 50 in the next page. I chose $n = 50$ as the upper limit because it looks like the error doesn't get better after $n=20$.
 \begin{table*}[htb]
 \centering % used for centering table
 \begin{tabular}{c c c c} % centered columns (4 columns)
-\hline %inserts double horizontal lines
-n & $x_{1}$ & Error & $\kappa(A_n)$ \\ [0.5ex] % inserts table
+$n$ & $\widetilde{x}_1$ & $x_1^{\ast}- \widetilde{x}_1$ & $\kappa(A_n)$ \\ [0.65ex] % inserts table
 %heading
 \hline % inserts single horizontal line
 1 & 1.0000000000000000 & -0.2817181715409549 & 1.0000000000000000 \\
@@ -255,11 +254,43 @@ n & $x_{1}$ & Error & $\kappa(A_n)$ \\ [0.5ex] % inserts table
 18 & 0.7182818284590280 & 0.0000000000000171 & 11.4201824603811897 \\
 19 & 0.7182818284590458 & -0.0000000000000007 & 10.6381340746273825 \\
 20 & 0.7182818284590452 & -0.0000000000000001 & 12.3131996586543000 \\
+21 & 0.7182818284590453 & -0.0000000000000002 & 13.3688310431707524 \\
+22 & 0.7182818284590453 & -0.0000000000000002 & 12.3710782126140035 \\
+23 & 0.7182818284590453 & -0.0000000000000002 & 14.0570047940165566 \\
+24 & 0.7182818284590453 & -0.0000000000000002 & 15.3286298262578065 \\
+25 & 0.7182818284590453 & -0.0000000000000002 & 14.1081637697318296 \\
+26 & 0.7182818284590453 & -0.0000000000000002 & 15.8022624874376820 \\
+27 & 0.7182818284590453 & -0.0000000000000002 & 17.2963070591942554 \\
+28 & 0.7182818284590453 & -0.0000000000000002 & 15.8480934751923019 \\
+29 & 0.7182818284590453 & -0.0000000000000002 & 17.5485561661636069 \\
+30 & 0.7182818284590453 & -0.0000000000000002 & 19.2697572434997504 \\
+31 & 0.7182818284590453 & -0.0000000000000002 & 17.5900604343512654 \\
+32 & 0.7182818284590453 & -0.0000000000000002 & 19.2956148454130130 \\
+33 & 0.7182818284590453 & -0.0000000000000002 & 21.2475632526110978 \\
+34 & 0.7182818284590453 & -0.0000000000000002 & 19.3335364470429454 \\
+35 & 0.7182818284590453 & -0.0000000000000002 & 21.0432545577449801 \\
+36 & 0.7182818284590453 & -0.0000000000000002 & 23.2287362210777601 \\
+37 & 0.7182818284590453 & -0.0000000000000002 & 21.0781612793335533 \\
+38 & 0.7182818284590453 & -0.0000000000000002 & 22.7913459874268973 \\
+39 & 0.7182818284590453 & -0.0000000000000002 & 25.2125651999996911 \\
+40 & 0.7182818284590453 & -0.0000000000000002 & 22.8236808378170366 \\
+41 & 0.7182818284590453 & -0.0000000000000002 & 24.5397955641461145 \\
+42 & 0.7182818284590453 & -0.0000000000000002 & 27.1985260013623389 \\
+43 & 0.7182818284590453 & -0.0000000000000002 & 24.5699107748932342 \\
+44 & 0.7182818284590453 & -0.0000000000000002 & 26.2885339032351872 \\
+45 & 0.7182818284590453 & -0.0000000000000002 & 29.1862237020870907 \\
+46 & 0.7182818284590453 & -0.0000000000000002 & 26.3167141046176667 \\
+47 & 0.7182818284590453 & -0.0000000000000002 & 28.0375084620521520 \\
+48 & 0.7182818284590453 & -0.0000000000000002 & 31.1753551463410439 \\
+49 & 0.7182818284590453 & -0.0000000000000002 & 28.0639869168957361 \\
+50 & 0.7182818284590453 & -0.0000000000000002 & 29.7866787202101015 \\
 \hline %inserts single line
 \end{tabular}
 \end{table*}
 
 \section{Observations}
-It can be observed that as $n$ increases, the $x_i$ component gets incrementally closer to the actual $e-2$ value. The condition number also gets incrementally bigger. It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error.
+It can be observed that as $n$ increases, the $\widetilde{x}_1$ component gets incrementally closer to the actual $e-2$ value. The condition number also gets incrementally bigger. It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error.\\
+
+The linear system appears to be ill-conditioned for most $n$.
 
 \end{document}
