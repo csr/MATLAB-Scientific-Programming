@@ -113,7 +113,7 @@ void computeForOrder(int size) {
   double x1 = gsl_vector_get(xVector, 0);
   double error = (M_E - 2) - x1;
 
-  printf("%d & %.16lf & %.16f & %.16lf \\\\", size, x1, error, conditionNumber);
+  printf("%d & %.15lf & %.15f & %.15lf \\\\", size, x1, error, conditionNumber);
 
   // Free memory space
   gsl_matrix_free(matrixA);

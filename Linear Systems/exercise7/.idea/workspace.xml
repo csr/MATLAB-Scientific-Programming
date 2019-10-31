@@ -16,8 +16,6 @@
       <change beforePath="$PROJECT_DIR$/../Report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../Report.pdf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../Report.synctex.gz" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/../Report.tex" beforeDir="false" afterPath="$PROJECT_DIR$/../Report.tex" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/cmake-build-debug/exercise7" beforeDir="false" afterPath="$PROJECT_DIR$/cmake-build-debug/exercise7" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.c" beforeDir="false" afterPath="$PROJECT_DIR$/main.c" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -74,7 +72,7 @@
       <workItem from="1571821294722" duration="8244000" />
       <workItem from="1571854746521" duration="755000" />
       <workItem from="1571988422378" duration="3509000" />
-      <workItem from="1572268139564" duration="13155000" />
+      <workItem from="1572268139564" duration="13704000" />
     </task>
     <servers />
   </component>
