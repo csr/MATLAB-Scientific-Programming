@@ -118,8 +118,11 @@ void computeForOrder(int size, int shouldPrintVerboseOutput) {
   gsl_vector *vectorWorkspace = gsl_vector_alloc(matrixA->size1);
   gsl_linalg_SV_decomp(matrixA, matrixV, vectorS, vectorWorkspace);
 
-  //printf("Singular diagonal vector:\n");
-  //printVectorContents(vectorS);
+  if (shouldPrintVerboseOutput) {
+    printf("Singular diagonal vector:\n");
+    printVectorContents(vectorS);
+  }
+
   double minSingularValue, maxSingularValue;
   gsl_vector_minmax(vectorS, &minSingularValue, &maxSingularValue);
   if (shouldPrintVerboseOutput) {
@@ -130,12 +133,7 @@ void computeForOrder(int size, int shouldPrintVerboseOutput) {
   double x1 = gsl_vector_get(xVector, 0);
   double error = (M_E - 2) - x1;
 
-  printf("%.9f, ", error);
-
-  //printf("------------------------------\n");
-  //printf("n, x1, error, condition number\n");
-  //printf("%d & %.9e & %.9e & %.9e \\\\", size, x1, error, conditionNumber);
-  //printf("\n------------------------------\n");
+  printf("%d & %.9e & %.9e & %.9e \\\\", size, x1, error, conditionNumber);
 
   // Free memory space
   gsl_matrix_free(matrixA);
@@ -150,13 +148,13 @@ void computeForOrder(int size, int shouldPrintVerboseOutput) {
 
 int main() {
   printf("This program is going to generate a LaTeX friendly output to be used in the report table.\n");
+  printf("------------------------------\n");
+  printf("n, x1, error, condition number\n");
   for (int n = 1; n <= 50; n++) {
     computeForOrder(n, 0);
-    //printf("\n");
+    printf("\n");
   }
-
-  //computeForOrder(5, 1);
-
+  printf("------------------------------\n");
   return 0;
 }
 

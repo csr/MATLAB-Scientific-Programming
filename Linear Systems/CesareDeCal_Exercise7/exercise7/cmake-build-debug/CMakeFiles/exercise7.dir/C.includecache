@@ -6,7 +6,7 @@
 
 #IncludeRegexTransform: 
 
-/Users/cesaredecal/workspace/Scientific-Programming/Linear Systems/exercise7/main.c
+/Users/cesaredecal/workspace/Scientific-Programming/Linear Systems/CesareDeCal_Exercise7/exercise7/main.c
 stdio.h
 -
 stdlib.h
