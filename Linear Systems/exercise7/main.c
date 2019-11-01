@@ -53,7 +53,13 @@ void printVectorContents(gsl_vector *vector) {
 void printMatrixContents(gsl_matrix *matrix) {
   for (int i = 0; i < matrix->size1; ++i) {
     for (int j = 0; j < matrix->size2; ++j) {
-      printf("%.9e & ", gsl_matrix_get(matrix, i, j));
+      printf("%.9e ", gsl_matrix_get(matrix, i, j));
+
+      if (j == matrix->size2-1) {
+        printf("\\\\");
+      } else {
+        printf("& ");
+      }
     }
     printf("\n");
   }
@@ -63,17 +69,20 @@ void printMatrixContents(gsl_matrix *matrix) {
 void computeForOrder(int size, int shouldPrintVerboseOutput) {
   gsl_matrix *matrixA = createMatrix(size);
   if (shouldPrintVerboseOutput) {
-    printf("Creating matrixA A:\n");
+    printf("Creating matrix A:\n");
     printMatrixContents(matrixA);
   }
 
-  //printf("Creating vector y (b):\n");
   // Right-hand side vector y
   gsl_vector *bVector = gsl_vector_alloc(matrixA->size2);
   gsl_vector_set_zero(bVector);
   // Fill element at index 0 with 1
   gsl_vector_set(bVector, 0, 1);
-  printVectorContents(bVector);
+
+  if (shouldPrintVerboseOutput) {
+    printf("Creating vector y (b):\n");
+    printVectorContents(bVector);
+  }
 
   // Solve system using LU decomposition
   gsl_matrix *luMatrix = gsl_matrix_alloc(matrixA->size1, matrixA->size2);
@@ -121,8 +130,13 @@ void computeForOrder(int size, int shouldPrintVerboseOutput) {
   double x1 = gsl_vector_get(xVector, 0);
   double error = (M_E - 2) - x1;
 
-  printf("%d & %.9e & %.9e & %.9e \\\\", size, x1, error, conditionNumber);
-  
+  printf("%.9f, ", error);
+
+  //printf("------------------------------\n");
+  //printf("n, x1, error, condition number\n");
+  //printf("%d & %.9e & %.9e & %.9e \\\\", size, x1, error, conditionNumber);
+  //printf("\n------------------------------\n");
+
   // Free memory space
   gsl_matrix_free(matrixA);
   gsl_vector_free(bVector);
@@ -136,12 +150,12 @@ void computeForOrder(int size, int shouldPrintVerboseOutput) {
 
 int main() {
   printf("This program is going to generate a LaTeX friendly output to be used in the report table.\n");
-//  for (int n = 1; n <= 50; n++) {
-//    computeForOrder(n, 0);
-//    printf("\n");
-//  }
+  for (int n = 1; n <= 50; n++) {
+    computeForOrder(n, 0);
+    //printf("\n");
+  }
 
-  computeForOrder(5, 1);
+  //computeForOrder(5, 1);
 
   return 0;
 }

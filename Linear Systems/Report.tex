@@ -100,17 +100,18 @@ This exercise asks to build a tridiagonal matrix with the value $-1$ on the adja
 $$b_i =\frac{2(i+1)}{3},\quad i + 1= 3, 6, 9,\ldots$$
 $$b_i =1,\quad i + 1 = 2, 4, 5, 7, 8, \ldots$$
 
-This matrix should then be used as the coefficients matrix in the $A\vec{x}=\vec{y}$ linear system. The exercise asks to solve the system using \code{GEPP} (Gaussian Elimination with Partial Pivoting) and then give $x_1$, which should be an approximation of the $e-2$.\\
+This matrix should then be used as the coefficients matrix in the $A\vec{x}=\vec{y}$ linear system. The exercise asks to solve the system using \code{GEPP} (Gaussian Elimination with Partial Pivoting) and then give $x_1$, an approximation of $e-2$.\\
 
-As we've seen in class, there are multiple ways of solving a linear system. For example, we could compute the inverse of $A$ and find $\vec{x}=A^{-1}\vec{y}$. We've seen that this approach, however, requires more computations than necessary and returns a less accurate result. Therefore in this exercise I am going to use solve a linear system using LU decomposition.\\
-
-LU decomposition, used to represent the matrix A in the form of simpler matrices, $L$ and $U$ (lower triangular and upper triangular matrices, respectively), uses forward substitution (solving for $Y$ from $LY=B$) and backward substitution (solving for $X$ from $UX = Y$). As seen in class, this method is numerically stable (as in, there will be no extra truncation errors). I'll also be calculating the condition number and the error to verify if this is an ill-conditioned system and to verify how precise the computed solution is.
+As we've seen in class, there are multiple ways of solving a linear system. For example, I could compute the inverse of $A$ and find $\vec{x}=A^{-1}\vec{y}$. We've seen that this approach, however, requires more computations than necessary and returns a less accurate result. Therefore in this exercise I am going to use solve a linear system using LU decomposition which is numerically stable. I'll also calculate the condition number and the error to verify if this is an ill-conditioned system and to verify how precise the computed solution is.
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
 \begin{itemize}
   \item C
+  \item C Math Library
   \item GSL (GNU Scientific Library)
+  \item Python 3 (for plotting)
+  \item NumPy (for plotting)
 \end{itemize}
 The following double-precision GSL data types have been used in the exercise:
 \begin{itemize}
@@ -138,6 +139,10 @@ In order to factorize a matrix into the LU decomposition, and then solve the squ
   \item \code{gsl\_linalg\_LU\_solve(LU, permutation, b, x)}
   \item \code{gsl\_permutation\_alloc(size)}
 \end{itemize}
+The following method from the C Math library was used in this exercise to calculate the absolute value of a number:
+\begin{itemize}
+  \item \code{fabs(x)}
+\end{itemize}
   
 \section{Solving the Linear System}
 By looking closely at the first rule, we see that the $i+1$ are all multiples of 3 ($i+1 = 3*k$, for some $k$). Hence the $i$ are of the form $i = 3*k-1$, for some $k$. For $n = 5$, for example, this is what the coefficient matrix looks like:
@@ -151,7 +156,7 @@ $$
 \end{bmatrix}
 $$
 
-The coefficients matrix A is first allocated by using the \code{gsl\_matrix\_alloc} method, then I set all the elements to zero with \code{gsl\_matrix\_set\_zero} and finally nested \code{for} loops fill the diagonal values by checking the indexes. The coefficients reported above on the diagonal have 5 significant digits for improve the readability of this report.\\
+The coefficients matrix A is first allocated by using the \code{gsl\_matrix\_alloc} method, then I set all the elements to zero with \code{gsl\_matrix\_set\_zero} and finally nested \code{for} loops fill the diagonal values by checking the indexes.\\
 
 I used the \code{gsl\_vector\_alloc} method to create an instance of the vector. All of its elements were set to zero by using \code{gsl\_vector\_set\_zero(vector)}. The exercise asks us to set the first element of the $y$ vector to one, so I used \code{gsl\_vector\_set(vector, 0, 1)} to assign the value 1 to index 0. For $n=5$, we have:
 $$
@@ -165,7 +170,17 @@ $$
 \end{bmatrix}
 $$
 
-Given the $Ax=y$ system, my goal is now to find the vector of the unknowns $x$. To do so, I first factorize $A$ into its LU decomposition by allocating a new matrix (so that the matrix which represents $A$ doesn't get overridden) using \code{gsl\_matrix\_memcpy} and then by calling \code{gsl\_linalg\_LU\_decomp}. This method utilizes Gaussian Elimination with partial pivoting to compute the decomposition. The following is the $LU$ matrix for $n=5$:
+Then, I calculate the condition number of the matrix $A$ of order $n$ which will give me a better idea if this is a well-conditioned or an ill-conditioned linear system. In GSL there is no direct function that calculates the condition number, but it's possible to use the ratio of the largest singular value of matrix A, $\sigma_n (A)$, to the smallest $\sigma_1 (A)$:
+
+$$\kappa(A) := \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{\norm{A}}{\norm{A^{-1}}^{-1}}$$
+
+I proceed to factorize $A$ into its singular value decomposition $SVD$ using the \code{gsl\_linalg\_SV\_decomp} method, and then use $\code{gsl\_vector\_minmax}$ to extract the minimum and maximum singular values out of the vector $S$ that contains the diagonal elements of the singular value matrix. \\
+
+For $n=5$, the condition number is
+
+$$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{4.205100611e+00}{1.142643287e+00}=3.680151678e+00$$
+
+Given the $Ax=y$ system, my goal is now to find the vector of the unknowns $\vec{x}$. To do so, I first factorize $A$ into its LU decomposition by allocating a new matrix (so that the matrix which represents $A$ doesn't get overridden) using \code{gsl\_matrix\_memcpy} and then by calling \code{gsl\_linalg\_LU\_decomp}. This method utilizes Gaussian Elimination with partial pivoting to compute the decomposition. The following is the $LU$ matrix for $n=5$:
 $$
 \begin{bmatrix} 
 1.000000000e+00 & -1.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 & 0.000000000e+00 \\ 
@@ -176,7 +191,7 @@ $$
 \end{bmatrix}
 $$
 
-I can now use the $LU$ matrix to solve the system by passing $LU$, $x$, a permutation structure \code{gsl\_permutation} (it contains the order of the indexes of the equations in the system to keep track of swapping) and $y$ to \code{gsl\_linalg\_LU\_solve}. This method uses forward and back-substitution to modify the contents of the $x$ vector given in input, which now looks like this (for $n=5$):
+I can now use the $LU$ matrix to solve the system by passing $LU$, $\vec{x}$, a permutation structure \code{gsl\_permutation} (it contains the order of the indexes of the equations in the system to keep track of pivoting) and $\vec{y}$ to \code{gsl\_linalg\_LU\_solve}. This method uses forward and back-substitution to modify the contents of the $\vec{x}$ vector given in input, which now looks like this (for $n=5$):
 
 $$
 \vec{x}=
@@ -189,17 +204,7 @@ $$
 \end{bmatrix}
 $$
 
-Then, I calculate the condition number of the matrix $A$ of order $n$ which will give me a better idea if this is a well-conditioned or an ill-conditioned linear system. In GSL there is no direct function that calculates the condition number, but it's possible to use the ratio of the largest singular value of matrix A, $\sigma_n (A)$, to the smallest $\sigma_1 (A)$:
-
-$$\kappa(A) := \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{\norm{A}}{\norm{A^{-1}}^{-1}}$$
-
-I proceed to factorize $A$ into its singular value decomposition $SVD$ using the \code{gsl\_linalg\_SV\_decomp} method, and then use $\code{gsl\_vector\_minmax}$ to extract the minimum and maximum singular values out of the vector $S$ that contains the diagonal elements of the singular value matrix. \\
-
-For $n=5$, the condition number is
-
-$$\kappa(A) = \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{4.205100611e+00}{1.142643287e+00}=3.680151678e+00$$
-
-I calculate the error by subtracting the computed solution $x_{1}^{\ast}$ from the exact mathematical solution $\widetilde{x}$ (which can be obtained by using the $\code{M\_E}$ GSL constant minus 2).\\
+I calculate the error by subtracting the computed solution $x_{1}^{\ast}$ from the exact mathematical solution $\widetilde{x}$ (an approximated value can be obtained by using the $\code{M\_E}$ GSL constant minus 2).\\
 
 \begin{table*}[htb]
 \centering % used for centering table
@@ -262,10 +267,10 @@ $n$ & $\widetilde{x}_1$ & $x_1^{\ast}- \widetilde{x}_1$ & $\kappa(A_n)$ \\ [0.65
 
 \section{Plot}
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cond_number.png}
+\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{error.png}
 
 \section{Observations}
-The linear system presented in this exercise gets increasingly ill-conditioned as $n$ grows (since $\kappa(A_n)> 1$ for most $n$). From the plot, it can be observed that the condition number grows linearly. It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error. However, it can be observed that as $n$ increases, the error gets incrementally smaller.\\
+The linear system presented in this exercise gets increasingly ill-conditioned as $n$ grows (since $\kappa(A_n)>> 1$ for most $n$). From the plot, it can be observed that the condition number grows linearly. It can be noticed, however, that a large condition number doesn’t necessarily mean that the error will be large in all cases, just that it is possible to have a large error. In fact, the error which represents how well the computed solution $\widetilde{x}_1$ approximates the true solution $x_1^{\ast}$ gets incrementally smaller. This computation presents round-off errors because computers cannot work with infinite numbers. It can be noted that the Gaussian elimination with partial pivoting doesn't introduce any additional truncation errors and therefore it is numerically stable.\\
 
-The error that I have calculated represents how well the computed solution $\widetilde{x}_1$ approximates the true solution $x_1^{\ast}$. It can be noted that the Gaussian elimination with partial pivoting doesn't introduce any additional truncation errors and therefore it is numerically stable.
 
 \end{document}

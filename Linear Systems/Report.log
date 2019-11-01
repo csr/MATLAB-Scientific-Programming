@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  31 OCT 2019 16:56
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  1 NOV 2019 09:27
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -587,47 +587,42 @@ Underfull \hbox (badness 10000) in paragraph at lines 103--104
 
  []
 
-
-Underfull \hbox (badness 10000) in paragraph at lines 105--106
-
- []
-
 [1
 
 ]
-LaTeX Font Info:    Try loading font information for OMS+cmr on input line 112.
+LaTeX Font Info:    Try loading font information for OMS+cmr on input line 110.
 
  (/usr/local/texlive/2019/texmf-dist/tex/latex/base/omscmr.fd
 File: omscmr.fd 2014/09/29 v2.5h Standard LaTeX font definitions
 )
 LaTeX Font Info:    Font shape `OMS/cmr/m/n' in size <10> not available
-(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 112.
+(Font)              Font shape `OMS/cmsy/m/n' tried instead on input line 110.
  [2
 
 ]
-Overfull \hbox (41.87906pt too wide) detected at line 152
+Overfull \hbox (41.87906pt too wide) detected at line 157
 []
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 154--155
+Underfull \hbox (badness 10000) in paragraph at lines 159--160
 
  []
 
 
-Overfull \hbox (41.87906pt too wide) detected at line 177
+Underfull \hbox (badness 10000) in paragraph at lines 177--178
+
+ []
+
+
+Overfull \hbox (41.87906pt too wide) detected at line 192
 []
  []
 
 [3
 
 ]
-Underfull \hbox (badness 10000) in paragraph at lines 196--197
-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 202--203
+Underfull \hbox (badness 10000) in paragraph at lines 207--208
 
  []
 
@@ -635,12 +630,25 @@ Underfull \hbox (badness 10000) in paragraph at lines 202--203
 <cond_number.png, id=33, 384.14285pt x 263.50754pt>
 File: cond_number.png Graphic file (type png)
 <use cond_number.png>
-Package pdftex.def Info: cond_number.png  used on input line 264.
+Package pdftex.def Info: cond_number.png  used on input line 269.
 (pdftex.def)             Requested size: 440.86404pt x 302.41612pt.
+<error.png, id=35, 401.93239pt x 263.50754pt>
+File: error.png Graphic file (type png)
+<use error.png>
+Package pdftex.def Info: error.png  used on input line 270.
+(pdftex.def)             Requested size: 440.86972pt x 289.03491pt.
  [6
 
- <./cond_number.png>]
-Underfull \hbox (badness 10000) in paragraph at lines 267--268
+ <./cond_number.png> <./error.png>]
+Overfull \hbox (2.05478pt too wide) in paragraph at lines 273--274
+\OT1/cmr/m/n/10 The lin-ear sys-tem pre-sented in this ex-er-cise gets in-creas
+-ingly ill-conditioned as $\OML/cmm/m/it/10 n$ \OT1/cmr/m/n/10 grows (since $\O
+ML/cmm/m/it/10 ^^T\OT1/cmr/m/n/10 (\OML/cmm/m/it/10 A[]\OT1/cmr/m/n/10 ) \OML/c
+mm/m/it/10 >>
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 273--274
 
  []
 
@@ -648,13 +656,13 @@ Underfull \hbox (badness 10000) in paragraph at lines 267--268
 
 ] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
- 15081 strings out of 492616
- 299995 string characters out of 6129482
+ 15086 strings out of 492616
+ 300059 string characters out of 6129482
  421398 words of memory out of 5000000
- 18921 multiletter control sequences out of 15000+600000
+ 18925 multiletter control sequences out of 15000+600000
  536960 words of font info for 41 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,11n,63p,547b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,10n,63p,817b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
@@ -668,10 +676,10 @@ mr12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmr
 fb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pf
 b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb
 >
-Output written on Report.pdf (8 pages, 155612 bytes).
+Output written on Report.pdf (8 pages, 166366 bytes).
 PDF statistics:
- 82 PDF objects out of 1000 (max. 8388607)
+ 84 PDF objects out of 1000 (max. 8388607)
  57 compressed objects within 1 object stream
  0 named destinations out of 1000 (max. 500000)
- 6 words of extra memory for PDF output out of 10000 (max. 10000000)
+ 11 words of extra memory for PDF output out of 10000 (max. 10000000)
 
