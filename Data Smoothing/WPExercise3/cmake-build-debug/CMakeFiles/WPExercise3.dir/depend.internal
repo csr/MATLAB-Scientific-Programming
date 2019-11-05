@@ -3,3 +3,6 @@
 
 CMakeFiles/WPExercise3.dir/main.c.o
  /Users/cesaredecal/workspace/Scientific-Programming/Data Smoothing/WPExercise3/main.c
+ /usr/local/include/gsl/gsl_sf_gamma.h
+ /usr/local/include/gsl/gsl_sf_pow_int.h
+ /usr/local/include/gsl/gsl_sf_result.h
