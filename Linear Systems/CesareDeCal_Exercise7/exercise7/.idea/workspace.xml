@@ -11,7 +11,52 @@
     </configurations>
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="26d97cfa-6506-4473-8b88-d30f35b96f16" name="Default Changelist" comment="" />
+    <list default="true" id="26d97cfa-6506-4473-8b88-d30f35b96f16" name="Default Changelist" comment="">
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/.idea/.gitignore" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/.idea/.name" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/.idea/Exercise 3.iml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/.idea/misc.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/.idea/modules.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/.idea/vcs.xml" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/CMakeLists.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeCache.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CMakeCCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CMakeCXXCompiler.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_C.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CMakeDetermineCompilerABI_CXX.bin" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CMakeSystem.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdC/CMakeCCompilerId.c" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdC/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/CMakeCXXCompilerId.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/3.15.3/CompilerIdCXX/a.out" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/CMakeDirectoryInformation.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/CMakeOutput.log" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/CXX.includecache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/DependInfo.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/build.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/cmake_clean.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/depend.internal" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/depend.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/flags.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/link.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/main.cpp.o" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Exercise_3.dir/progress.make" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Makefile.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/Makefile2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/TargetDirectories.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/clion-environment.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/clion-log.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/cmake.check_cache" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/CMakeFiles/progress.marks" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/Exercise_3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/Exercise_3.cbp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/Makefile" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/cmake-build-debug/cmake_install.cmake" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Exercise 3/main.cpp" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Report.log" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Data Smoothing/Report.log" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Report.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Data Smoothing/Report.pdf" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/../../../Data Smoothing/Report.synctex.gz" beforeDir="false" afterPath="$PROJECT_DIR$/../../../Data Smoothing/Report.synctex.gz" afterDir="false" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -69,6 +114,8 @@
       <workItem from="1572268139564" duration="21013000" />
       <workItem from="1572595644183" duration="731000" />
       <workItem from="1572597441782" duration="93000" />
+      <workItem from="1572885871820" duration="599000" />
+      <workItem from="1572966268353" duration="28000" />
     </task>
     <servers />
   </component>
