@@ -33,10 +33,9 @@ double calculateFunction(int j, double x[], double y[]) {
 }
 
 // Helper methods
-
 void printVectorContents(gsl_vector *vector) {
   for (int i = 0; i < vector->size; i++) {
-    printf("%.9e\\\\\n", gsl_vector_get(vector, i));
+    printf("%.15e\\\\\n", gsl_vector_get(vector, i));
   }
   printf("\n");
 }
@@ -63,6 +62,7 @@ int main() {
 
   printf("j . x_j . y_j\n");
   for (int i = 0; i < sizeof(x)/sizeof(x[0]); i++) {
+    // Print input table in LaTeX-friendly format
     printf("%d & %.1f & %.2f\\\\\n", i, x[i], y[i]);
   }
 
@@ -82,8 +82,8 @@ int main() {
   printMatrixContents(matrixA);
 
   // Prepare column vector
-  gsl_vector *vectorB = gsl_vector_alloc(matrixA->size2);
-  for (int i = 0; i < matrixA->size2; i++) {
+  gsl_vector *vectorB = gsl_vector_alloc(matrixA->size1);
+  for (int i = 0; i < matrixA->size1; i++) {
     gsl_vector_set(vectorB, i, y[i]);
   }
   printf("This is column vector b:\n");
