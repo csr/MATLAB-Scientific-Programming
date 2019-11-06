@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage{lipsum}
-\usepackage[margin=1.5in]{geometry}
+\usepackage[margin=0.8in]{geometry}
 \usepackage{titlesec}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -192,8 +192,17 @@ $$
 -3.430000000000000e+02 & 1.176000000000000e+03 & -1.344000000000000e+03 & 5.120000000000000e+02 \\\end{bmatrix}
 $$
 
-The column vector $\vec{b}$ is formed by the input $y$ values:
+% --------- CONDITION NUMBER ---------
+Then, I calculate the condition number of the matrix $A$ of order $n$. In GSL there is no direct function that calculates the condition number, but it's possible to use the ratio of the largest singular value of matrix A, $\sigma_n (A)$, to the smallest $\sigma_1 (A)$:
 
+$$\kappa(A) := \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{\norm{A}}{\norm{A^{-1}}^{-1}}$$
+
+I proceed to factorize $A$ into its singular value decomposition $SVD$ using the \code{gsl\_linalg\_SV\_decomp} method, and then use $\code{gsl\_vector\_minmax}$ to extract the minimum and maximum singular values out of the vector $S$ that contains the diagonal elements of the singular value matrix. The condition number of the matrix $A$ is equal to $3.741019262503867e+03$.\\
+
+
+% --------- CONDITION NUMBER ---------
+
+The column vector $\vec{b}$ is formed by the input $y$ values:
 $$
 \begin{bmatrix} 
 -8.000000000000000e-01\\
@@ -257,8 +266,7 @@ $$
 \end{bmatrix}
 $$
 
-The condition number of the matrix $A$ is equal to $3.741019262503867e+03$.
-
 \section{Plot}
+I will plot the computed function together with the data points.
 \section{Observations}
 \end{document}
