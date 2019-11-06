@@ -1,6 +1,8 @@
 #include <stdio.h>
+#include <math.h>
 #include "gsl/gsl_sf_gamma.h"
 #include "gsl/gsl_sf_pow_int.h"
+#include "gsl/gsl_linalg.h"
 
 double calculateBinomialCoefficient(int n, int k) {
   // formula: (n k) = n! / (k!(n-k))
@@ -8,12 +10,51 @@ double calculateBinomialCoefficient(int n, int k) {
   double denominator = gsl_sf_fact(k)*gsl_sf_fact(n-k);
   return numerator/denominator;
 }
-
-double calculateFunction(int i, double x) {
+// φ_{3,i}(x) = (3 i)x^i (1-x)^(3-i)
+double calculateBasisFunction(int i, double x) {
   double binomialCoefficient = calculateBinomialCoefficient(3, i); // (3 i)
   double secondTerm = gsl_sf_pow_int(x, i); // x^i
-  double thirdTerm = gsl_sf_pow_int(1-x, 3-i);
+  double thirdTerm = gsl_sf_pow_int(1-x, 3-i); // (1-x)^(3-i)
   return binomialCoefficient*secondTerm*thirdTerm;
+}
+
+// sqrt ()
+double calculateFunction(int j, double x[], double y[]) {
+  double sum = 0;
+
+  for (int i = 0; i < j; i++) {
+    double basisFunctionOutput = 0;
+    double difference = basisFunctionOutput - y[i];
+    double differenceSquared = gsl_sf_pow_int(difference, 2);
+    sum += differenceSquared;
+  }
+
+  return sqrt(sum);
+}
+
+// Helper methods
+
+void printVectorContents(gsl_vector *vector) {
+  for (int i = 0; i < vector->size; i++) {
+    printf("%.9e\\\\\n", gsl_vector_get(vector, i));
+  }
+  printf("\n");
+}
+
+void printMatrixContents(gsl_matrix *matrix) {
+  for (int i = 0; i < matrix->size1; ++i) {
+    for (int j = 0; j < matrix->size2; ++j) {
+      printf("%.15e ", gsl_matrix_get(matrix, i, j));
+
+      if (j == matrix->size2-1) {
+        printf("\\\\");
+      } else {
+        printf("& ");
+      }
+    }
+    printf("\n");
+  }
+  printf("\n");
 }
 
 int main() {
@@ -25,14 +66,41 @@ int main() {
     printf("%d & %.1f & %.2f\\\\\n", i, x[i], y[i]);
   }
 
+  // Prepare coefficients matrix A
+  int rows = 20;
+  int columns = 4;
+  gsl_matrix *matrixA = gsl_matrix_alloc(rows, columns);
+
+  // Iterate over rows
+  for (int i = 0; i < matrixA->size1; i++) {
+    // Iterate over columns
+    for (int j = 0; j < matrixA->size2; j++) {
+      gsl_matrix_set(matrixA, i, j, calculateBasisFunction(j, x[i]));
+    }
+  }
+  printf("This is matrix A:\n");
+  printMatrixContents(matrixA);
+
+  // Prepare column vector
+  gsl_vector *vectorB = gsl_vector_alloc(matrixA->size2);
+  for (int i = 0; i < matrixA->size2; i++) {
+    gsl_vector_set(vectorB, i, y[i]);
+  }
+  printf("This is column vector b:\n");
+  printVectorContents(vectorB);
+
   // Basis functions
   for (int i = 0; i < 4; i++) {
-    double functionOutput = calculateFunction(i, 2);
-    printf("Calculating function for i (%d): %lf\n", i, functionOutput);
+    double functionOutput = calculateBasisFunction(i, 2);
+    printf("Calculating basis function for i (%d): %lf\n", i, functionOutput);
   }
 
   double n = 40.0;
   double k = 3.0;
   printf("Binomial coefficient of %lf and %lf: %lf\n", n, k, calculateBinomialCoefficient(n, k));
+
+  // Free memory
+  gsl_matrix_free(matrixA);
+
   return 0;
 }

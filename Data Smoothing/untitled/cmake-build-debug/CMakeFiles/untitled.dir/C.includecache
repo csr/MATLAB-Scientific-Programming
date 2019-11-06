@@ -6,17 +6,15 @@
 
 #IncludeRegexTransform: 
 
-/Users/cesaredecal/workspace/Scientific-Programming/Data Smoothing/WPExercise3/main.c
+/Users/cesaredecal/workspace/Scientific-Programming/Data Smoothing/untitled/main.c
 stdio.h
 -
 math.h
 -
-gsl/gsl_sf_gamma.h
-/Users/cesaredecal/workspace/Scientific-Programming/Data Smoothing/WPExercise3/gsl/gsl_sf_gamma.h
-gsl/gsl_sf_pow_int.h
-/Users/cesaredecal/workspace/Scientific-Programming/Data Smoothing/WPExercise3/gsl/gsl_sf_pow_int.h
 gsl/gsl_linalg.h
-/Users/cesaredecal/workspace/Scientific-Programming/Data Smoothing/WPExercise3/gsl/gsl_linalg.h
+-
+gsl/gsl_cblas.h
+-
 
 /usr/local/include/gsl/gsl_blas.h
 gsl/gsl_vector.h
@@ -461,16 +459,6 @@ gsl/gsl_inline.h
 /usr/local/include/gsl/gsl_precision.h
 gsl/gsl_types.h
 -
-
-/usr/local/include/gsl/gsl_sf_gamma.h
-gsl/gsl_sf_result.h
--
-
-/usr/local/include/gsl/gsl_sf_pow_int.h
-gsl/gsl_sf_result.h
--
-
-/usr/local/include/gsl/gsl_sf_result.h
 
 /usr/local/include/gsl/gsl_sys.h
 
