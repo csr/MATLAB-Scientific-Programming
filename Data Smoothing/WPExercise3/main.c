@@ -119,6 +119,25 @@ int main() {
   printf("Solutions vector:\n");
   printVectorContents(vectorX);
 
+  // Calculate the condition number
+  // There is no function in GSL to directly compute this number
+  // the condition number is given by taking the absolute value of the ratio of the largest singular value and the smallest singular value
+  // cond(A) = abs( largest_sing_val / smallest_sing_val )
+  gsl_matrix *matrixV = gsl_matrix_alloc(matrixA->size2, matrixA->size2);
+  gsl_vector *vectorS = gsl_vector_alloc(matrixA->size2);
+  gsl_vector *vectorWorkspace = gsl_vector_alloc(matrixA->size2);
+  gsl_linalg_SV_decomp(matrixA, matrixV, vectorS, vectorWorkspace);
+
+  printf("Singular diagonal vector:\n");
+  printVectorContents(vectorS);
+
+  double minSingularValue, maxSingularValue;
+  gsl_vector_minmax(vectorS, &minSingularValue, &maxSingularValue);
+  printf("Max: %.9e, min: %.9e\n", maxSingularValue, minSingularValue);
+
+  double conditionNumber = fabs(maxSingularValue/minSingularValue);
+  printf("The condition number of the coefficients matrix is %.15e\n", conditionNumber);
+
   // Free memory
   gsl_matrix_free(matrixA);
   gsl_vector_free(vectorB);
