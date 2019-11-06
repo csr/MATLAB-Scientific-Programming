@@ -141,8 +141,10 @@ int main() {
   printf("Residual vector:\n");
   printVectorContents(vectorResidual);
 
-  // Calculate residual vector Euclidian norm
-  
+  // Calculate residual vector Euclidean norm
+  // Doc: https://www.gnu.org/software/gsl/doc/html/blas.html#c.gsl_blas_dnrm2
+  double norm = gsl_blas_dnrm2(vectorResidual);
+  printf("Norm of residual vector: %.15e", norm);
 
   // Free memory
   gsl_matrix_free(matrixA);
