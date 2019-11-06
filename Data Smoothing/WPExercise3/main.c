@@ -34,13 +34,16 @@ double calculateFunction(int j, double x[], double y[]) {
 
 // Helper methods
 void printVectorContents(gsl_vector *vector) {
+  printf("$$\n\\begin{bmatrix}\n");
   for (int i = 0; i < vector->size; i++) {
     printf("%.15e\\\\\n", gsl_vector_get(vector, i));
   }
+  printf("\\end{bmatrix}\n$$\n");
   printf("\n");
 }
 
 void printMatrixContents(gsl_matrix *matrix) {
+  printf("$$\n\\begin{bmatrix}\n");
   for (int i = 0; i < matrix->size1; ++i) {
     for (int j = 0; j < matrix->size2; ++j) {
       printf("%.15e ", gsl_matrix_get(matrix, i, j));
@@ -53,6 +56,7 @@ void printMatrixContents(gsl_matrix *matrix) {
     }
     printf("\n");
   }
+  printf("\\end{bmatrix}\n$$\n");
   printf("\n");
 }
 
@@ -71,9 +75,8 @@ int main() {
   int columns = 4;
   gsl_matrix *matrixA = gsl_matrix_alloc(rows, columns);
 
-  // Iterate over rows
+  // Fill coefficients matrix A by using basis functions
   for (int i = 0; i < matrixA->size1; i++) {
-    // Iterate over columns
     for (int j = 0; j < matrixA->size2; j++) {
       gsl_matrix_set(matrixA, i, j, calculateBasisFunction(j, x[i]));
     }
@@ -89,18 +92,37 @@ int main() {
   printf("This is column vector b:\n");
   printVectorContents(vectorB);
 
-  // Basis functions
-  for (int i = 0; i < 4; i++) {
-    double functionOutput = calculateBasisFunction(i, 2);
-    printf("Calculating basis function for i (%d): %lf\n", i, functionOutput);
+  // Solving the linear system with QR decomposition
+  // Note: QR matrix must be square
+  gsl_matrix *matrixQR = gsl_matrix_alloc(matrixA->size1, matrixA->size2);
+  gsl_matrix_memcpy(matrixQR, matrixA);
+
+  // Note: size of tau must be MIN(M,N)
+  int minBetweenRowsAndColumns = matrixA->size1;
+  if (minBetweenRowsAndColumns > matrixA->size2) {
+    minBetweenRowsAndColumns = matrixA->size2;
   }
 
-  double n = 40.0;
-  double k = 3.0;
-  printf("Binomial coefficient of %lf and %lf: %lf\n", n, k, calculateBinomialCoefficient(n, k));
+  // Solve system
+  gsl_vector *vectorTau = gsl_vector_alloc(minBetweenRowsAndColumns);
+  gsl_vector *vectorX = gsl_vector_alloc(matrixA->size2);
+  gsl_vector *residual = gsl_vector_alloc(matrixA->size1);
+
+  gsl_vector_set_zero(vectorTau);
+  gsl_linalg_QR_decomp(matrixQR, vectorTau);
+
+  printf("QR decomposition:\n");
+  printMatrixContents(matrixQR);
+
+  gsl_linalg_QR_lssolve(matrixQR, vectorTau, vectorB, vectorX, residual);
+
+  printf("Solutions vector:\n");
+  printVectorContents(vectorX);
 
   // Free memory
   gsl_matrix_free(matrixA);
+  gsl_vector_free(vectorB);
+  gsl_vector_free(vectorTau);
 
   return 0;
 }

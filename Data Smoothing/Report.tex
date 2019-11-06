@@ -1,7 +1,7 @@
 \documentclass{article}
 
 \usepackage{lipsum}
-\usepackage[margin=1in]{geometry}
+\usepackage[margin=1.5in]{geometry}
 \usepackage{titlesec}
 \usepackage{graphicx}
 \usepackage{amsmath}
@@ -141,23 +141,20 @@ The following programming language and libraries have been used in this exercise
 \end{itemize}
 The following double-precision GSL data types have been used in the exercise:
 \begin{itemize}
-  \item \code{gsl\_vector ?}
+  \item \code{gsl\_matrix}
+  \item \code{gsl\_vector}
 \end{itemize}
 The following GSL methods have been used in the exercise:
 \begin{itemize}
   \item \code{gsl\_matrix\_alloc(size1, size2)}
-  \item \code{gsl\_matrix\_set\_zero(matrix)}
   \item \code{gsl\_matrix\_set(matrix, row, column, value)}
-  \item \code{gsl\_matrix\_get(matrix, row, column)}
   \item \code{gsl\_vector\_alloc(size)}
-  \item \code{gsl\_vector\_set\_zero(vector)}
   \item \code{gsl\_vector\_set(vector, index, value)}
   \item \code{gsl\_vector\_get(vector, index)}
-  \item \code{gsl\_matrix\_memcpy(matrixToCopyFrom, matrix)}
   \item \code{gsl\_linalg\_SV\_decomp(A, V, S, workspaceVector)}
   \item \code{gsl\_vector\_minmax(vector, minInVector, maxInVector)}
 \end{itemize}
-In order to factorize a matrix into the LU decomposition, and then solve the square system $Ax=y$ using the decomposition of A, I've used the following methods:
+In order to factorize a matrix into the QR decomposition, and then solve the square system $Ax=y$ using the decomposition of A, I've used the following methods:
 \begin{itemize}
   \item \code{gsl\_linalg\_LU\_decomp(A, permutation, signum)}
   \item \code{gsl\_linalg\_LU\_solve(LU, permutation, b, x)}
@@ -222,7 +219,43 @@ $$
 \end{bmatrix}
 $$
 
-In order to calculate the residual of this system, I first need to calculate the missing $\lambda$ vector.
+In order to calculate the residual of this system, I first need to calculate the missing $\lambda$ vector. Since this is an overdetermined system, I can use QR decomposition to solve the system. QR decomposition of A:
+
+$$
+\begin{bmatrix} 
+-5.607137694902810e+02 & 1.956202843752372e+03 & -2.276212763756861e+03 & 8.833928944999552e+02 \\
+1.139370324819986e-04 & -4.671135706796601e+01 & 1.122030535262658e+02 & -6.782418228480103e+01 \\
+-2.225332665664034e-04 & 1.460497799957120e-02 & 7.581872706318327e+00 & -8.735870723873337e+00 \\
+-6.106312834582108e-04 & 2.762429988027977e-02 & 1.797466673315370e-01 & -2.470454024049311e+00 \\
+-1.297814010615264e-03 & 4.400918925292650e-02 & 2.113118885654055e-01 & 1.354991299702775e-01 \\
+-2.369534222399064e-03 & 6.326913656703972e-02 & 2.350053228690535e-01 & 9.686987975376644e-02 \\
+-3.911244693171105e-03 & 8.491363227214763e-02 & 2.513310790520081e-01 & 6.050043190845661e-02 \\
+-7.291970078847909e-03 & 1.207784144212678e-01 & 2.631080548709738e-01 & 1.049772432830278e-02 \\
+-1.038251208492211e-02 & 1.462383018205487e-01 & 2.632200917938682e-01 & -1.959354810540480e-02 \\
+-1.424212906024982e-02 & 1.723659541841733e-01 & 2.577288314294048e-01 & -4.692208258102275e-02 \\
+-3.128995754536886e-02 & 2.498504055563917e-01 & 2.126763547071380e-01 & -1.108942994397425e-01 \\
+-9.017582041110428e-02 & 3.520968788593226e-01 & 5.605686650054093e-02 & -1.473630562460556e-01 \\
+-1.318963572269736e-01 & 3.635568863958127e-01 & -2.831753402090372e-02 & -1.240982343374392e-01 \\
+-1.848325706777897e-01 & 3.424022086740725e-01 & -1.099043818739413e-01 & -7.278910904340619e-02 \\
+-1.968831921288935e-01 & 3.335830602668363e-01 & -1.251940955112117e-01 & -5.896438574071358e-02 \\
+-2.225332665664034e-01 & 3.108660410390103e-01 & -1.542417580429807e-01 & -2.760834500928011e-02 \\
+-2.803278262928973e-01 & 2.434003295032724e-01 & -2.044456433018340e-01 & 5.043304854412397e-02 \\
+-3.656292780331310e-01 & 1.127004233192019e-01 & -2.472054281433762e-01 & 1.782091144383195e-01 \\
+-5.118193920381977e-01 & -1.705668773785795e-01 & -2.556299463550832e-01 & 4.175378294298211e-01 \\
+-6.106312834582110e-01 & -3.921595584433181e-01 & -2.261060282111244e-01 & 5.880648466528077e-01 \\
+\end{bmatrix}
+$$
+
+The following are the $\lambda$ found:
+
+$$
+\begin{bmatrix}
+-1.118262027055321e+00\\
+-4.515724133992401e-01\\
+2.972563550105292e-03\\
+2.972882574075207e-01\\
+\end{bmatrix}
+$$
 
 \section{Plot}
 \section{Observations}
