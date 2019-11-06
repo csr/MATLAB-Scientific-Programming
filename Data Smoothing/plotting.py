@@ -1,9 +1,7 @@
 # -*- coding: utf-8 -*-
 #
 # Cesare De Cal
-# Data Fitting Exercise 3
-# Python program that can be executed to report whether particular
-# python packages are available on the system.
+# Data Smoothing Exercise 3
 
 import numpy as np
 import scipy
@@ -16,7 +14,7 @@ y = [-0.80, -0.34, 0.59, 0.59, 0.23, 0.10, 0.28, 1.03, 1.50, 1.44, 0.74, -0.82, 
 plt.figure(dpi=130)
 
 # coefficients
-lambdas = [-0.530105183842687, 0.837166463073442, -2.720645879111871, -0.785685549556168]
+lambdas = [-1.118262027055321, -0.451572413399240, 0.002972563550105, 0.297288257407521]
 
 def basisFunction(x, i):
     return scipy.special.binom(3, i)*pow(x, i)*pow(1-x, 3-i)
@@ -25,7 +23,7 @@ def myFunction(x):
     firstTerm = lambdas[0]*basisFunction(x, 0)
     secondTerm = lambdas[1]*basisFunction(x, 1)
     thirdTerm = lambdas[2]*basisFunction(x, 2)
-    fourthTerm = lambdas[2]*basisFunction(x, 3)
+    fourthTerm = lambdas[3]*basisFunction(x, 3)
     return firstTerm + secondTerm + thirdTerm + fourthTerm
 
 linSpace = np.linspace(min(x), max(x), 1000)
@@ -34,6 +32,10 @@ functionYValues = []
 
 for i, val in enumerate(linSpace): 
     functionYValues.append(myFunction(val))
+
+# Set axis labels
+plt.xlabel('x')
+plt.ylabel('φ(x)')
 
 plt.scatter(x, y)
 plt.plot(linSpace, functionYValues)
