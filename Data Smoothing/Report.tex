@@ -92,16 +92,14 @@
 	
 \end{titlepage}
 
-%----------------------------------------------------------------------------------------
-
+%----------------------------------------------- Introduction ------------------------------------------------------
 \section{Introduction}\label{sec:intro}
-This exercise asks to use the linearly independent basis functions:
-$$\Phi_{3,i}(x)=$$
+This exercise asks to use the linearly independent basis function:
+$$\phi_{3,i}(x)=\binom{3}{i}x^{i}(1-x)^{3-i}\quad\quad i = 0, 1, 2, 3$$
 to find the optimal combination
-$$\Phi(x)=\lambda_0(x)$$
-
-that minimizes
-
+$$\phi(x)=\lambda_0\phi_{3,0}(x)+\lambda_1\phi_{3,1}(x)+\lambda_2\phi_{3,2}(x)+\lambda_3\phi_{3,3}(x)$$
+that minimizes the Euclidean norm
+$$\sqrt{\sum_{j=0}^{19}{(\phi(x_j)-y_j)^2}}$$
 for the 20 data points $(x_j,y_j)$ given in
 
 \begin{table}[!ht]
@@ -134,6 +132,11 @@ $j$ & $x_j$ & $y_j$ \\     %% no "&" at start of row
 \hline
 \end{tabular}
 \end{table}
+
+This is an overdetermined system. To solve this exercise, I'll first find the coefficient matrix $A$ and then use $QR$ decomposition to solve the system. I'll also calculate the $l_2$-norm of the residual, and the condition number of the coefficient matrix. Finally, I'll plot the data points with the graph of the function $\phi(x)$.
+
+%---------------------------------- Introduction ------------------------------------------------------
+
 
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
