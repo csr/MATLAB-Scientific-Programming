@@ -136,8 +136,6 @@ $j$ & $x_j$ & $y_j$ \\     %% no "&" at start of row
 This is an overdetermined system. To solve this exercise, I'll first find the coefficient matrix $A$ and then use $QR$ decomposition to solve the system. I'll also calculate the $l_2$-norm of the residual, and the condition number of the coefficient matrix. Finally, I'll plot the data points with the graph of the function $\phi(x)$.
 
 %---------------------------------- Introduction ------------------------------------------------------
-
-
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
 \begin{itemize}
@@ -182,7 +180,7 @@ The following method from the C Math library was used in this exercise to calcul
 \end{itemize}
   
 \section{Computation}
-First off, I compute the coefficients A of the linear system by using the linearly independent basis function. This is what A looks like:
+First of all, I compute the coefficients A of the linear system by using the linearly independent basis function. For the $(i, j)$ cell in the matrix, I call the basis function by passing the $i$-th element of the $x_j$ data points, and by using the column $j$ for the $i$ parameter of the basis function. This results in a $20\times4$ matrix. The following is a representation of A:
 \begin{adjustwidth}{-2em}{-2em}
     \[ \medmath{\begin{bmatrix*}[r]
 1.000000000000000\,e+00 & 0.000000000000000\,e+00 & 0.000000000000000\,e+00 & 0.000000000000000\,e+00 \bigstrut[t]\\
@@ -209,16 +207,15 @@ First off, I compute the coefficients A of the linear system by using the linear
 \end{adjustwidth}
 
 % --------- CONDITION NUMBER ---------
-Then, I calculate the condition number of the matrix $A$ of order $n$. In GSL there is no direct function that calculates the condition number, but it's possible to use the ratio of the largest singular value of matrix A, $\sigma_n (A)$, to the smallest $\sigma_1 (A)$:
+Then, I calculate the condition number of the coefficient matrix $A$. In GSL there is no direct function that calculates the condition number, but it's possible to use the ratio of the largest singular value of matrix A, $\sigma_n (A)$, to the smallest $\sigma_1 (A)$:
 
 $$\kappa(A) := \frac{\sigma_n (A)}{\sigma_1 (A)}= \frac{\norm{A}}{\norm{A^{-1}}^{-1}}$$
 
 I proceed to factorize $A$ into its singular value decomposition $SVD$ using the \code{gsl\_linalg\_SV\_decomp} method, and then use $\code{gsl\_vector\_minmax}$ to extract the minimum and maximum singular values out of the vector $S$ that contains the diagonal elements of the singular value matrix. The condition number of the matrix $A$ is equal to $3.741019262503867e+03$.\\
 
-
 % --------- CONDITION NUMBER ---------
 
-The column vector $\vec{b}$ is formed by the input $y$ values:
+The column vector $\vec{b}$ is formed by the input $y_j$ values:
 $$
 \begin{bmatrix} 
 -8.000000000000000e-01\\
@@ -244,7 +241,7 @@ $$
 \end{bmatrix}
 $$
 
-In order to calculate the residual of this system, I first need to calculate the missing solutions vector containing $\lambda$. Since this is an overdetermined system, I can use QR decomposition to solve the system. QR decomposition of A:
+I proceed in solving the system (finding the $\lambda$ values that approximate to a solution of the system). I use QR decomposition to solve the system ($\code{gsl\_linalg\_QR\_decomp}$ and $\code{gsl\_linalg\_QR\_lssolve}$ GSL methods). The following is the QR decomposition of A:
 
 \begin{adjustwidth}{-2em}{-2em}
     \[ \medmath{\begin{bmatrix*}[r]
@@ -271,7 +268,7 @@ In order to calculate the residual of this system, I first need to calculate the
 \end{bmatrix*}} \]%
 \end{adjustwidth}
 
-The following are the $\lambda$ found:
+The solutions vector is directly given by the $\code{gsl\_linalg\_QR\_lssolve}$ method.
 
 $$
 \begin{bmatrix}
@@ -282,7 +279,7 @@ $$
 \end{bmatrix}
 $$
 
-The residual vector $\vec{r}$ is directly given by the $\code{gsl\_linalg\_QR\_lssolve}$ method.
+The residual vector $\vec{r}$ is also directly given by the $\code{gsl\_linalg\_QR\_lssolve}$ method.
 $$
 \begin{bmatrix}
 3.182620270553753e-01\\
@@ -308,11 +305,13 @@ $$
 \end{bmatrix} 
 $$
 
-The Euclidean norm of the residual vector is $2.282876480420795e+00$.
+The Euclidean norm of the residual vector, which can be easily calculated with $\code{gsl\_blas\_dnrm2(vector)}$, is equal to $2.282876480420795e+00$.
 \section{Plot}
-I will plot the computed function together with the data points.
+I will plot the computed function together with the data points. In order to plot the graph of the $\phi(x)$ function, I used the $\lambda$ values and plugged them into the linear combination. Plus, I created an array of equidistant $x$ values and calculated the function value for each of the values.
 
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{graph.png}
 
 \section{Observations}
+We can observe that the graph isn't very accurate.
+
 \end{document}

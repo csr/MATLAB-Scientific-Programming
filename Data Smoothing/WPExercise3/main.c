@@ -63,10 +63,11 @@ int main() {
   double x[] = {0.0, 0.6, 1.5, 1.7, 1.9, 2.1, 2.3, 2.6, 2.8, 3.0, 3.6, 4.7, 5.2, 5.7, 5.8, 6.0, 6.4, 6.9, 7.6, 8.0};
   double y[] = {-0.80, -0.34, 0.59, 0.59, 0.23, 0.10, 0.28, 1.03, 1.50, 1.44, 0.74, -0.82, -1.27, -0.92, -0.92, -1.04, -0.79, -0.06, 1.00, 0.00};
 
-  printf("j . x_j . y_j\n");
+  printf("Input data points:\n");
+  printf("j | x_j | y_j\n");
   for (int i = 0; i < sizeof(x)/sizeof(x[0]); i++) {
     // Print input table in LaTeX-friendly format
-    printf("%d & %.1f & %.2f\\\\\n", i, x[i], y[i]);
+    printf("%d & %.1f & %.2f \\\\\n", i, x[i], y[i]);
   }
 
   // Prepare coefficients matrix A
