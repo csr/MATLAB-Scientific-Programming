@@ -1,4 +1,4 @@
-This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 NOV 2019 12:30
+This is pdfTeX, Version 3.14159265-2.6-1.40.20 (TeX Live 2019) (preloaded format=pdflatex 2019.5.8)  7 NOV 2019 14:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -695,11 +695,16 @@ s-ily cal-cu-lated with $[]$,
 <graph.png, id=42, 395.81723pt x 263.50754pt>
 File: graph.png Graphic file (type png)
 <use graph.png>
-Package pdftex.def Info: graph.png  used on input line 312.
+Package pdftex.def Info: graph.png  used on input line 311.
 (pdftex.def)             Requested size: 397.4832pt x 264.61661pt.
  [7
 
- <./graph.png>] [8
+ <./graph.png>]
+Underfull \hbox (badness 10000) in paragraph at lines 314--315
+
+ []
+
+[8
 
 ] (./Report.aux) ) 
 Here is how much of TeX's memory you used:
@@ -709,7 +714,7 @@ Here is how much of TeX's memory you used:
  19881 multiletter control sequences out of 15000+600000
  543964 words of font info for 70 fonts, out of 8000000 for 9000
  1141 hyphenation exceptions out of 8191
- 41i,11n,63p,410b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
+ 41i,11n,63p,479b,382s stack positions out of 5000i,500n,10000p,200000b,80000s
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfon
 ts/cm/cmbx12.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
 s/cm/cmcsc10.pfb></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfont
@@ -727,7 +732,7 @@ b></usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy7.pfb>
 </usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmsy8.pfb></
 usr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmti12.pfb></u
 sr/local/texlive/2019/texmf-dist/fonts/type1/public/amsfonts/cm/cmtt10.pfb>
-Output written on Report.pdf (9 pages, 205505 bytes).
+Output written on Report.pdf (9 pages, 207157 bytes).
 PDF statistics:
  105 PDF objects out of 1000 (max. 8388607)
  74 compressed objects within 1 object stream

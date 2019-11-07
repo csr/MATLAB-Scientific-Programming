@@ -180,7 +180,7 @@ The following method from the C Math library was used in this exercise to calcul
 \end{itemize}
   
 \section{Computation}
-First of all, I compute the coefficients A of the linear system by using the linearly independent basis function. For the $(i, j)$ cell in the matrix, I call the basis function by passing the $i$-th element of the $x_j$ data points, and by using the column $j$ for the $i$ parameter of the basis function. This results in a $20\times4$ matrix. The following is a representation of A:
+First of all, I compute the coefficients A of the linear system by using the linearly independent basis function. For the $(i, j)$ cell in the matrix, I call the basis function by passing the $i$-th element of the $x$ data points, and by using the column $j$ for the $i$ parameter of the basis function. This results in a $20\times4$ matrix. The following is a representation of A:
 \begin{adjustwidth}{-2em}{-2em}
     \[ \medmath{\begin{bmatrix*}[r]
 1.000000000000000\,e+00 & 0.000000000000000\,e+00 & 0.000000000000000\,e+00 & 0.000000000000000\,e+00 \bigstrut[t]\\
@@ -307,11 +307,12 @@ $$
 
 The Euclidean norm of the residual vector, which can be easily calculated with $\code{gsl\_blas\_dnrm2(vector)}$, is equal to $2.282876480420795e+00$.
 \section{Plot}
-I will plot the computed function together with the data points. In order to plot the graph of the $\phi(x)$ function, I used the $\lambda$ values and plugged them into the linear combination. Plus, I created an array of equidistant $x$ values and calculated the function value for each of the values.
 
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{graph.png}
 
 \section{Observations}
-We can observe that the graph isn't very accurate.
+In this problem I have worked with an overdetermined system of equations which has more equations that unknowns ($m >> n \rightarrow20 >> 4$). It is not possible to find the exact $\vec{x}$ vector, but I found a set of $lambda$ that satisfies the system as close as possible through $QR$ factorization. \\
+
+At the end of the exercise, I plotted the computed function together with the data points. In order to plot the graph of the $\phi(x)$ function, I used the $\lambda$ values contained in $\vec{x}$ and plugged them into the linear combination. Plus, I created an array of equidistant $x$ values and calculated the function value for each of the values. We can observe that the function gives a general of the data points, but overall I don't think it is very accurate.
 
 \end{document}
