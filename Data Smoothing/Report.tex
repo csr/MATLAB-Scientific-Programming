@@ -141,9 +141,11 @@ This is an overdetermined system. To solve this exercise, I'll first find the co
 \section{Tools}
 The following programming language and libraries have been used in this exercise:
 \begin{itemize}
-  \item Item 1
-  \item C Math Library
+  \item C
   \item GSL (GNU Scientific Library)
+  \item C Math Library
+  \item Python (for plotting)
+  \item SciPy (for plotting)
 \end{itemize}
 The following double-precision GSL data types have been used in the exercise:
 \begin{itemize}
@@ -154,16 +156,24 @@ The following GSL methods have been used in the exercise:
 \begin{itemize}
   \item \code{gsl\_matrix\_alloc(size1, size2)}
   \item \code{gsl\_matrix\_set(matrix, row, column, value)}
+  \item \code{gsl\_matrix\_get(matrix, row, column)}
   \item \code{gsl\_vector\_alloc(size)}
   \item \code{gsl\_vector\_set(vector, index, value)}
+  \item \code{gsl\_vector\_set\_zero(vector)}
   \item \code{gsl\_vector\_get(vector, index)}
+  \item \code{gsl\_matrix\_memcpy(destinationMatrix, matrixToCopyFrom)}
   \item \code{gsl\_linalg\_SV\_decomp(A, V, S, workspaceVector)}
   \item \code{gsl\_vector\_minmax(vector, minInVector, maxInVector)}
+  \item \code{gsl\_sf\_fact(number)} to calculate the factorial
+  \item \code{gsl\_sf\_pow\_int(base, exponent)}
+  \item \code{gsl\_blas\_dnrm2(vector)} to calculate the Euclidean norm
+  \item \code{gsl\_matrix\_free(matrixToDeallocate)}
+  \item \code{gsl\_vector\_free(vectorToDeallocate)}
 \end{itemize}
-In order to factorize a matrix into the QR decomposition, and then solve the square system $Ax=y$ using the decomposition of A, I've used the following methods:
+In order to decompose the coefficient matrix into its QR decomposition, and then solve the square system $A\vec{x}=\vec{b}$, I've used the following methods:
 \begin{itemize}
-  \item \code{gsl\_linalg\_LU\_decomp(A, permutation, signum)}
-  \item \code{gsl\_linalg\_LU\_solve(LU, permutation, b, x)}
+  \item \code{gsl\_linalg\_QR\_decomp(matrixQR, vectorTau)}
+  \item \code{gsl\_linalg\_QR\_lssolve(matrixQR, vectorTau, vectorB, vectorX, vectorResidual)}
   \item \code{gsl\_permutation\_alloc(size)}
 \end{itemize}
 The following method from the C Math library was used in this exercise to calculate the absolute value of a number:

@@ -9,8 +9,6 @@
 /Users/cesaredecal/workspace/Scientific-Programming/Data Smoothing/WPExercise3/main.c
 stdio.h
 -
-math.h
--
 gsl/gsl_sf_gamma.h
 /Users/cesaredecal/workspace/Scientific-Programming/Data Smoothing/WPExercise3/gsl/gsl_sf_gamma.h
 gsl/gsl_sf_pow_int.h

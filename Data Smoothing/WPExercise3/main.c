@@ -1,5 +1,4 @@
 #include <stdio.h>
-#include <math.h>
 #include "gsl/gsl_sf_gamma.h"
 #include "gsl/gsl_sf_pow_int.h"
 #include "gsl/gsl_linalg.h"
