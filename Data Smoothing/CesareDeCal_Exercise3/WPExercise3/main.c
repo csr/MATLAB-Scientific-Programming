@@ -1,3 +1,11 @@
+//============================================================================
+// Name        : main.c
+// Author      : Cesare De Cal
+// Version     :
+// Copyright   : Cesare De Cal
+// Description : Data Smoothing - Exercise 3
+//============================================================================
+
 #include <stdio.h>
 #include "gsl/gsl_sf_gamma.h"
 #include "gsl/gsl_sf_pow_int.h"
@@ -9,6 +17,7 @@ double calculateBinomialCoefficient(int n, int k) {
   double denominator = gsl_sf_fact(k)*gsl_sf_fact(n-k);
   return numerator/denominator;
 }
+
 // φ_{3,i}(x) = (3 i)x^i (1-x)^(3-i)
 double calculateBasisFunction(int i, double x) {
   double binomialCoefficient = calculateBinomialCoefficient(3, i); // (3 i)
@@ -17,7 +26,6 @@ double calculateBasisFunction(int i, double x) {
   return binomialCoefficient*secondTerm*thirdTerm;
 }
 
-// sqrt ()
 double calculateFunction(int j, double x[], double y[]) {
   double sum = 0;
 
@@ -155,6 +163,7 @@ int main() {
   gsl_matrix_free(matrixA);
   gsl_vector_free(vectorB);
   gsl_vector_free(vectorTau);
+  gsl_vector_free(vectorX);
 
   return 0;
 }

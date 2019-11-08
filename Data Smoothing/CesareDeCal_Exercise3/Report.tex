@@ -133,7 +133,7 @@ $j$ & $x_j$ & $y_j$ \\     %% no "&" at start of row
 \end{tabular}
 \end{table}
 
-This is an overdetermined system. To solve this exercise, I'll first find the coefficient matrix $A$ and then use $QR$ decomposition to solve the system. I'll also calculate the $l_2$-norm of the residual, and the condition number of the coefficient matrix. Finally, I'll plot the data points with the graph of the function $\phi(x)$.
+This is an overdetermined system. I'll first find the coefficient matrix $A$ and then use $QR$ decomposition to solve the system. I'll also calculate the $l_2$-norm of the residual, and the condition number of the coefficient matrix. Finally, I'll plot the data points with the graph of the function $\phi(x)$.
 
 %---------------------------------- Introduction ------------------------------------------------------
 \section{Tools}
@@ -311,8 +311,8 @@ The Euclidean norm of the residual vector, which can be easily calculated with $
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{graph.png}
 
 \section{Observations}
-In this problem I have worked with an overdetermined system of equations which has more equations that unknowns ($m >> n \rightarrow20 >> 4$). It is not possible to find the exact $\vec{x}$ vector, but I found a set of $lambda$ that satisfies the system as close as possible through $QR$ factorization. \\
+In this problem I have worked with an overdetermined system of equations which has more equations that unknowns ($m >> n \rightarrow20 >> 4$). It is not possible to find the exact $\vec{x}$ vector, but I found a set of $\lambda$ that satisfies the system as close as possible through $QR$ factorization. \\
 
-At the end of the exercise, I plotted the computed function together with the data points. In order to plot the graph of the $\phi(x)$ function, I used the $\lambda$ values contained in $\vec{x}$ and plugged them into the linear combination. Plus, I created an array of equidistant $x$ values and calculated the function value for each of the values. We can observe that the function gives a general of the data points, but overall I don't think it is very accurate.
+At the end of the exercise, I plotted the computed function together with the data points. In order to plot the graph of the $\phi(x)$ function, I used the $\lambda$ values contained in $\vec{x}$ and plugged them into the linear combination. Plus, I created an array of equidistant $x$ values and calculated the function value for each of the values. We can observe that the function gives a general idea of the data points, but overall I don't think it is very accurate.
 
 \end{document}
