@@ -1,0 +1,36 @@
+% ----------------------------------------------
+% WP : orthogonal and periodical basis functions
+% file : exercise3.m
+% author: Cesare De Cal
+% ----------------------------------------------
+
+degree = 6
+nrOfPoints = degree + 1
+
+% Calculate roots of Chebyshev polynomial
+roots = 1:nrOfPoints;
+for index = 1:nrOfPoints
+    cosNumerator = (2*index-1)*pi
+    cosDenominator = 2*nrOfPoints
+    roots(index) = cos(cosNumerator/cosDenominator)
+end
+
+
+'Chebyshev polynomial roots:'
+roots'
+
+
+% Calculate coefficients of Chebyshev polynomial
+coefficients = 1:nrOfPoints
+for j = 1:nrOfPoints
+    % Sum
+    sum = 0
+    for k = 0:degree
+        root = roots(index+1)
+        functionEvaluation = cos(2*root)
+        chebyshev = cos()
+    end
+    coefficients(index) = (2/nrOfPoints)*sum
+end
+
+

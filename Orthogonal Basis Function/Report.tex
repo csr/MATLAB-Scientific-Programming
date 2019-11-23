@@ -102,8 +102,51 @@ for the functions $f(x)=\cos(2x)$ and $f(x)=cos(4x)$ over the interval $[-\pi,\p
 
 %---------------------------------- Tools ---------------------------------------------------------------------------
 \section{Tools}
+To solve this problem, I've used MATLAB.
+
 \section{Computation}
+Given $n=6$ and $N=n+1$, I first calculate the roots of the Chebyshev polynomial by using the formula:
+
+$$x_j=\cos \Big( \frac{2j-1}{2n}\pi \Big), j=1,\dots,N$$
+
+The resulting zeros are:
+
+$$
+\begin{bmatrix} 
+9.749279121818236e-01\\
+7.818314824680298e-01\\
+4.338837391175582e-01\\
+6.123233995736766e-17\\
+-4.338837391175581e-01\\
+-7.818314824680295e-01\\
+-9.749279121818237e-01\\
+\end{bmatrix}
+$$
+
+Let's first analyze the function $\cos(2x)$.\\
+
+I'm now going to calculate the coefficients. The formula is given by:
+
+$$c_j=\frac{2}{N}\sum_{k=0}^{n}f(x_j)T_j(x_k)$$
+
+To better exploit the properties of Chebyshev polynomials, I rescale the interval from $[-\pi,\pi]$ to $[-1,1]$. This is done in the function calculation $f(x_j)$ by multiplying the argument by $\pi$. I find the following coefficients:
+
+$$
+\begin{bmatrix} 
+4.407675118300712e-01\\
+3.489272363107635e-16\\
+5.739892333362830e-01\\
+-2.537652627714643e-16\\
+6.516380108719009e-01\\
+-1.554312234475219e-15\\
+-7.019674665493458e-01\\
+\end{bmatrix}
+$$
+
 \section{Plot}
 %\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{graph.png}
 \section{Observations}
+I first calculated the zeros of the polynomial so I could use them as nodes in polynomial interpolation because the resulting interpolation polynomial minimizes the effect of Runge's phenomenon.
+
+
 \end{document}
