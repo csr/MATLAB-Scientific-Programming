@@ -123,9 +123,7 @@ $$
 \end{bmatrix}
 $$
 
-Let's first analyze the function $\cos(2x)$.\\
-
-I'm now going to calculate the coefficients. The formula is given by:
+Let's first analyze the function $\cos(2x)$. We've seen in class we can calculate the coefficients with the formula given by:
 
 $$c_j=\frac{2}{N}\sum_{k=0}^{n}f(x_j)T_j(x_k)$$
 
@@ -145,9 +143,19 @@ $$
 
 To plot these coefficients in the graph, I need to calculate their associated y values:
 
+$$
+\begin{bmatrix}
+9.876173836808355e-01\\
+1.986723718905843e-01\\
+-9.149466098687946e-01\\
+9.999999999999993e-01\\
+-9.149466098687926e-01\\
+1.986723718905768e-01\\
+9.876173836808371e-01\\
+\end{bmatrix}
+$$
 
-
-Calculating the coefficients for the $\cos(4x)$ function now only requires a few minor changes in the code. The coefficients of the polynomial are:
+Calculating the coefficients for the $\cos(4x)$ function now only requires minor changes in the code. The following are the coefficients of the polynomial:
 $$
 \begin{bmatrix} 
 6.879841220704104e-01\\
@@ -156,11 +164,27 @@ $$
 -1.459150260935920e-15\\
 1.012919200612446e+00\\
 -1.094362695701940e-15\\
-5.104689360033142e-01\end{bmatrix}
+5.104689360033142e-01
+\end{bmatrix}
 $$
 
+The associated y values for the given roots are the following:
 
-\section{Plot}
+$$
+\begin{bmatrix} 
+9.507761930971577e-01\\
+-9.210585772947382e-01\\
+6.742545978208001e-01\\
+1.000000000000000e+00\\
+6.742545978207990e-01\\
+-9.210585772947411e-01\\
+9.507761930971639e-01\\
+\end{bmatrix}
+$$
+
+The plots for both functions have been added to the next section.
+
+\section{Plots}
 %\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{graph.png}
 \section{Observations}
 I first calculated the zeros of the polynomial so I could use them as nodes in polynomial interpolation because the resulting interpolation polynomial minimizes the effect of Runge's phenomenon.

@@ -4,57 +4,65 @@
 % author: Cesare De Cal
 % ----------------------------------------------
 
-func = @(multiplier, x) cos(multiplier*x) 
-degree = 6
-nrOfPoints = degree + 1
+cosMultiplier = 4;
+
+% Function given by exercise. Tweak cosMultiplier above
+func = @(multiplier, x) cos(multiplier*x);
+
+% Chebyshev compact-form formula
+chebyshevFunction = @(i, x) cos(i*acos(x));
+
+degree = 6;
+nrOfPoints = degree + 1;
 
 % Calculate roots of Chebyshev polynomial
 roots = 1:nrOfPoints;
 for index = 1:nrOfPoints
-    cosNumerator = (2*index-1)*pi
-    cosDenominator = 2*nrOfPoints
-    roots(index) = cos(cosNumerator/cosDenominator)
+    cosNumerator = (2*index-1)*pi;
+    cosDenominator = 2*nrOfPoints;
+    roots(index) = cos(cosNumerator/cosDenominator);
+end
+
+% Calculate coefficients of Chebyshev polynomial
+% Rescale interval from [-pi, pi] to [-1, 1] by
+% multiplying argument by pi
+coefficients = 1:nrOfPoints;
+for j = 1:nrOfPoints
+    % Sum
+    sum = 0;
+    for k = 1:nrOfPoints
+        root = roots(k);
+        functionEvaluation = func(cosMultiplier, pi*root);
+        chebyRes = chebyshevFunction(j-1, root);
+        sum = sum + functionEvaluation*chebyRes;
+    end
+    coefficients(j) = (2/nrOfPoints)*sum;
+end
+
+% Calculate associated y values for roots
+rootsY = 1:nrOfPoints;
+firstCoeff = coefficients(1)/2;
+for r = 1:nrOfPoints
+    rootX = roots(r);
+    sum = 0;
+	for j = 1:nrOfPoints
+        coefficient = coefficients(j);
+        chebyRes = chebyshevFunction(j-1, rootX);
+		sum = sum + coefficient*chebyRes;
+    end
+	rootsY(r) = sum - firstCoeff;
 end
 
 'Chebyshev polynomial roots:'
 roots'
 
-% Calculate coefficients of Chebyshev polynomial
-% Rescale interval from [-pi, pi] to [-1, 1] by
-% multiplying argument by pi
-coefficients = 1:nrOfPoints
-for j = 1:nrOfPoints
-    % Sum
-    sum = 0
-    for k = 1:nrOfPoints
-        root = roots(k)
-        functionEvaluation = func(2, pi*root)
-        chebyshev = cos((j-1)*acos(root))
-        sum = sum + functionEvaluation*chebyshev
-    end
-    coefficients(j) = (2/nrOfPoints)*sum
-end
-
 'Chebyshev polynomial coefficients:'
 coefficients'
 
-% Calculate associated y values for roots
-rootsY = 1:nrOfPoints;
-for j = 1:nrOfPoints
-    rootsY(j) = chebyshevT(func(2, ), nrOfPoints)
-    
-%     rootX = roots(j)
-%     coefficient = coefficients(j)
-%     result = 0
-%     for k = 1:nrOfPoints
-%         chebyshev = cos((j-1)*acos(rootX))
-%         result = result + rootX*chebyshev
-%     end
-%     rootsY(j) = result
-end
+'Y values of root:'
+rootsY'
 
-
-
+% P
 
 % Create array of equi-distant points to plot
 % linspace = linspace(-1,1,1000)
