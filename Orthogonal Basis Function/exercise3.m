@@ -4,7 +4,7 @@
 % author: Cesare De Cal
 % ----------------------------------------------
 
-cosMultiplier = 2;
+cosMultiplier = 4;
 
 % Function given by exercise. Tweak cosMultiplier above
 func = @(multiplier, x) cos(multiplier*x);
@@ -40,18 +40,19 @@ for j = 1:nrOfPoints
 end
 
 % Calculate associated y values for roots
-rootsY = 1 = cos(cosMultiplier*pi*data_x);
+rootsY = cos(cosMultiplier*pi*roots);
 
 % Compute Y points
 nrGraphXPoints = 1000;
 computedYValues = 1:nrGraphXPoints;
 x = linspace(-1,1,nrGraphXPoints);
+firstCoeff = coefficients(1);
 for r = 1:nrGraphXPoints
     point = x(r);
     sum = 0;
 	for j = 1:nrOfPoints
         coefficient = coefficients(j);
-        chebyRes = chebyshevFunction(j-1, rootX);
+        chebyRes = chebyshevFunction(j-1, point);
 		sum = sum + coefficient*chebyRes;
     end
 	computedYValues(r) = sum - firstCoeff;
@@ -70,19 +71,15 @@ rootsY'
 
 
 % Roots
-plot(roots, rootsY, 'o', 'LineWidth', 2)
+plot(roots, rootsY, 'o', 'LineWidth', 1)
 hold on
-
 % Actual function
-plot(x, cos(cosMultiplier*pi*roots), 'LineWidth', 2)
+plot(x, cos(cosMultiplier*pi*x), 'LineWidth', 1)
 hold on
-
 % Chebyshev Polynomial Approximation
-plot(x, computedYValues, 'LineWidth', 2)
+plot(x, computedYValues, 'LineWidth', 1)
 hold off
-
-axis([-1 1 -1.2 1.2])
+axis([-1 1 -1.5 1.5])
 grid on
-
-ylabel('Y')
-xlabel('X')
+ylabel('y')
+xlabel('x')
