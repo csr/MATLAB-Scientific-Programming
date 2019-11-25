@@ -4,6 +4,7 @@
 % author: Cesare De Cal
 % ----------------------------------------------
 
+func = @(multiplier, x) cos(multiplier*x) 
 degree = 6
 nrOfPoints = degree + 1
 
@@ -15,22 +16,47 @@ for index = 1:nrOfPoints
     roots(index) = cos(cosNumerator/cosDenominator)
 end
 
-
 'Chebyshev polynomial roots:'
 roots'
 
-
 % Calculate coefficients of Chebyshev polynomial
+% Rescale interval from [-pi, pi] to [-1, 1] by
+% multiplying argument by pi
 coefficients = 1:nrOfPoints
 for j = 1:nrOfPoints
     % Sum
     sum = 0
-    for k = 0:degree
-        root = roots(index+1)
-        functionEvaluation = cos(2*root)
-        chebyshev = cos()
+    for k = 1:nrOfPoints
+        root = roots(k)
+        functionEvaluation = func(2, pi*root)
+        chebyshev = cos((j-1)*acos(root))
+        sum = sum + functionEvaluation*chebyshev
     end
-    coefficients(index) = (2/nrOfPoints)*sum
+    coefficients(j) = (2/nrOfPoints)*sum
+end
+
+'Chebyshev polynomial coefficients:'
+coefficients'
+
+% Calculate associated y values for roots
+rootsY = 1:nrOfPoints;
+for j = 1:nrOfPoints
+    rootsY(j) = chebyshevT(func(2, ), nrOfPoints)
+    
+%     rootX = roots(j)
+%     coefficient = coefficients(j)
+%     result = 0
+%     for k = 1:nrOfPoints
+%         chebyshev = cos((j-1)*acos(rootX))
+%         result = result + rootX*chebyshev
+%     end
+%     rootsY(j) = result
 end
 
 
+
+
+% Create array of equi-distant points to plot
+% linspace = linspace(-1,1,1000)
+
+% Plotting
