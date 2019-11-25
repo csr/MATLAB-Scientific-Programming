@@ -102,7 +102,7 @@ for the functions $f(x)=\cos(2x)$ and $f(x)=cos(4x)$ over the interval $[-\pi,\p
 
 %---------------------------------- Tools ---------------------------------------------------------------------------
 \section{Tools}
-To solve this problem, I've used MATLAB.
+To solve this problem, I've used MATLAB as requested by the instructions. To make the computation more efficient, I wrote my own function which calculates the Chebyshev polynomial instead of using $\code{chebyshevT}$ which was slower.
 
 \section{Computation}
 Given $n=6$ and $N=n+1$, I first calculate the roots of the Chebyshev polynomial by using the formula:
@@ -190,7 +190,8 @@ Function $cos(2x)$:\\
 Function $cos(4x)$:\\
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cos4x.jpg}
 \section{Observations}
-I first calculated the zeros of the polynomial so I could use them as nodes in polynomial interpolation because the resulting interpolation polynomial minimizes the effect of Runge's phenomenon.
+I first calculated the zeros of the polynomial so I could use them as nodes in polynomial interpolation because the resulting interpolation polynomial minimizes the effect of Runge's phenomenon.\\
 
+The Chebyshev approximation for the function $cos(2x)$ is pretty accurate, whereas the approximation for $cos(4x)$ not so much.
 
 \end{document}
