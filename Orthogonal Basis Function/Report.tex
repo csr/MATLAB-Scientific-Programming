@@ -97,12 +97,15 @@
 This exercise asks to compute the Chebyshev approximation
 $$t(x)=\sum^n_{j=0}{a_jT_j(x)}$$
 
-for the functions $f(x)=\cos(2x)$ and $f(x)=cos(4x)$ over the interval $[-\pi,\pi]$ for $n = 6$ and then plot the original functions with the approximations and draw conclusions on the results.
+for the functions $f(x)=\cos(2x)$ and $f(x)=cos(4x)$ over the interval $[-\pi,\pi]$ for $n = 6$ and then plot the original functions with the approximations and draw conclusions on the results.\\
 
+As we've seen in class, Chebyshev polynomials are a set of orthogonal polynomials that can be used to approximate to a least squares fit. For this exercise, I'll first compute the roots of the polynomial (also called Chebyshev nodes), then calculate its coefficients for both the functions. Finally, I'll calculate the y values of the approximation to see how well it approximates the original function. During this process, I'll make sure to choose the correct data points and the correct number of data points to exploit the properties of these basis functions.
 
 %---------------------------------- Tools ---------------------------------------------------------------------------
 \section{Tools}
-To solve this problem, I've used MATLAB as requested by the instructions. To make the computation more efficient, I wrote my own function which calculates the Chebyshev polynomial instead of using $\code{chebyshevT}$ which was slower.
+To solve this problem, I've used MATLAB as requested by the exercise. To make the computation more efficient, I wrote my own function which calculates the Chebyshev polynomial instead of using the built-in MATLAB function $\code{chebyshevT}$ which was noticeably slower. Writing your own function is just a matter of using the compact closed-form expression for the Chebyshev polynomials:
+
+$$T_i(x)=\cos{(i\arccos(x))}$$ 
 
 \section{Computation}
 Given $n=6$ and $N=n+1$, I first calculate the roots of the Chebyshev polynomial by using the formula:
@@ -182,7 +185,7 @@ $$
 \end{bmatrix}
 $$
 
-The plots for both functions have been added to the next section.
+In order to properly calculate the associated y values, I had to subtract half of the first coefficient from the calculation. This is done because the formula I used to calculate the coefficients isn't correct for the first coefficient. The plots for both functions have been added to the next section.
 
 \section{Plots}
 Function $cos(2x)$:\\
@@ -192,6 +195,6 @@ Function $cos(4x)$:\\
 \section{Observations}
 I first calculated the zeros of the polynomial so I could use them as nodes in polynomial interpolation because the resulting interpolation polynomial minimizes the effect of Runge's phenomenon.\\
 
-The Chebyshev approximation for the function $cos(2x)$ is pretty accurate, whereas the approximation for $cos(4x)$ not so much.
+The Chebyshev approximation for the function $cos(2x)$ is pretty accurate, whereas the approximation for $cos(4x)$ not so much as it doesn't take into account some of the curves of the original function.
 
 \end{document}
