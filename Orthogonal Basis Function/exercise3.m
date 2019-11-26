@@ -46,7 +46,7 @@ rootsY = cos(cosMultiplier*pi*roots);
 nrGraphXPoints = 1000;
 computedYValues = 1:nrGraphXPoints;
 x = linspace(-1,1,nrGraphXPoints);
-firstCoeff = coefficients(1);
+firstCoeff = coefficients(1)/2;
 for r = 1:nrGraphXPoints
     point = x(r);
     sum = 0;
@@ -79,5 +79,6 @@ plot(x, computedYValues, 'LineWidth', 1)
 hold off
 axis([-1 1 -1.5 1.5])
 grid on
+l = legend( 'Chebyshev Node', 'cos(2x)', 'Chebyshev Approximation');
 ylabel('y')
 xlabel('x')
