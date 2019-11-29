@@ -1,13 +1,9 @@
 /*
    Purpose: Area approximation using Monte Carlo method
    Author: Cesare De Cal
-   Date:
-
-   Compiling:
-    source /opt/intel/compilers_and_libraries_2019.5.281/mac/mkl/bin/mklvars.sh intel64
-    gcc -fopenmp -m64 -I${MKLROOT}/include -c template.c
-    gcc -L${MKLROOT}/lib/intel64 -Wl,--no-as-needed -lmkl_intel_lp64 -lmkl_gnu_thread -lmkl_core -lgomp -lpthread -lm -ldl template.o -o template
-    time OMP_NUM_THREADS=5 ./template
+   Date: December 6, 2019
+   Compiling: execute the .sh file from the command line. The compile file may need adjustments depending
+   on the machine you're using.
 */
 
 #include "omp.h"

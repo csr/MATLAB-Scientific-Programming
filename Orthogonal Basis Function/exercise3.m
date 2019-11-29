@@ -1,8 +1,9 @@
-% ----------------------------------------------
+% -----------------------------------------------------------
 % WP : orthogonal and periodical basis functions
+% Purpose: approximate cos(2x) and cos(4x) using Chebyshev
 % file : exercise3.m
 % author: Cesare De Cal
-% ----------------------------------------------
+% -----------------------------------------------------------
 
 cosMultiplier = 2;
 
@@ -79,6 +80,6 @@ plot(x, computedYValues, 'LineWidth', 1)
 hold off
 axis([-1 1 -1.5 1.5])
 grid on
-l = legend( 'Chebyshev Node', 'cos(2x)', 'Chebyshev Approximation');
+legend( 'Chebyshev Node', 'cos(2x)', 'Chebyshev Approximation');
 ylabel('y')
 xlabel('x')

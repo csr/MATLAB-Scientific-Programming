@@ -8,6 +8,7 @@
 
 \usepackage{mathtools, amssymb, nccmath}
 \usepackage{bigstrut, changepage, lipsum}
+\usepackage{mathtools}
 
 \newcommand{\code}{\texttt}
 \newcommand{\norm}[1]{\left\lVert#1\right\rVert}
@@ -56,7 +57,7 @@
 	
 	\HRule\\[0.6cm]
 	
-	{\huge\bfseries Least-squares Approximation of Functions Using Orthogonal Polynomials}\\[0.25cm] % Title of your document
+	{\huge\bfseries Least-squares Approximation of cos(2x) and cos(4x) Using Chebyshev Polynomials}\\[0.25cm] % Title of your document
 	
 	\HRule\\[1.5cm]
 	
@@ -103,14 +104,16 @@ As we've seen in class, Chebyshev polynomials are a set of orthogonal polynomial
 
 %---------------------------------- Tools ---------------------------------------------------------------------------
 \section{Tools}
-To solve this problem, I've used MATLAB as requested by the exercise. To make the computation more efficient, I wrote my own function which calculates the Chebyshev polynomial instead of using the built-in MATLAB function $\code{chebyshevT}$ which was noticeably slower. Writing your own function is just a matter of using the compact closed-form expression for the Chebyshev polynomials:
+To solve this problem, I've used MATLAB as requested by the exercise. To make the computation more efficient, I wrote my own function which calculates the Chebyshev polynomial instead of using the built-in MATLAB function $\code{chebyshevT}$ which was noticeably slower. Writing my own function was just a matter of using the compact closed-form expression for the Chebyshev polynomials:
 
 $$T_i(x)=\cos{(i\arccos(x))}$$ 
 
-\section{Computation}
-Given $n=6$ and $N=n+1$, I first calculate the roots of the Chebyshev polynomial by using the formula:
+Built-in MATLAB functions have been used such as $\code{cos(x)}$ and $\code{acos(x)}$ to calculate the cosine and the inverse cosine function. $\code{linspace(start, end, nrOfPoints)}$ was used to create an array of equidistant points for plotting. The functions $\code{plot(x, y)}$, $\code{legend()}$, $\code{axis([xmin xmax ymin ymax])}$, $\code{ylabel(label)}$, and $\code{xlabel(label)}$ were also used for plotting.
 
-$$x_j=\cos \Big( \frac{2j-1}{2n}\pi \Big), j=1,\dots,N$$
+\section{Computation}
+Given $n=6$, I first calculate the nodes of the Chebyshev polynomial by using the formula:
+
+$$x_j=\cos \Big( \frac{2j-1}{2n}\pi \Big), j=1,\dots,n+1$$
 
 The resulting zeros are:
 
@@ -144,6 +147,15 @@ $$
 \end{bmatrix}
 $$
 
+The polynomial for the first function $\cos{2x}$ looks like this:
+
+\begin{equation}
+  \begin{array}{l}
+    t(x) = 4.407675118300712e-01 \times T_0(x)+ 3.489272363107635e-16 \times T_1(x) + \\ 
+    5.739892333362830e-01 \times T_2(x) + \dots -7.019674665493458e-01 \times T_6(x)
+  \end{array}
+\end{equation}
+
 To plot these coefficients in the graph, I need to calculate their associated y values:
 
 $$
@@ -171,6 +183,15 @@ $$
 \end{bmatrix}
 $$
 
+The polynomial for the second function $\cos{4x}$ looks like this:
+
+\begin{equation}
+  \begin{array}{l}
+    t(x) = 6.879841220704104e-01 \times T_0(x) + 2.537652627714643e-16 \times T_1(x) \\ 
+    -1.535576743556636e-01 \times T_2(x) + \dots + 5.104689360033142e-01 \times T_6(x)
+  \end{array}
+\end{equation}
+
 The associated y values for the given roots are the following:
 
 $$
@@ -185,7 +206,7 @@ $$
 \end{bmatrix}
 $$
 
-In order to properly calculate the associated y values, I had to subtract half of the first coefficient from the calculation. This is done because the formula I used to calculate the coefficients isn't correct for the first coefficient. The plots for both functions have been added to the next section.
+In order to properly calculate the associated y values, I had to subtract half of the first coefficient from the calculation. This is done because the formula I used to calculate the coefficients isn't correct for the first coefficient. The plots for both functions have been added to the next section.\\
 
 \section{Plots}
 Function $\cos(2x)$:\\
@@ -193,8 +214,8 @@ Function $\cos(2x)$:\\
 Function $\cos(4x)$:\\
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cos4x.jpg}
 \section{Observations}
-I first calculated the zeros of the polynomial so I could use them as nodes in polynomial interpolation because the resulting interpolation polynomial minimizes the effect of Runge's phenomenon. The functions still display a little bit of Runge's phenomenon. \\
+I first calculated the zeros of the polynomial so I could use them as nodes in polynomial interpolation because the resulting interpolation polynomial minimizes the effect of Runge's phenomenon. The functions, however, still display a little bit of Runge's phenomenon. \\
 
-The Chebyshev approximation for the function $\cos(2x)$ is pretty accurate, whereas the approximation for $\cos(4x)$ not so much as it doesn't take into account some of the curves of the original function.
+The Chebyshev approximation for the function $\cos(2x)$ is pretty accurate, whereas the approximation for $\cos(4x)$ not so much as it doesn't take into account some of the spikes of the original function.
 
 \end{document}
