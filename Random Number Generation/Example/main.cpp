@@ -16,23 +16,31 @@
 #define N 163840
 #define LOOPS 1000
 
+// Seed
 long idum = -87654321;
 
 int main() {
   // Create and initialize a stream/streams
   //int threadID;
+
+  // The maximum number of threads that can execute concurrently in a single parallel region.
   int numberOfThreads = omp_get_max_threads();
+
+  printf("Max number of parallel threads is %d\n", numberOfThreads);
 
   VSLStreamStatePtr stream[numberOfThreads];
 
   for (int i = 0; i < numberOfThreads; i++) {
     int errorCode = 0;
 
+    // Creates and initializes a random stream
     errorCode = vslNewStream(&stream[i], VSL_BRNG_MCG59, idum);
     if (errorCode) {
       printf("vslNewStream failed\n");
       return 1;
     }
+
+    // Initializes a stream using the leapfrog method.
     errorCode = vslLeapfrogStream(stream[i], i, numberOfThreads);
     if (errorCode) {
       printf("vslLeapfrogStream failed\n");
@@ -40,7 +48,7 @@ int main() {
     }
   }
 
-  printf("Successfully initialized the threads");
+  printf("Successfully initialized the threads\n");
 
   // Call one or more RNGs
 
