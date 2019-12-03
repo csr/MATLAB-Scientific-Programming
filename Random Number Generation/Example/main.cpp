@@ -13,11 +13,30 @@
 #include <stdio.h>
 #include <math.h>
 
+// Numbers per thread
 #define N 163840
+
+// Times the process is repeated
 #define LOOPS 1000
 
 // Seed
 long idum = -87654321;
+
+bool isInsideArea(double x, double y) {
+  // x^3 + y^3 <= 29
+  double firstCondition = pow(x, 3) + pow(y, 3);
+  if (firstCondition > 29) {
+    return false;
+  }
+
+  // y >= e^x - 2
+  double secondCondition = pow(M_E, x) - 2;
+  if (y < secondCondition) {
+    return false;
+  }
+
+  return true;
+}
 
 int main() {
   // Create and initialize a stream/streams
@@ -54,27 +73,50 @@ int main() {
   long randomNumbersPerThread = 1 * N;
 
   // global total variables; parallel loops will add to it
-  long insideArea = 0;
-
-  #pragma omp parallel private(threadID) reduction( + : insideArea)
-  {
-    threadID = omp_get_thread_num();
-    double randomNumbers[randomNumbersPerThread];
-
-    // generate the random samples in [1, 3]
-    vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream[threadID], randomNumbersPerThread, randomNumbers, 1, 3);
-
-      for (int i = 0; i < N; ++i) {
-        printf("Hola");
-        /// check for points in cone or sphere respectively
-      }
-
-      /// add to totals
-  }
+  long areaSum = 0;
   
-  printf("Total area is %lf", insideArea);
+  // More info: http://pages.tacc.utexas.edu/~eijkhout/pcse/html/omp-data.html
+  // #pragma omp parallel private(threadID) reduction(+ : insideArea) {
+  //   threadID = omp_get_thread_num();
+
+  //   // stuff here...
+  // }
+  
+  /* Fork a team of threads giving them their own copies of variables */
+  #pragma omp parallel private(numberOfThreads, threadID) reduction(+ : areaSum)
+  {
+    /* Obtain thread number */
+    threadID = omp_get_thread_num();
+
+    double randomNumbersX[randomNumbersPerThread];
+    double randomNumbersY[randomNumbersPerThread];
+
+    for (int j = 0; j < LOOPS; ++j) {
+      // generate the random samples in [1, 3]
+      vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream[threadID], randomNumbersPerThread, randomNumbersX, 1, 3);
+      vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream[threadID], randomNumbersPerThread, randomNumbersY, -1, 4);
+    
+      for (int i = 0; i < N; ++i) {
+        /// check for points in cone or sphere respectively
+        double x = randomNumbersX[i++];
+        double y = randomNumbersY[i++];
+        bool isInside = isInsideArea(x, y);
+        if (isInside == true) {
+          // insideArea++;
+          areaSum++;
+        }
+      }
+    }
+
+    printf("Hello World from thread = %d\n", threadID);
+  }
+
+  // double area = (double)num1/(double)num2;
+
+  // printf("Total area is %\n", area);
+
   /// clean up
-  for ( int i = 0; i < numberOfThreads; i++ ) {
+  for (int i = 0; i < numberOfThreads; i++) {
     vslDeleteStream(&stream[i]);
   }
 
