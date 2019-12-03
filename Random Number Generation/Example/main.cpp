@@ -14,10 +14,10 @@
 #include <math.h>
 
 // Numbers per thread
-#define N 163840
+#define N 100000
 
 // Times the process is repeated
-#define LOOPS 1000
+#define LOOPS 10000
 
 // Seed
 long idum = -87654321;
@@ -70,19 +70,13 @@ int main() {
   printf("Successfully initialized the threads\n");
 
   /// loop over the number of threads
-  long randomNumbersPerThread = 1 * N;
+  long randomNumbersPerThread = N;
 
   // global total variables; parallel loops will add to it
-  long areaSum = 0;
-  
-  // More info: http://pages.tacc.utexas.edu/~eijkhout/pcse/html/omp-data.html
-  // #pragma omp parallel private(threadID) reduction(+ : insideArea) {
-  //   threadID = omp_get_thread_num();
-
-  //   // stuff here...
-  // }
+  double areaSum = 0;
   
   /* Fork a team of threads giving them their own copies of variables */
+  // More info: http://pages.tacc.utexas.edu/~eijkhout/pcse/html/omp-data.html
   #pragma omp parallel private(numberOfThreads, threadID) reduction(+ : areaSum)
   {
     /* Obtain thread number */
@@ -91,29 +85,36 @@ int main() {
     double randomNumbersX[randomNumbersPerThread];
     double randomNumbersY[randomNumbersPerThread];
 
+    // Repeat the experiment LOOPS times
     for (int j = 0; j < LOOPS; ++j) {
-      // generate the random samples in [1, 3]
+      // generate the random x samples in [1, 3]
       vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream[threadID], randomNumbersPerThread, randomNumbersX, 1, 3);
+
+      // generate the random y samples in [1, 3]
       vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream[threadID], randomNumbersPerThread, randomNumbersY, -1, 4);
     
+      // Generate N random coordinates (x, y) to use to calculate the area
+      // Count how many of them are inside the area
+      int insideCount = 0;
       for (int i = 0; i < N; ++i) {
-        /// check for points in cone or sphere respectively
-        double x = randomNumbersX[i++];
-        double y = randomNumbersY[i++];
+        double x = randomNumbersX[i];
+        double y = randomNumbersY[i];
         bool isInside = isInsideArea(x, y);
         if (isInside == true) {
-          // insideArea++;
-          areaSum++;
+          insideCount++;
         }
       }
-    }
 
-    printf("Hello World from thread = %d\n", threadID);
+      double area = (double)insideCount/(double)N;
+
+      // Add to totals
+      areaSum += area;      
+    }
   }
 
-  // double area = (double)num1/(double)num2;
-
-  // printf("Total area is %\n", area);
+  // Average of the results
+  double area = areaSum/(double)LOOPS;
+  printf("Total area is %lf\n", area);
 
   /// clean up
   for (int i = 0; i < numberOfThreads; i++) {
