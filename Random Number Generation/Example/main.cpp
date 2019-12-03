@@ -9,7 +9,7 @@
 */
 
 #include "omp.h"
-#include "mkl_vsl.h"
+#include <mkl_vsl.h>
 #include <stdio.h>
 #include <math.h>
 
@@ -21,7 +21,7 @@ long idum = -87654321;
 
 int main() {
   // Create and initialize a stream/streams
-  //int threadID;
+  int threadID;
 
   // The maximum number of threads that can execute concurrently in a single parallel region.
   int numberOfThreads = omp_get_max_threads();
@@ -50,11 +50,33 @@ int main() {
 
   printf("Successfully initialized the threads\n");
 
-  // Call one or more RNGs
+  /// loop over the number of threads
+  long randomNumbersPerThread = 1 * N;
 
-  // Process the output
+  // global total variables; parallel loops will add to it
+  long insideArea = 0;
 
-  // Delete the stream/streams
+  #pragma omp parallel private(threadID) reduction( + : insideArea)
+  {
+    threadID = omp_get_thread_num();
+    double randomNumbers[randomNumbersPerThread];
+
+    // generate the random samples in [1, 3]
+    vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream[threadID], randomNumbersPerThread, randomNumbers, 1, 3);
+
+      for (int i = 0; i < N; ++i) {
+        printf("Hola");
+        /// check for points in cone or sphere respectively
+      }
+
+      /// add to totals
+  }
+  
+  printf("Total area is %lf", insideArea);
+  /// clean up
+  for ( int i = 0; i < numberOfThreads; i++ ) {
+    vslDeleteStream(&stream[i]);
+  }
 
   return 0;
 }
