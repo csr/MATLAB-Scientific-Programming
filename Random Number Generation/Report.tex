@@ -153,14 +153,16 @@ x^3+y^3\le 29 \\
 y \ge e^x -2
 \end{cases}$$
 
-The area is given by the ratio of how many points satisfied the system (in other words, are inside the figure) to the total number of iterations $N$. This is repeated $LOOPS$ times, and finally I calculate the average of all the areas.\\
+I define two constants $\code{LOOPS}$ and $\code{N}$, which represent the number of iterations to compute and the numbers of points to generate for each iteration respectively. There's also a seed used to generate random numbers.\\
 
-To make this happen, I created two independent streams of uniformly distributed random numbers.
+The area is given by the ratio of the points inside the system to all the random points $\code{N}$. This process is repeated $\code{LOOPS}$ times, and in each iteration an area is calculated. At the end of the iterations, I calculate the average of all the areas calculated inside the loops.\\
 
- 
+To make this happen, I first initialize the threads using the $\code{VSL\_BRNG\_MCG59}$ random number generator. Then I create two independent streams of uniformly distributed random numbers with \code{vdRngUniform} in the $(1,3)$ and $(-1,4)$ intervals. If the points belong to figure, I increase a local variable which keeps count of the points inside the figure. At the end of the iteration, I calcolate the area by dividing the count by $\code{LOOPS}$.\\
+
+As mentioned before, the average is taken out of all the areas calculated in the iterations. The result is $7.581675111111076e-02$ with $\code{N}$ and $\code{LOOPS}$ equal to 30000 and seed equal to $-87654321$.
 
 \section{Plots}
+
 %\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cos2x.jpg}
-%\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cos4x.jpg}
 \section{Observations}
 \end{document}

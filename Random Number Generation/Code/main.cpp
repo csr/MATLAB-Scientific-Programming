@@ -2,9 +2,9 @@
    Purpose: Area approximation using Monte Carlo method
    Author: Cesare De Cal
    Date: December 6, 2019
-   Compiling: make
-   Adjustments to the Makefile be needed based on the machine you're using.
-   Compiling options depend on your machine and settings:
+   Compiling: make and ./main
+   Adjustments Makefile configurations are machine-dependent.
+   Find your own settings here:
    https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor
 */
 
@@ -13,8 +13,11 @@
 #include <stdio.h>
 #include <math.h>
 
-#define N 163840
-#define LOOPS 10000
+// Numbers per thread
+#define N 30000
+
+// Times the process is repeated
+#define LOOPS 30000
 
 // Seed
 long idum = -87654321;
@@ -87,7 +90,7 @@ int main() {
       // generate the random x samples in [1, 3]
       vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream[threadID], randomNumbersPerThread, randomNumbersX, 1, 3);
 
-      // generate the random y samples in [1, 3]
+      // generate the random y samples in [-1, 4]
       vdRngUniform(VSL_RNG_METHOD_UNIFORM_STD, stream[threadID], randomNumbersPerThread, randomNumbersY, -1, 4);
     
       // Generate N random coordinates (x, y) to use to calculate the area
@@ -111,7 +114,7 @@ int main() {
 
   // Average of the results
   double area = areaSum/(double)LOOPS;
-  printf("Total area is %lf\n", area);
+  printf("Total area is %.15e\n", area);
 
   /// clean up
   for (int i = 0; i < numberOfThreads; i++) {
