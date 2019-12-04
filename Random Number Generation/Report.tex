@@ -112,7 +112,7 @@ To solve this exercise, I've used the following libraries and programming langua
 
 \begin{itemize}
   \item C
-  \item Intel Math Kernel Library (Vector Statistical Library)
+  \item Intel Math Kernel Library (more specifically, the Vector Statistical Library)
   \item OpenMP
   \item C Math Library
 \end{itemize}
@@ -132,9 +132,33 @@ OpenMP provides a user-friendly interface to build multi-threading applications.
   \item \code{omp\_get\_thread\_num()}
 \end{itemize}
 
-To make the code more clear, I've also wrote my own function \code{isInsideArea(x,y)} which checks if a given pair of coordinates $(x, y)$ is inside the area drawn by the system of inequalities.
+To make the code more clear, I've also wrote my own function \code{isInsideArea(x,y)} which checks if a given pair of coordinates $(x, y)$ is inside the area drawn by the system of inequalities. To get started with the exercise, I have used the template file \code{template.c} provided on the website.\\
+
+To compile and run the code on my own machine with \code{gcc}, I created a Makefile based on the compiler options and link line specified here:\\ \code{https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor}.
 
 \section{Computation}
+On a high level picture, the Monte Carlo method in this exercise works by generating random $(x,y)$ coordinates in the rectangle formed by
+
+$$
+\begin{cases}
+1 \le x \le 3 \\
+-1\le y \le 4 \\  
+\end{cases}$$
+
+And then checks if the points satisfy the following inequalities using the \code{isInsideArea(x,y)} function I wrote.
+
+$$
+\begin{cases}
+x^3+y^3\le 29 \\
+y \ge e^x -2
+\end{cases}$$
+
+The area is given by the ratio of how many points satisfied the system (in other words, are inside the figure) to the total number of iterations $N$. This is repeated $LOOPS$ times, and finally I calculate the average of all the areas.\\
+
+To make this happen, I created two independent streams of uniformly distributed random numbers.
+
+ 
+
 \section{Plots}
 %\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cos2x.jpg}
 %\includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{cos4x.jpg}
