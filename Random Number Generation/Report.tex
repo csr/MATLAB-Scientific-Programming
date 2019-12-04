@@ -94,9 +94,45 @@
 
 %----------------------------------------------- Introduction ------------------------------------------------------
 \section{Introduction}\label{sec:intro}
+The exercise asks to approximate the area of the figure defined by
+
+$$
+\begin{cases}
+1 \le x \le 3 \\
+-1\le y \le 4 \\  
+x^3+y^3\le 29 \\
+y \ge e^x -2
+\end{cases}$$
+
+using the Monte Carlo method.
+
 %---------------------------------- Tools ---------------------------------------------------------------------------
 \section{Tools}
-MKL VSL = Vector Statistical Library
+To solve this exercise, I've used the following libraries and programming languages:
+
+\begin{itemize}
+  \item C
+  \item Intel Math Kernel Library (Vector Statistical Library)
+  \item OpenMP
+  \item C Math Library
+\end{itemize}
+
+I've used the following Intel MKL routines:
+\begin{itemize}
+  \item \code{vslNewStream(\&stream, brng, seed)}
+  \item \code{vslLeapfrogStream(stream, k, nstreams)}
+  \item \code{vsRngUniform(method, stream, nrRandomNumbers, array, start, end)}
+  \item \code{vslDeleteStream(\&streamToDelete)}
+\end{itemize}
+
+OpenMP provides a user-friendly interface to build multi-threading applications. I've used the following methods and procedures:
+\begin{itemize}
+  \item \code{omp\_get\_max\_threads()}
+  \item \code{\#pragma omp parallel private(nrOfThreads, threadID)}
+  \item \code{omp\_get\_thread\_num()}
+\end{itemize}
+
+To make the code more clear, I've also wrote my own function \code{isInsideArea(x,y)} which checks if a given pair of coordinates $(x, y)$ is inside the area drawn by the system of inequalities.
 
 \section{Computation}
 \section{Plots}
