@@ -14,10 +14,10 @@
 #include <math.h>
 
 // Numbers per thread
-#define N 30000
+#define N 1000
 
 // Times the process is repeated
-#define LOOPS 30000
+#define LOOPS 1000
 
 // Seed
 long idum = -87654321;
