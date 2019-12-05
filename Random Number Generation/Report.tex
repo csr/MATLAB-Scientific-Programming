@@ -177,13 +177,13 @@ $$
 \int_1^{a} (\sqrt[3]{29-x^3}-e^x+2)dx\approx 7.581218821150386e-01
 $$
 
-with $x=a$ point of intersection between the two curves. To get the result above I computed $a=1.593743361313601$ and then performed numerical integration.
+with $x=a$ point of intersection between the two curves. To get the result above I computed $a=1.593743361313601$ and then performed numerical integration. The absolute value of the error found is $0.00045628996$.
 
 \section{Plots}
 To better understand the problem and the integration, I've plotted the system using Desmos:\\
 
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{desmos.png}
 \section{Observations}
-I can observe that the Monte Carlo method is pretty accurate if we compare the mathematical solution with the results obtained through the Intel MKL library. I can also observe that (at least in this experiment) reasonable precision is attained with only a moderate number of random numbers (1000) that with 1000 iterations leads to an average area of $7.692400000000001e-01$.
+Given the error obtained by comparing the mathematical solution with the results obtained through the Monte Carlo method, I can observe that the Monte Carlo method is a very compelling way to estimate areas. I can also observe that (at least in this experiment) reasonable precision is attained with only a moderate number of random numbers (1000) that with 1000 iterations leads to an average area of $7.692400000000001e-01$.
 
 \end{document}
