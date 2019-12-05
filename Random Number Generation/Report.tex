@@ -184,6 +184,6 @@ To better understand the problem and the integration, I've plotted the system us
 
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{desmos.png}
 \section{Observations}
-Given the error obtained by comparing the mathematical solution with the results obtained through the Monte Carlo method, I can observe that the Monte Carlo method is a very compelling way to estimate areas. I can also observe that (at least in this experiment) reasonable precision is attained with only a moderate number of random numbers (1000) that with 1000 iterations leads to an average area of $7.692400000000001e-01$.
+Given the error calculated by comparing the mathematical solution with the results obtained through the Monte Carlo method, I can observe that the Monte Carlo method is a very compelling way to estimate areas. I can also observe that (at least in this experiment) reasonable precision is attained with only a moderate number of random numbers (1000) that with 1000 iterations lead to an average area of $7.692400000000001e-01$. By using OpenMP I was able to reduce the computation time by a great deal given that multiple threads were working at the same time.
 
 \end{document}
