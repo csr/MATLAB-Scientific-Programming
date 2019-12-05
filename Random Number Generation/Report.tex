@@ -76,7 +76,7 @@
 		\begin{flushright}
 			\large
 			\textit{Professor}\\
-			\textsc{Annie Cuyt}\\ % Supervisor's name
+			\textsc{Annie Cuyt \& Stefan Becuwe}\\ % Supervisor's name
 			[0.25cm]
 			\textit{Assistant Professor}\\
 			\textsc{Ferre Knaepkens} % Supervisor's name
@@ -111,7 +111,6 @@ using the Monte Carlo method, which in Mathematics means solving a problem using
 To solve this exercise, I've used C and the following libraries:
 
 \begin{itemize}
-  \item C
   \item C Math Library
   \item Intel Math Kernel Library (more specifically, the Vector Statistical Library)
   \item OpenMP
@@ -137,7 +136,7 @@ To get started with the exercise, I have used the template file \code{template.c
 To compile and run the code on my own machine with \code{gcc}, I created a Makefile based on the compiler options and link line specified here:\\ \code{https://software.intel.com/en-us/articles/intel-mkl-link-line-advisor}.
 
 \section{Computation}
-On a high level picture, the Monte Carlo method in this exercise works by generating random $(x,y)$ coordinates in the rectangle formed by
+On a high level picture, to solve this problem I'll generate random points with coordinates $(x, y)$ in the rectangle (bounding box) defined by
 
 $$
 \begin{cases}
@@ -145,7 +144,7 @@ $$
 -1\le y \le 4 \\  
 \end{cases}$$
 
-And then checks if the points satisfy the following inequalities using the \code{isInsideArea(x,y)} function I wrote.
+And then I'll check if the each points is inside the figure. That is, if $(x, y)$ satisfies the following constraints using the \code{isInsideArea(x,y)} function I wrote.
 
 $$
 \begin{cases}
@@ -153,37 +152,39 @@ x^3+y^3\le 29 \\
 y \ge e^x -2
 \end{cases}$$
 
-I define two constants $\code{LOOPS}$ and $\code{N}$, which represent the number of iterations to compute and the numbers of points to generate for each iteration respectively. There's also a seed used to generate random numbers.\\
+To do this, I define two constants $\code{LOOPS}$ and $\code{N}$, which represent the number of iterations to compute and the numbers of points to generate for each iteration respectively. I'll also define a seed that I'll feed to the random number generator.\\
 
-The area is given by the ratio of the points inside the system to all the random points $\code{N}$. This process is repeated $\code{LOOPS}$ times, and in each iteration an area is calculated. At the end of the iterations, I calculate the average of all the areas calculated inside the loops.\\
+As we've seen in class, I can estimate the area of a figure calculating the ratio between the points inside the figure and all the points generated. This process is repeated for a certain number of iterations, and in each iteration an area is calculated. At the end of the iterations, I calculate the average of all the areas.\\
 
-To make this happen, I first initialize the threads using the $\code{VSL\_BRNG\_MCG59}$ random number generator. Then I create two independent streams of uniformly distributed random numbers with \code{vdRngUniform} in the $(1,3)$ and $(-1,4)$ intervals for $x$ and $y$ respectively. If the points are inside the figure, I increase a local variable which keeps count of the points inside the figure. At the end of the iteration, I calculate the area by dividing the count by $\code{LOOPS}$.\\
+To make this happen, I first initialize a stream of random numbers using the $\code{VSL\_BRNG\_MCG59}$ random number generator and the leapfrog method. Then I create two independent streams of uniformly distributed random numbers with \code{vdRngUniform} in the $(1,3)$ and $(-1,4)$ intervals for the $x$ and $y$ coordinates respectively. If the point $(x, y)$ lies inside the figure, I increase a local variable which keeps count of the points inside the figure. At the end of the iteration, I calculate the percentage of the points inside the area by dividing the count by the total points generated.\\
 
-As mentioned before, the average is taken out of all the areas calculated in the iterations. The result is $7.581675111111076e-02$ with $\code{N}$ and $\code{LOOPS}$ equal to 30000 and seed equal to $-87654321$.\\
+Finally, at the end of this multi-threaded computation, the average is taken out of all the areas calculated in the iterations. The result is $7.581675111111076e-02$ with $\code{N}$ and $\code{LOOPS}$ equal to 30000 and seed equal to $-87654321$.\\
 
-The area of the rectangle is defined by 
+Now that I have the percentage of the points that lie in the figure, I can calculate the area of the rectangle by using the following formula: 
 
 $$A_{\textnormal{rectangle}}= \textnormal{base}\times \textnormal{height}=2\times5=10$$
 
 The area of the figure is then
 
-$$A_{\textnormal{figure}}=A_{\textnormal{rectangle}}\times \frac{\textnormal{number of points inside object}}{\textnormal{total number of points in rectangle}}$$
+$$A_{\textnormal{figure}}=A_{\textnormal{rectangle}}\times \frac{\textnormal{number of points inside figure}}{\textnormal{total number of points in rectangle}}$$
 
 $$A_{\textnormal{figure}}=10\times 7.581675111111076e-02=7.581675111111076e-01$$
 
-To find the area mathematically, I've used Maple to calcolate the following integral:
+To make sure I have the right result, I've used Maple to calcolate the following integral:
 
 $$
 \int_1^{a} (\sqrt[3]{29-x^3}-e^x+2)dx\approx 7.581218821150386e-01
 $$
 
-with $x=a$ point of intersection between the two curves. To get the result above I computed $a=1.593743361313601$ and then performed numerical integration. The absolute value of the error found is $0.00045628996$.
+with $x=a$ point of intersection between the two curves defined by $y\ge e^x-2$ and $y\le \sqrt[3]{29-x^3}$. To get the result above I computed $a=1.593743361313601$ and then performed numerical integration. To estimate the precision of the solution, I calculated the absolute value of the error: $0.00045628996$.
 
 \section{Plots}
 To better understand the problem and the integration, I've plotted the system using Desmos:\\
 
 \includegraphics[width=\textwidth,height=\textheight,keepaspectratio]{desmos.png}
 \section{Observations}
-Given the error calculated by comparing the mathematical solution with the results obtained through the Monte Carlo method, I can observe that the Monte Carlo method is a very compelling way to estimate areas. I can also observe that (at least in this experiment) reasonable precision is attained with only a moderate number of random numbers (1000) that with 1000 iterations lead to an average area of $7.692400000000001e-01$. By using OpenMP I was able to reduce the computation time by a great deal given that multiple threads were working at the same time.
+Given the error calculated by comparing the mathematical solution with the results obtained through the Monte Carlo method, I can observe that the Monte Carlo method is a very compelling way to estimate areas.\\
+
+I can also observe that (at least in this experiment) reasonable precision is attained with only a moderate number of random numbers (1000) that with 1000 iterations lead to an average area of $7.692400000000001e-01$. Also, by using OpenMP, I was able to reduce the computation time by a great deal given that multiple threads were working at the same time.
 
 \end{document}
