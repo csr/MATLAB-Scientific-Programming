@@ -16,8 +16,16 @@
 \headcommand {\sectionentry {2}{Tools}{5}{Tools}{0}}
 \headcommand {\slideentry {2}{0}{1}{5/5}{}{0}}
 \headcommand {\beamer@framepages {5}{5}}
-\headcommand {\beamer@partpages {1}{5}}
-\headcommand {\beamer@subsectionpages {5}{5}}
-\headcommand {\beamer@sectionpages {5}{5}}
-\headcommand {\beamer@documentpages {5}}
-\headcommand {\gdef \inserttotalframenumber {5}}
+\headcommand {\slideentry {2}{0}{2}{6/6}{}{0}}
+\headcommand {\beamer@framepages {6}{6}}
+\headcommand {\slideentry {2}{0}{3}{7/7}{}{0}}
+\headcommand {\beamer@framepages {7}{7}}
+\headcommand {\slideentry {2}{0}{4}{8/8}{}{0}}
+\headcommand {\beamer@framepages {8}{8}}
+\headcommand {\slideentry {2}{0}{5}{9/9}{}{0}}
+\headcommand {\beamer@framepages {9}{9}}
+\headcommand {\beamer@partpages {1}{9}}
+\headcommand {\beamer@subsectionpages {5}{9}}
+\headcommand {\beamer@sectionpages {5}{9}}
+\headcommand {\beamer@documentpages {9}}
+\headcommand {\gdef \inserttotalframenumber {9}}

@@ -47,13 +47,36 @@ y \ge e^x -2
 \section{Tools}
 \begin{frame}
 \frametitle{Tools}
-
-To solve this exercise, I've used C and the following libraries:
 \begin{itemize}
+  \item C
   \item C Math Library
   \item Intel Math Kernel Library (more specifically, the Vector Statistical Library)
   \item OpenMP
 \end{itemize}
+\end{frame}
+
+\begin{frame}
+\frametitle{Approach}
+Generate a number in the rectangle and check if it satisfies.
+
+Variables:
+\end{frame}
+
+\begin{frame}
+\frametitle{Mathematical Solution}
+I've used Maple to calcolate the following integral:
+$$
+\int_1^{a} (\sqrt[3]{29-x^3}-e^x+2)dx\approx 7.581218821150386e-01
+$$
+with $a=1.593743361313601$, point of intersection between the two curves defined by $y\ge e^x-2$ and $y\le \sqrt[3]{29-x^3}$.
+\end{frame}
+
+\begin{frame}
+\frametitle{Error}
+\end{frame}
+
+\begin{frame}
+\frametitle{Observations}
 \end{frame}
 
 \end{document}
