@@ -14,4 +14,4 @@ You'll need MATLAB to run most of the exercises.
 * **Cesare De Cal** - _Initial Work_ - [csr](https://github.com/csr)
 
 ## Licence
-This directory is licensed under the MIT License - see the LICENSE.md file for details
+This directory is licensed under the MIT License.
