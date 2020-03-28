@@ -7,6 +7,8 @@ Welcome to my repository which contains the assignments and reports of the Scien
 * Orthogonal Basis Functions (Chebyshev Polynomials)
 * Random Number Generation (with multithreading)
 
+Hope you can find them useful!
+
 ## Getting Started
 You'll need MATLAB to run most of the exercises.
 
@@ -14,4 +16,4 @@ You'll need MATLAB to run most of the exercises.
 * **Cesare De Cal** - _Initial Work_ - [csr](https://github.com/csr)
 
 ## Licence
-This directory is licensed under the MIT License - see the LICENSE.md file for details
+This directory is licensed under the MIT License.
