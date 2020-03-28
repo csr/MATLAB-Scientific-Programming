@@ -7,6 +7,8 @@ Welcome to my repository which contains the assignments and reports of the Scien
 * Orthogonal Basis Functions (Chebyshev Polynomials)
 * Random Number Generation (with multithreading)
 
+Hope you can find them useful!
+
 ## Getting Started
 You'll need MATLAB to run most of the exercises.
 
