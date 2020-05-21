@@ -1,4 +1,4 @@
-# Scientific Programming
+# Python for Scientific Programming
 Welcome to my repository which contains Python and MATLAB scientific scripts and reports that perform the following:
 
 * Data Fitting
@@ -7,7 +7,7 @@ Welcome to my repository which contains Python and MATLAB scientific scripts and
 * Orthogonal Basis Functions (Chebyshev Polynomials)
 * Random Number Generation (with multithreading)
 
-Hope you can find them useful!
+Hope you find them useful!
 
 ## Getting Started
 You'll need MATLAB to run most of the exercises.
