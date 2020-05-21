@@ -1,5 +1,5 @@
 # Scientific Programming
-Welcome to my repository which contains the assignments and reports of the Scientific Programming course.
+Welcome to my repository which contains Python and MATLAB scientific scripts and reports that perform the following:
 
 * Data Fitting
 * Data Smoothing
